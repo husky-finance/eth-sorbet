@@ -1,6 +1,6 @@
 // import * as React from 'react'
 // import styles from './styles.module.css'
-import { Config, WindowChain } from './types'
+import type { Config, WindowChain } from './types'
 import { providers } from 'ethers'
 // export all default networks
 export * from './constant/networks'
