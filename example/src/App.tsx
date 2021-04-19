@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 // import { ExampleComponent } from 'l2-letsgo-crl'
 import LetsGo, { xDai } from 'l2-letsgo-crl'
-import 'l2-letsgo-crl/dist/index.css'
+// import 'l2-letsgo-crl/dist/index.css'
 
 const App = () => {
   // return <ExampleComponent text="Create React Library Example 😄" />
@@ -23,7 +23,7 @@ const App = () => {
     })
   }, [userAddress])
 
-  return <div>isReady: {isReady}</div>
+  return <div>isReady: {isReady.toString()}</div>
 }
 
 export default App
