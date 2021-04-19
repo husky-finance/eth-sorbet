@@ -1,29 +1,18 @@
-import React, { useState, useEffect } from 'react'
-
-// import { ExampleComponent } from 'l2-letsgo-crl'
-import LetsGo, { xDai } from 'l2-letsgo-crl'
-// import 'l2-letsgo-crl/dist/index.css'
+import React, { useMemo } from 'react'
+import { xDai, LetsgoModal } from 'l2-letsgo-crl'
 
 const App = () => {
-  // return <ExampleComponent text="Create React Library Example 😄" />
+  
+  const userAddress = useMemo(() => '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266', [] ) 
 
-  const [isReady, setIsReady] = useState(false)
+  const config = {
+    targetNetwork: xDai,
+    // optional
+    address: userAddress,
+    checkBalance: true
+  }
 
-  const userAddress = '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266'
-
-  useEffect(() => {
-    const letsgo = new LetsGo({
-      targetNetwork: xDai,
-      // optional
-      address: userAddress,
-      checkBalance: true
-    })
-    letsgo.setupNetwork().then(() => {
-      setIsReady(true)
-    })
-  }, [userAddress])
-
-  return <div>isReady: {isReady.toString()}</div>
+  return (<LetsgoModal config={config}/>)
 }
 
 export default App

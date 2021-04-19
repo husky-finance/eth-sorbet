@@ -20,9 +20,11 @@ export type Network = {
   blockExplorerUrl?: string
 }
 
+export interface web3Provider {
+  isMetaMask?: true
+  request: (...args: any[]) => any
+}
+
 export interface WindowChain {
-  ethereum?: {
-    isMetaMask?: true
-    request: (...args: any[]) => any
-  }
+  ethereum?: web3Provider
 }
