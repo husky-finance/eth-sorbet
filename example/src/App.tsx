@@ -26,8 +26,6 @@ const App = () => {
     handleClose: handleClose
   }
 
-  console.log(typeof handleClose)
-
   return (
     <div>
       <h1>Test Site Title</h1>
