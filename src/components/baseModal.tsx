@@ -5,14 +5,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 
 const useStyles = makeStyles({
-  root: {
-    background: 'white',
+  modal: {
+    background: 'black',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
-    height: 48,
-    padding: '0 30px'
+    padding: '0 30px',
+    height: 100,
+    width: 600
   }
 })
 
@@ -31,7 +32,7 @@ export default function BaseModal({
 }: ModalProps) {
   const classes = useStyles()
   return (
-    <Modal className={classes.root} open>
+    <Modal className={classes.modal} open>
       <div>
         <h1> {title} </h1>
         <p> {description} </p>

@@ -56,7 +56,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
         <Welcome next={nextStep} previous={previous} />
       )}
       {step === Steps.DepositL1Balance && (
-        <Deposit next={nextStep} previous={previous} />
+        <Deposit next={nextStep} previous={previous} l2Balance={l2Balance} />
       )}
     </div>
   )
