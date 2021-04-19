@@ -1,8 +1,3 @@
-// import * as React from 'react'
-// import styles from './styles.module.css'
-// import type { Config, WindowChain } from './types'
-// import { providers } from 'ethers'
-// export all default networks
 export * from './constant/networks'
 export * from './components/letsGoModal'
 
@@ -43,35 +38,5 @@ export * from './components/letsGoModal'
 //       // Todo: handle user have no L2 balance
 //     }
 //   }
-
-//   async switchNetwork() {
-//     if (!this.provider) {
-//       console.error(
-//         "Can't setup the network on metamask because window.ethereum is undefined"
-//       )
-//       return false
-//     }
-//     // switch network
-//     const network = this.config.targetNetwork
-//     try {
-//       await this.provider.request({
-//         method: 'wallet_addEthereumChain',
-//         params: [
-//           {
-//             chainId: `0x${network.chainId.toString(16)}`,
-//             chainName: network.name,
-//             nativeCurrency: network.nativeCurrency,
-//             rpcUrls: network.rpcUrls,
-//             blockExplorerUrls: [network.blockExplorerUrl]
-//           }
-//         ]
-//       })
-//       return true
-//     } catch (error) {
-//       console.error(error)
-//       return false
-//     }
-//   }
-// }
 
 // export default LetsGo
