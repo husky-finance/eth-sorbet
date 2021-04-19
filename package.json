@@ -1,8 +1,8 @@
 {
-  "name": "l2-letsgo-crl",
-  "version": "1.0.0",
-  "description": "Made with create-react-library",
-  "author": "flyingnobita",
+  "name": "@huskyfinance/l2-letsgo-crl",
+  "version": "0.0.1",
+  "description": "lets go L2",
+  "author": "",
   "license": "MIT",
   "repository": "https://github.com/husky-finance/l2-letsgo-crl",
   "main": "dist/index.js",
@@ -24,6 +24,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "ethers": "^5.1.2",
     "react": "^16.0.0"
   },
   "devDependencies": {
@@ -60,7 +61,5 @@
   "files": [
     "dist"
   ],
-  "dependencies": {
-    "ethers": "^5.1.2"
-  }
+  "dependencies": {}
 }
