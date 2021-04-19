@@ -6,14 +6,17 @@ import Modal from '@material-ui/core/Modal'
 
 const useStyles = makeStyles({
   modal: {
-    background: 'black',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'rgba(0, 0, 0, 0.5)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
-    padding: '0 30px',
-    height: 100,
-    width: 600
+    padding: '0 30px'
+    // height: 100,
+    // width: 600
   }
 })
 
@@ -38,7 +41,6 @@ export default function BaseModal({
   return (
     <Modal className={classes.modal} open={open} onClose={() => handleClose()}>
       <div>
-        <div>{open.toString()}</div>
         <h1> {title} </h1>
         <p> {description} </p>
         <button onClick={() => previous()}> Previous </button>
