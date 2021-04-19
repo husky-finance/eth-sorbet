@@ -22,18 +22,23 @@ type ModalProps = {
   description: string
   previous: Function
   next: Function
+  open: boolean
+  handleClose: Function
 }
 
 export default function BaseModal({
   title,
   description,
   previous,
-  next
+  next,
+  open,
+  handleClose
 }: ModalProps) {
   const classes = useStyles()
   return (
-    <Modal className={classes.modal} open>
+    <Modal className={classes.modal} open={open} onClose={() => handleClose()}>
       <div>
+        <div>{open.toString()}</div>
         <h1> {title} </h1>
         <p> {description} </p>
         <button onClick={() => previous()}> Previous </button>

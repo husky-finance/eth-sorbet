@@ -4,10 +4,14 @@ import BaseModal from './baseModal'
 
 export default function welcome({
   next,
-  previous
+  previous,
+  open,
+  handleClose
 }: {
   next: Function
   previous: Function
+  open: boolean
+  handleClose: Function
 }) {
   return (
     <BaseModal
@@ -15,6 +19,8 @@ export default function welcome({
       description={"Let's scale with a diff chain"}
       next={next}
       previous={previous}
+      open={open}
+      handleClose={handleClose}
     />
   )
 }

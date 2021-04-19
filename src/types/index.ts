@@ -6,6 +6,8 @@ export type Config = {
   checkBalance?: boolean
   // user's address to check
   address?: string
+  open: boolean
+  handleClose: Function
 }
 
 export type Network = {

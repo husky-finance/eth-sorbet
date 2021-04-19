@@ -53,7 +53,12 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   return (
     <div>
       {step === Steps.Welcome && (
-        <Welcome next={nextStep} previous={previous} />
+        <Welcome
+          next={nextStep}
+          previous={previous}
+          open={config.open}
+          handleClose={config.handleClose}
+        />
       )}
       {step === Steps.DepositL1Balance && (
         <Deposit next={nextStep} previous={previous} l2Balance={l2Balance} />

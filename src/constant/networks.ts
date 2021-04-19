@@ -8,9 +8,9 @@ export const Binance: Network = {
   nativeCurrency: {
     name: 'BNB',
     symbol: 'bnb',
-    decimals: 18,
+    decimals: 18
   },
-  chainId: 56,
+  chainId: 56
 }
 
 export const xDai: Network = {
@@ -20,9 +20,9 @@ export const xDai: Network = {
   nativeCurrency: {
     name: 'xDai',
     symbol: 'xDai',
-    decimals: 18,
+    decimals: 18
   },
-  chainId: 100,
+  chainId: 100
 }
 
 export const Sokol: Network = {
@@ -32,9 +32,9 @@ export const Sokol: Network = {
   nativeCurrency: {
     name: 'SPOA',
     symbol: 'SPOA',
-    decimals: 18,
+    decimals: 18
   },
-  chainId: 77,
+  chainId: 77
 }
 
 export const Matic: Network = {
@@ -44,9 +44,9 @@ export const Matic: Network = {
   nativeCurrency: {
     name: 'Matic',
     symbol: 'MATIC',
-    decimals: 18,
+    decimals: 18
   },
-  chainId: 137,
+  chainId: 137
 }
 
 export const Avalanche: Network = {
@@ -55,29 +55,29 @@ export const Avalanche: Network = {
   nativeCurrency: {
     name: 'Avalanche',
     symbol: 'AVAX',
-    decimals: 18,
+    decimals: 18
   },
   rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-  blockExplorerUrl: 'https://cchain.explorer.avax.network/',
+  blockExplorerUrl: 'https://cchain.explorer.avax.network/'
 }
 
 export const ArbitrumTestnet: Network = {
   name: 'Arbitrum (Kovan)',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
-  chainId: 212984383488152,
+  chainId: 212984383488152
 }
 
 export const OptimisticTestnet: Network = {
   name: 'Optimistic - Kovan',
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
-  chainId: 69,
+  chainId: 69
 }
 
 export const OptimisticMainnet: Network = {
   name: 'Optimistic - Mainnet',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
-  chainId: 10,
+  chainId: 10
 }
