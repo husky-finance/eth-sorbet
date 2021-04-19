@@ -13,8 +13,6 @@ const App = () => {
   }
 
   return (<LetsgoModal config={config}/>)
-
-  // return onboard
 }
 
 export default App
