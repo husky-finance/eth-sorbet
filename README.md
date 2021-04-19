@@ -16,6 +16,12 @@ cd \l2-letsgo-crl\example
 yarn start
 ```
 
+## Publish
+
+```shell
+npm publish --access public
+```
+
 ---
 
 > Made with create-react-library
