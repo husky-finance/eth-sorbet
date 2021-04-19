@@ -5,11 +5,15 @@ import BaseModal from './baseModal'
 export default function Deposit({
   next,
   previous,
-  l2Balance
+  l2Balance,
+  open,
+  handleClose
 }: {
   next: Function
   previous: Function
   l2Balance: BigNumber
+  open: boolean
+  handleClose: Function
 }) {
   return (
     <BaseModal
@@ -17,6 +21,8 @@ export default function Deposit({
       description={`Make some Deposit! you only got ${l2Balance} on L2`}
       next={next}
       previous={previous}
+      open={open}
+      handleClose={handleClose}
     />
   )
 }
