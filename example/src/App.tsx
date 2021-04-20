@@ -1,8 +1,30 @@
-import React, { useMemo } from 'react'
-import { xDai, LetsgoModal } from 'l2-letsgo-crl'
+import { LetsgoModal, xDai } from 'l2-letsgo-crl'
+import React, { useEffect, useState } from 'react'
+import type { WindowChain } from './types'
 
 const App = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const [userAddress, setUserAddress] = useState('')
+
+  useEffect(() => {
+    const provider = (window as WindowChain).ethereum
+
+    const fetchData = async (provider: any) => {
+      const accounts = await provider.request({
+        method: 'eth_requestAccounts'
+      })
+      const account = accounts[0]
+      setUserAddress(account)
+    }
+
+    if (!provider || !provider.request) {
+      const errorMessage =
+        "Can't setup get Provider. window.ethereum is undefined"
+      setUserAddress(errorMessage)
+    } else {
+      fetchData(provider)
+    }
+  }, [])
 
   const handleOpen = () => {
     setOpen(true)
@@ -11,11 +33,6 @@ const App = () => {
   const handleClose = () => {
     setOpen(false)
   }
-
-  const userAddress = useMemo(
-    () => '0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266',
-    []
-  )
 
   const config = {
     targetNetwork: xDai,
@@ -33,6 +50,7 @@ const App = () => {
         Open Modal
       </button>
       <LetsgoModal config={config} />
+      <h5>Address: {userAddress} </h5>
       <h6>Test Site Footer</h6>
     </div>
   )
