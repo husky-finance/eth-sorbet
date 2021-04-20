@@ -2,7 +2,7 @@ import React from 'react'
 
 import BaseModal from './baseModal'
 
-export default function welcome({
+export default function WelcomeModal({
   next,
   previous,
   open,

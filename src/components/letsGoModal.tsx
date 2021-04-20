@@ -1,16 +1,15 @@
-import React, { useEffect, useState, useCallback } from 'react'
-
-import Welcome from './welcome'
-import Deposit from './deposit'
-
+import { BigNumber, providers } from 'ethers'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Config } from '../types'
 import { verifyConfig } from '../utils/verify'
-import { providers, BigNumber } from 'ethers'
+import DepositModal from './depositModal'
+import WelcomeModal from './welcomeModal'
+import SwitchNetworkModal from './switchNetwork'
 
 enum Steps {
   Welcome,
   DepositL1Balance,
-  WaitingConfirm,
+  // WaitingConfirm,
   SwitchNetwork
 }
 
@@ -53,7 +52,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   return (
     <div>
       {step === Steps.Welcome && (
-        <Welcome
+        <WelcomeModal
           next={nextStep}
           previous={previous}
           open={config.open}
@@ -61,12 +60,21 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
         />
       )}
       {step === Steps.DepositL1Balance && (
-        <Deposit
+        <DepositModal
           next={nextStep}
           previous={previous}
           l2Balance={l2Balance}
           open={config.open}
           handleClose={config.handleClose}
+        />
+      )}
+      {step === Steps.SwitchNetwork && (
+        <SwitchNetworkModal
+          next={nextStep}
+          previous={previous}
+          open={config.open}
+          handleClose={config.handleClose}
+          config={config}
         />
       )}
     </div>

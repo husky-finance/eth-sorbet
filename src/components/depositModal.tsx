@@ -2,7 +2,7 @@ import React from 'react'
 import { BigNumber } from 'ethers'
 import BaseModal from './baseModal'
 
-export default function Deposit({
+export default function DepositModal({
   next,
   previous,
   l2Balance,
