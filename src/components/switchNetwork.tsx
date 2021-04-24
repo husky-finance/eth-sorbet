@@ -2,6 +2,7 @@ import Modal from '@material-ui/core/Modal'
 import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import { Config, WindowChain } from '../types'
+import { switchNetwork as rpcSwitchNetwork } from '../utils/rpc'
 
 const useStyles = makeStyles({
   modal: {
@@ -26,28 +27,15 @@ const useStyles = makeStyles({
  * @returns {boolean} success or not
  */
 export async function switchNetwork(config: Config): Promise<boolean> {
-  const network = config.targetNetwork
   const provider1 = (window as WindowChain).ethereum
 
   try {
     if (!provider1 || !provider1.request) {
       throw new Error("Can't setup get Provider. window.ethereum is undefined")
-    } else {
-      await provider1.request({
-        method: 'wallet_addEthereumChain',
-        params: [
-          {
-            chainId: `0x${network.chainId.toString(16)}`,
-            chainName: network.name,
-            nativeCurrency: network.nativeCurrency,
-            rpcUrls: network.rpcUrls,
-            blockExplorerUrls: [network.blockExplorerUrl]
-          }
-        ]
-      })
-      console.log('Switched!')
-      return true
     }
+    await rpcSwitchNetwork(provider1, config)
+    console.log('Switched!')
+    return true
   } catch (error) {
     console.error(error)
     return false
