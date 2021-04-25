@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useState, useMemo } from 'react'
 
 import { Config, WindowChain } from './types'
 import { verifyConfig } from './utils/verify'
+import { ThemeProvider } from '@material-ui/core/styles'
+
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -13,6 +15,8 @@ import Deposit from './components/steps/depositContent'
 import Welcome from './components/steps/welcomeContent'
 import SwitchNetwork from './components/steps/switchNetwork'
 import Finished from './components/steps/finished'
+
+import { defaultTheme } from './style/defaultTheme'
 
 enum Steps {
   Welcome,
@@ -29,10 +33,6 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))
 
   const [step, setSteps] = useState<Steps>(Steps.Welcome)
-
-  useEffect(() => {
-    console.log(`l2Balance`, l2Balance.toString())
-  }, [l2Balance])
 
   // verify config on update
   useEffect(() => {
@@ -77,7 +77,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
 
   const progressBar = (
     <div>
-      <Stepper activeStep={step} alternativeLabel>
+      <Stepper activeStep={step} alternativeLabel style={{ paddingLeft: 0 }}>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -88,26 +88,43 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   )
 
   return (
-    <div>
+    <ThemeProvider theme={defaultTheme}>
       <BaseModal
         content={
           <div>
             {content}
             {progressBar}
-            {step !== Steps.Welcome && (
-              <Button onClick={previous}> previous </Button>
-            )}
-            {step !== Steps.Finished && (
-              <Button onClick={nextStep}> next </Button>
-            )}
-            {step === Steps.Finished && (
-              <Button onClick={() => config.handleClose(false)}> Done </Button>
-            )}
+
+            {/* Button Row */}
+            <div style={{ width: '100%' }}>
+              {step !== Steps.Welcome && (
+                <Button onClick={previous}> Previous </Button>
+              )}
+              {step !== Steps.Finished && (
+                <Button
+                  style={{ float: 'right' }}
+                  variant='contained'
+                  color='primary'
+                  onClick={nextStep}
+                >
+                  Next{' '}
+                </Button>
+              )}
+              {step === Steps.Finished && (
+                <Button
+                  style={{ float: 'right' }}
+                  onClick={() => config.handleClose(false)}
+                >
+                  {' '}
+                  Done{' '}
+                </Button>
+              )}
+            </div>
           </div>
         }
         open={config.open && step in Steps}
         handleClose={config.handleClose}
       />
-    </div>
+    </ThemeProvider>
   )
 })

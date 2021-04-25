@@ -3,7 +3,10 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() => ({
-  content: {}
+  content: {
+    minHeight: 200,
+    fontFamily: "'Titillium Web', sans-serif;"
+  }
 }))
 
 type ContentProps = {
