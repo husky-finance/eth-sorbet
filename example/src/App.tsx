@@ -6,8 +6,9 @@ const App = () => {
   const [open, setOpen] = useState(true)
   const [userAddress, setUserAddress] = useState('')
 
+  const provider = (window as WindowChain).ethereum
+
   useEffect(() => {
-    const provider = (window as WindowChain).ethereum
 
     const fetchData = async (provider: any) => {
       const accounts = await provider.request({
@@ -24,7 +25,7 @@ const App = () => {
     } else {
       fetchData(provider)
     }
-  }, [])
+  }, [provider])
 
   const handleOpen = () => {
     setOpen(true)
@@ -55,7 +56,7 @@ const App = () => {
       <button type='button' onClick={handleOpen}>
         Open Modal
       </button>
-      <LetsgoModal config={config} />
+      <LetsgoModal config={config} walletProvider={provider} />
       <h5>Address: {userAddress} </h5>
       <h6>Test Site Footer</h6>
     </div>
