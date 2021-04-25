@@ -5,10 +5,9 @@ import { Config } from './types'
 import { verifyConfig } from './utils/verify'
 import { ThemeProvider } from '@material-ui/core/styles'
 
-import Stepper from '@material-ui/core/Stepper'
-import Step from '@material-ui/core/Step'
-import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
+
+import Progress from './components/progressbar'
 import BaseModal from './components/baseModal'
 
 import Deposit from './components/steps/depositContent'
@@ -24,8 +23,6 @@ enum Steps {
   SwitchNetwork,
   Finished
 }
-
-const steps = ['Welcome', 'Deposit', 'Switch Network', 'Done']
 
 export const LetsgoModal = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
@@ -79,25 +76,13 @@ export const LetsgoModal = React.memo(
       }
     }, [step, config, l2Balance])
 
-    const progressBar = (
-      <div>
-        <Stepper activeStep={step} alternativeLabel style={{ paddingLeft: 0 }}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
-      </div>
-    )
-
     return (
       <ThemeProvider theme={config.darkMode ? dark : light}>
         <BaseModal
           content={
             <div>
               {content}
-              {progressBar}
+              <Progress step={step} />
 
               {/* Button Row */}
               <div style={{ width: '100%' }}>
