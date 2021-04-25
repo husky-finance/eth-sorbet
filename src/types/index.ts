@@ -25,6 +25,7 @@ export type Network = {
   }
   blockExplorerUrl?: string
   img?: string
+  bridgeUrl?: string
 }
 
 export interface web3Provider {

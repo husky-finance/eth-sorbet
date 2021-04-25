@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 40
+    paddingTop: 60
   },
   icon: {
     padding: 10

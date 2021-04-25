@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: 40
+    paddingTop: 10
   },
   child: {
     display: 'inline-block',

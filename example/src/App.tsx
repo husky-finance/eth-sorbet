@@ -1,4 +1,4 @@
-import { LetsgoModal, OptimisticMainnet, Config } from 'l2-letsgo-crl'
+import { LetsgoModal, Avalanche, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: OptimisticMainnet,
+    targetNetwork: Avalanche,
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,

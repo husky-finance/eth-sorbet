@@ -1,7 +1,7 @@
 import { Network } from '../types'
 // sorted by chainId
 export const Binance: Network = {
-  name: 'Binance Smart Chain Mainnet',
+  name: 'Binance Smart Chain',
   rpcUrls: ['https://bsc-dataseed.binance.org/'],
   blockExplorerUrl: 'https://bscscan.com',
   nativeCurrency: {
@@ -23,7 +23,8 @@ export const xDai: Network = {
     decimals: 18
   },
   chainId: 100,
-  img: 'https://i.imgur.com/qDNpwXw.png'
+  img: 'https://i.imgur.com/qDNpwXw.png',
+  bridgeUrl: 'https://bridge.xdaichain.com/'
 }
 
 export const Sokol: Network = {
@@ -48,7 +49,8 @@ export const Matic: Network = {
     decimals: 18
   },
   chainId: 137,
-  img: 'https://i.imgur.com/RNmUy9P.png'
+  img: 'https://i.imgur.com/RNmUy9P.png',
+  bridgeUrl: 'https://wallet.matic.network/bridge/'
 }
 
 export const Avalanche: Network = {
@@ -60,7 +62,9 @@ export const Avalanche: Network = {
     decimals: 18
   },
   rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-  blockExplorerUrl: 'https://cchain.explorer.avax.network/'
+  blockExplorerUrl: 'https://cchain.explorer.avax.network/',
+  img: 'https://i.imgur.com/5mLLDbu.png',
+  bridgeUrl: 'https://aeb.xyz/#/transfer'
 }
 
 export const ArbitrumTestnet: Network = {
@@ -68,7 +72,8 @@ export const ArbitrumTestnet: Network = {
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
   chainId: 212984383488152,
-  img: 'https://i.imgur.com/QJOromM.png'
+  img: 'https://i.imgur.com/QJOromM.png',
+  bridgeUrl: 'https://bridge.arbitrum.io/'
 }
 
 export const OptimisticTestnet: Network = {
@@ -80,7 +85,7 @@ export const OptimisticTestnet: Network = {
 }
 
 export const OptimisticMainnet: Network = {
-  name: 'Optimistic - Mainnet',
+  name: 'Optimistic',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,
