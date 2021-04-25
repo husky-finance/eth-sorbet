@@ -2,6 +2,8 @@ import { LetsgoModal, Binance, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
+import 'l2-letsgo-crl/dist/index.css'
+
 const App = () => {
   const [open, setOpen] = useState(true)
   const [userAddress, setUserAddress] = useState('')

@@ -41,6 +41,8 @@ import React, { Component } from 'react'
 
 // import modal and target network config
 import LetsGoModal, {xDai} from 'l2-letsgo-crl'
+
+// load css
 import 'l2-letsgo-crl/dist/index.css'
 
 const provider = window.ethereum
@@ -68,15 +70,6 @@ class Example extends Component {
     return <LetsgoModal config={config} walletProvider={provider} />
   }
 }
-```
-
-## Default theme 
-
-To use the default theme, import the following google font your public index.html file
-
-```html
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
 ```
 
 ## License

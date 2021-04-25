@@ -1,4 +1,4 @@
-import './main.css'
+import '../index.css'
 
 import purple from '@material-ui/core/colors/purple'
 
