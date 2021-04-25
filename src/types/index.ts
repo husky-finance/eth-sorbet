@@ -11,6 +11,7 @@ export type Config = {
 
   // Dapp name
   dappName: string
+  dappLogo?: string
 }
 
 export type Network = {

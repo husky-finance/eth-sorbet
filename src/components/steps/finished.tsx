@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Base from './baseContent'
-import { Config } from '../types'
+import Base from '../baseContent'
+import { Config } from '../../types'
 
 export default function WelcomeModal({ config }: { config: Config }) {
   return (

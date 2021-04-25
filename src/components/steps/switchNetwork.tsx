@@ -1,7 +1,7 @@
 import React, { useMemo, useCallback } from 'react'
-import { Config, web3Provider } from '../types'
-import { switchNetwork as rpcSwitchNetwork } from '../utils/rpc'
-import BaseContent from './baseContent'
+import { Config, web3Provider } from '../../types'
+import { switchNetwork as rpcSwitchNetwork } from '../../utils/rpc'
+import BaseContent from '../baseContent'
 
 export default function SwitchNetworkContent({
   provider,

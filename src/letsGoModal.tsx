@@ -1,18 +1,18 @@
 import { BigNumber, providers } from 'ethers'
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
 
-import { Config, WindowChain } from '../types'
-import { verifyConfig } from '../utils/verify'
+import { Config, WindowChain } from './types'
+import { verifyConfig } from './utils/verify'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
-import BaseModal from './baseModal'
+import BaseModal from './components/baseModal'
 
-import Deposit from './depositContent'
-import Welcome from './welcomeContent'
-import SwitchNetwork from './switchNetwork'
-import Finished from './finished'
+import Deposit from './components/steps/depositContent'
+import Welcome from './components/steps/welcomeContent'
+import SwitchNetwork from './components/steps/switchNetwork'
+import Finished from './components/steps/finished'
 
 enum Steps {
   Welcome,
