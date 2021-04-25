@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
-import { BigNumber } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import Base from '../baseContent'
+
 import { Config } from '../../types'
 
 export default function DepositContent({
@@ -15,6 +16,11 @@ export default function DepositContent({
     [config]
   )
 
+  const decimals = useMemo(
+    () => config.targetNetwork.nativeCurrency?.decimals || 18,
+    [config]
+  )
+
   const link = useMemo(() => config.targetNetwork.bridgeUrl, [config])
 
   const content = useMemo(() => {
@@ -22,7 +28,7 @@ export default function DepositContent({
       <div>
         <div>
           Your current balance on {config.targetNetwork.name}:{' '}
-          {l2Balance.toString()} {currencySymbol}
+          {ethers.utils.formatUnits(l2Balance, decimals)} {currencySymbol}
         </div>
         {link && (
           <div>

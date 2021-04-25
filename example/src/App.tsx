@@ -1,4 +1,4 @@
-import { LetsgoModal, xDai, Config } from 'l2-letsgo-crl'
+import { LetsgoModal, Binance, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: xDai,
+    targetNetwork: Binance,
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,
@@ -49,7 +49,7 @@ const App = () => {
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
     
     // darkmode
-    darkMode: true
+    darkMode: false
   }
 
   return (

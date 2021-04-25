@@ -25,7 +25,7 @@ export const light = createMuiTheme({
   },
   palette: {
     primary: {
-      main: purple[600]
+      main: purple[400]
     }
   }
 })
