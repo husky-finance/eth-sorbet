@@ -1,10 +1,17 @@
 import { BigNumber, providers } from 'ethers'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
+
 import { Config, WindowChain } from '../types'
 import { verifyConfig } from '../utils/verify'
-import DepositModal from './depositModal'
-import WelcomeModal from './welcomeModal'
-import SwitchNetworkModal from './switchNetwork'
+import Stepper from '@material-ui/core/Stepper'
+import Step from '@material-ui/core/Step'
+import StepLabel from '@material-ui/core/StepLabel'
+import Button from '@material-ui/core/Button'
+import BaseModal from './baseModal'
+
+import Deposit from './depositContent'
+import Welcome from './welcomeContent'
+import SwitchNetwork from './switchNetwork'
 
 enum Steps {
   Welcome,
@@ -12,6 +19,8 @@ enum Steps {
   // WaitingConfirm,
   SwitchNetwork
 }
+
+const steps = ['Welcome!', 'Deposit', 'Switch Network']
 
 export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   const [rpcProvider, setRPCProvider] = useState<any | null>(null)
@@ -51,37 +60,45 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
 
   const walletProvider = (window as WindowChain).ethereum
 
+  const content = useMemo(() => {
+    switch (step) {
+      case Steps.Welcome:
+        return <Welcome config={config} />
+      case Steps.DepositL1Balance:
+        return <Deposit config={config} l2Balance={l2Balance} />
+      case Steps.SwitchNetwork:
+        return <SwitchNetwork config={config} provider={walletProvider} />
+      default:
+        return 'Unknown stepIndex'
+    }
+  }, [step, config, l2Balance])
+
+  const progressBar = (
+    <div>
+      <Stepper activeStep={step} alternativeLabel>
+        {steps.map((label) => (
+          <Step key={label}>
+            <StepLabel>{label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
+    </div>
+  )
+
   return (
     <div>
-      {step === Steps.Welcome && (
-        <WelcomeModal
-          config={config}
-          next={nextStep}
-          previous={previous}
-          open={config.open}
-          handleClose={config.handleClose}
-        />
-      )}
-      {step === Steps.DepositL1Balance && (
-        <DepositModal
-          next={nextStep}
-          previous={previous}
-          l2Balance={l2Balance}
-          config={config}
-          open={config.open}
-          handleClose={config.handleClose}
-        />
-      )}
-      {step === Steps.SwitchNetwork && (
-        <SwitchNetworkModal
-          next={nextStep}
-          previous={previous}
-          open={config.open}
-          handleClose={config.handleClose}
-          config={config}
-          provider={walletProvider}
-        />
-      )}
+      <BaseModal
+        content={
+          <div>
+            {content}
+            {progressBar}
+            <Button onClick={previous}> previous </Button>
+            <Button onClick={nextStep}> next </Button>
+          </div>
+        }
+        open={config.open}
+        handleClose={config.handleClose}
+      />
     </div>
   )
 })

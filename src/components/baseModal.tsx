@@ -22,24 +22,12 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 type ModalProps = {
-  title: string
-  description: string
-  content?: any
-  previous: Function
-  next: Function
+  content: any
   open: boolean
   handleClose: Function
 }
 
-export default function BaseModal({
-  title,
-  description,
-  content,
-  previous,
-  next,
-  open,
-  handleClose
-}: ModalProps) {
+export default function BaseModal({ content, open, handleClose }: ModalProps) {
   const classes = useStyles()
   return (
     <div>
@@ -49,14 +37,7 @@ export default function BaseModal({
         onClose={() => handleClose()}
         closeAfterTransition
       >
-        <div className={classes.paper}>
-          <h1> {title} </h1>
-          <p> {description} </p>
-          {content}
-          <br />
-          <button onClick={() => previous()}> Previous </button>
-          <button onClick={() => next()}> Next </button>
-        </div>
+        <div className={classes.paper}>{content}</div>
       </Modal>
     </div>
   )

@@ -1,21 +1,13 @@
 import React, { useMemo, useCallback } from 'react'
 import { Config, web3Provider } from '../types'
 import { switchNetwork as rpcSwitchNetwork } from '../utils/rpc'
-import BaseModal from './baseModal'
+import BaseContent from './baseContent'
 
-export default function SwitchNetworkModal({
-  next,
-  previous,
-  open,
-  handleClose,
+export default function SwitchNetworkContent({
   provider,
   config
 }: {
-  next: Function
-  previous: Function
-  open: boolean
   provider: web3Provider | undefined
-  handleClose: Function
   config: Config
 }) {
   const title = useMemo(() => 'Switch Network', [])
@@ -33,18 +25,14 @@ export default function SwitchNetworkModal({
   }, [provider, config])
 
   return (
-    <BaseModal
-      handleClose={handleClose}
+    <BaseContent
       title={title}
-      description={description}
       content={
         <div>
+          {description}
           <button onClick={onClick}>Switch</button>
         </div>
       }
-      previous={previous}
-      next={next}
-      open={open}
     />
   )
 }
