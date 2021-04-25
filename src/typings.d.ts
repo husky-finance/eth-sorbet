@@ -16,3 +16,10 @@ declare module '*.svg' {
   export default svgUrl
   export { svgComponent as ReactComponent }
 }
+
+declare module '*.png' {
+  const url: string
+  export default url
+  const pngComponent: SvgrComponent
+  export { pngComponent as ReactComponent }
+}

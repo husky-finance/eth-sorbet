@@ -1,5 +1,4 @@
 import { Network } from '../types'
-
 // sorted by chainId
 export const Binance: Network = {
   name: 'Binance Smart Chain Mainnet',
@@ -10,7 +9,8 @@ export const Binance: Network = {
     symbol: 'bnb',
     decimals: 18
   },
-  chainId: 56
+  chainId: 56,
+  img: 'https://i.imgur.com/Jcs4TTC.png'
 }
 
 export const xDai: Network = {
@@ -22,7 +22,8 @@ export const xDai: Network = {
     symbol: 'xDai',
     decimals: 18
   },
-  chainId: 100
+  chainId: 100,
+  img: 'https://i.imgur.com/qDNpwXw.png'
 }
 
 export const Sokol: Network = {
@@ -46,7 +47,8 @@ export const Matic: Network = {
     symbol: 'MATIC',
     decimals: 18
   },
-  chainId: 137
+  chainId: 137,
+  img: 'https://i.imgur.com/RNmUy9P.png'
 }
 
 export const Avalanche: Network = {
@@ -65,19 +67,22 @@ export const ArbitrumTestnet: Network = {
   name: 'Arbitrum (Kovan)',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
-  chainId: 212984383488152
+  chainId: 212984383488152,
+  img: 'https://i.imgur.com/QJOromM.png'
 }
 
 export const OptimisticTestnet: Network = {
   name: 'Optimistic - Kovan',
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
-  chainId: 69
+  chainId: 69,
+  img: 'https://i.imgur.com/qHBFlSq.png'
 }
 
 export const OptimisticMainnet: Network = {
   name: 'Optimistic - Mainnet',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
-  chainId: 10
+  chainId: 10,
+  img: 'https://i.imgur.com/qHBFlSq.png'
 }
