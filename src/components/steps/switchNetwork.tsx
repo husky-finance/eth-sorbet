@@ -46,8 +46,8 @@ export default function SwitchNetworkContent({
       console.log('Please connect wallet first')
       return
     }
-    await rpcSwitchNetwork(provider, config)
-    nextStep()
+    const success = await rpcSwitchNetwork(provider, config)
+    if (success) nextStep()
   }, [provider, config])
 
   const networkDetail = (
