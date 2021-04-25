@@ -16,7 +16,7 @@ import Welcome from './components/steps/welcomeContent'
 import SwitchNetwork from './components/steps/switchNetwork'
 import Finished from './components/steps/finished'
 
-import { defaultTheme } from './style/defaultTheme'
+import { light, dark } from './style/defaultTheme'
 
 enum Steps {
   Welcome,
@@ -92,7 +92,7 @@ export const LetsgoModal = React.memo(
     )
 
     return (
-      <ThemeProvider theme={defaultTheme}>
+      <ThemeProvider theme={config.darkMode ? dark : light}>
         <BaseModal
           content={
             <div>

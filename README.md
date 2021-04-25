@@ -54,6 +54,12 @@ const config = {
     // optional
     address: userAddress,
     checkBalance: true,
+
+    // logo of your app
+    dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
+    
+    // darkmode
+    darkMode: true
     
   }
 

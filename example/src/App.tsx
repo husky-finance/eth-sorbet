@@ -1,4 +1,4 @@
-import { LetsgoModal, Avalanche, Config } from 'l2-letsgo-crl'
+import { LetsgoModal, xDai, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: Avalanche,
+    targetNetwork: xDai,
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,
@@ -46,8 +46,10 @@ const App = () => {
     checkBalance: true,
 
     // dapp
-    dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png'
+    dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
     
+    // darkmode
+    darkMode: true
   }
 
   return (

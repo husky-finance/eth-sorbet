@@ -2,10 +2,11 @@ import React from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     minHeight: 290,
-    fontFamily: "'Titillium Web', sans-serif;"
+    fontFamily: "'Titillium Web', sans-serif;",
+    color: theme.palette.text.primary
   }
 }))
 

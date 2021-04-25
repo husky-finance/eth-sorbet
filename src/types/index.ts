@@ -12,6 +12,8 @@ export type Config = {
   // Dapp name
   dappName: string
   dappLogo?: string
+
+  darkMode?: boolean
 }
 
 export type Network = {

@@ -4,7 +4,7 @@ import purple from '@material-ui/core/colors/purple'
 
 import { createMuiTheme } from '@material-ui/core'
 
-export const defaultTheme = createMuiTheme({
+export const light = createMuiTheme({
   typography: {
     fontFamily: [
       '"Titillium Web", sans-serif',
@@ -26,6 +26,19 @@ export const defaultTheme = createMuiTheme({
   palette: {
     primary: {
       main: purple[600]
+    }
+  }
+})
+
+export const dark = createMuiTheme({
+  ...light,
+  palette: {
+    type: 'dark',
+    primary: {
+      main: purple[200]
+    },
+    text: {
+      primary: '#fff'
     }
   }
 })
