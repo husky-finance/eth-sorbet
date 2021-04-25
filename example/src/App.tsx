@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
 const App = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [userAddress, setUserAddress] = useState('')
 
   useEffect(() => {

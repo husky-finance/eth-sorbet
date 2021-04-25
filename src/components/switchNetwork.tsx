@@ -1,81 +1,47 @@
-import Modal from '@material-ui/core/Modal'
-import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
-import { Config, WindowChain } from '../types'
+import { Config, web3Provider } from '../types'
 import { switchNetwork as rpcSwitchNetwork } from '../utils/rpc'
-
-const useStyles = makeStyles({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    background: 'rgba(0, 0, 0, 0.5)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
-    padding: '0 30px'
-    // height: 100,
-    // width: 600
-  }
-})
-
-/**
- * use `wallet_addEthereumChain` call to request a network switch.
- * @param provider
- * @param config
- * @returns {boolean} success or not
- */
-export async function switchNetwork(config: Config): Promise<boolean> {
-  const provider1 = (window as WindowChain).ethereum
-
-  try {
-    if (!provider1 || !provider1.request) {
-      throw new Error("Can't setup get Provider. window.ethereum is undefined")
-    }
-    await rpcSwitchNetwork(provider1, config)
-    console.log('Switched!')
-    return true
-  } catch (error) {
-    console.error(error)
-    return false
-  }
-}
+import BaseModal from './baseModal'
 
 export default function SwitchNetworkModal({
   next,
   previous,
   open,
   handleClose,
+  provider,
   config
 }: {
   next: Function
   previous: Function
   open: boolean
+  provider: web3Provider | undefined
   handleClose: Function
   config: Config
 }) {
-  const classes = useStyles()
-
   const title = 'Switch Network'
   const description = 'Ready to switch to ' + config.targetNetwork.name
 
+  const onClick = async () => {
+    if (!provider) {
+      console.log('Please connect wallet first')
+      return
+    }
+    await rpcSwitchNetwork(provider, config)
+  }
+
   return (
-    // TODO merge this back with baseModal at some point
-    <Modal className={classes.modal} open={open} onClose={() => handleClose()}>
-      <div>
-        <h1> {title} </h1>
-        <p> {description} </p>
-        <button
-          onClick={async () => {
-            await switchNetwork(config)
-          }}
-        >
-          Switch
-        </button>
-        <button onClick={() => previous()}> Previous </button>
-        <button onClick={() => next()}> Next </button>
-      </div>
-    </Modal>
+    <BaseModal
+      handleClose={handleClose}
+      title={title}
+      description={description}
+      content={
+        <div>
+          <button onClick={onClick}>Switch</button>
+        </div>
+      }
+      previous={previous}
+      next={next}
+      open={open}
+    />
   )
 }

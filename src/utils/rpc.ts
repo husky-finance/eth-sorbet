@@ -1,4 +1,4 @@
-import { web3Provider, Config } from '../types'
+import { Config, web3Provider } from '../types'
 
 /**
  * use `wallet_addEthereumChain` call to request a network switch.
@@ -13,6 +13,9 @@ export async function switchNetwork(
   // switch network
   const network = config.targetNetwork
   try {
+    if (!provider.request) {
+      throw new Error('Invalid Wallet Provider. provider.request is undefined')
+    }
     await provider.request({
       method: 'wallet_addEthereumChain',
       params: [

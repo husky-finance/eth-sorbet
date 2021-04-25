@@ -20,6 +20,7 @@ export type Network = {
     decimals: 18
   }
   blockExplorerUrl?: string
+  img?: string
 }
 
 export interface web3Provider {

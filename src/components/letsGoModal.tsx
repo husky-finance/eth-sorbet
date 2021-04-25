@@ -1,6 +1,6 @@
 import { BigNumber, providers } from 'ethers'
 import React, { useCallback, useEffect, useState } from 'react'
-import { Config } from '../types'
+import { Config, WindowChain } from '../types'
 import { verifyConfig } from '../utils/verify'
 import DepositModal from './depositModal'
 import WelcomeModal from './welcomeModal'
@@ -49,6 +49,8 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
     setSteps((step) => step - 1)
   }, [])
 
+  const walletProvider = (window as WindowChain).ethereum
+
   return (
     <div>
       {step === Steps.Welcome && (
@@ -64,6 +66,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
           next={nextStep}
           previous={previous}
           l2Balance={l2Balance}
+          config={config}
           open={config.open}
           handleClose={config.handleClose}
         />
@@ -75,6 +78,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
           open={config.open}
           handleClose={config.handleClose}
           config={config}
+          provider={walletProvider}
         />
       )}
     </div>
