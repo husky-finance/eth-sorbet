@@ -36,11 +36,15 @@ const App = () => {
 
   const config = {
     targetNetwork: xDai,
+
+
+    dappName: 'Example App',
     // optional
     address: userAddress,
     checkBalance: true,
     open: open,
-    handleClose: handleClose
+    handleClose: handleClose,
+
   }
 
   return (

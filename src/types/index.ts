@@ -1,13 +1,16 @@
 export type Config = {
   targetNetwork: Network
+  open: boolean
+  handleClose: Function
 
   // [Optional]
   // wheather to check user's balance on the target network
   checkBalance?: boolean
   // user's address to check
   address?: string
-  open: boolean
-  handleClose: Function
+
+  // Dapp name
+  dappName: string
 }
 
 export type Network = {

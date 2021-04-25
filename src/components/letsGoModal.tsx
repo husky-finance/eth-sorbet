@@ -55,6 +55,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
     <div>
       {step === Steps.Welcome && (
         <WelcomeModal
+          config={config}
           next={nextStep}
           previous={previous}
           open={config.open}
