@@ -1,4 +1,4 @@
-import { LetsgoModal, xDai } from 'l2-letsgo-crl'
+import { LetsgoModal, xDai, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
@@ -34,16 +34,18 @@ const App = () => {
     setOpen(false)
   }
 
-  const config = {
+  const config: Config = {
     targetNetwork: xDai,
-
-    dappName: 'Example App',
-
+    dappName: 'KKBox',
     open: open,
     handleClose: handleClose,
+    
     // optional
     address: userAddress,
     checkBalance: true,
+
+    // dapp
+    dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png'
     
   }
 

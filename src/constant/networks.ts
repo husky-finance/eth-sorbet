@@ -14,7 +14,7 @@ export const Binance: Network = {
 }
 
 export const xDai: Network = {
-  name: 'xDai Mainnet',
+  name: 'xDai',
   rpcUrls: ['https://rpc.xdaichain.com/'],
   blockExplorerUrl: 'https://blockscout.com/xdai/mainnet',
   nativeCurrency: {
@@ -26,7 +26,7 @@ export const xDai: Network = {
 }
 
 export const Sokol: Network = {
-  name: 'Sokol Testnet',
+  name: 'Sokol',
   rpcUrls: ['https://sokol.poa.network/'],
   blockExplorerUrl: 'https://blockscout.com/poa/sokol',
   nativeCurrency: {
@@ -38,7 +38,7 @@ export const Sokol: Network = {
 }
 
 export const Matic: Network = {
-  name: 'Matic Mainnet',
+  name: 'Matic',
   rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
   blockExplorerUrl: 'https://explorer.matic.network/',
   nativeCurrency: {
