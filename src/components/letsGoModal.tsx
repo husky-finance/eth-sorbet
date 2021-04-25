@@ -12,15 +12,17 @@ import BaseModal from './baseModal'
 import Deposit from './depositContent'
 import Welcome from './welcomeContent'
 import SwitchNetwork from './switchNetwork'
+import Finished from './finished'
 
 enum Steps {
   Welcome,
   DepositL1Balance,
   // WaitingConfirm,
-  SwitchNetwork
+  SwitchNetwork,
+  Finished
 }
 
-const steps = ['Welcome!', 'Deposit', 'Switch Network']
+const steps = ['Welcome', 'Deposit', 'Switch Network', 'Done']
 
 export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
   const [rpcProvider, setRPCProvider] = useState<any | null>(null)
@@ -69,7 +71,7 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
       case Steps.SwitchNetwork:
         return <SwitchNetwork config={config} provider={walletProvider} />
       default:
-        return 'Unknown stepIndex'
+        return <Finished config={config} />
     }
   }, [step, config, l2Balance])
 
@@ -92,11 +94,18 @@ export const LetsgoModal = React.memo(({ config }: { config: Config }) => {
           <div>
             {content}
             {progressBar}
-            <Button onClick={previous}> previous </Button>
-            <Button onClick={nextStep}> next </Button>
+            {step !== Steps.Welcome && (
+              <Button onClick={previous}> previous </Button>
+            )}
+            {step !== Steps.Finished && (
+              <Button onClick={nextStep}> next </Button>
+            )}
+            {step === Steps.Finished && (
+              <Button onClick={() => config.handleClose(false)}> Done </Button>
+            )}
           </div>
         }
-        open={config.open}
+        open={config.open && step in Steps}
         handleClose={config.handleClose}
       />
     </div>
