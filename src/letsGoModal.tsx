@@ -67,7 +67,13 @@ export const LetsgoModal = React.memo(
         case Steps.DepositL1Balance:
           return <Deposit config={config} l2Balance={l2Balance} />
         case Steps.SwitchNetwork:
-          return <SwitchNetwork config={config} provider={walletProvider} />
+          return (
+            <SwitchNetwork
+              config={config}
+              provider={walletProvider}
+              nextStep={nextStep}
+            />
+          )
         default:
           return <Finished config={config} />
       }
@@ -101,11 +107,13 @@ export const LetsgoModal = React.memo(
                 {step !== Steps.Finished && (
                   <Button
                     style={{ float: 'right' }}
-                    variant='contained'
+                    variant={
+                      step === Steps.SwitchNetwork ? 'outlined' : 'contained'
+                    }
                     color='primary'
                     onClick={nextStep}
                   >
-                    Next{' '}
+                    {step === Steps.SwitchNetwork ? 'Skip' : 'Next'}
                   </Button>
                 )}
                 {step === Steps.Finished && (

@@ -7,11 +7,15 @@ import { switchNetwork as rpcSwitchNetwork } from '../../utils/rpc'
 import BaseContent from '../baseContent'
 
 const useStyles = makeStyles(() => ({
-  logoWrapper: {
+  center: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'center',
     paddingTop: 40
+  },
+  child: {
+    display: 'inline-block',
+    paddingBottom: 10
   },
   img: {
     height: 40
@@ -20,10 +24,12 @@ const useStyles = makeStyles(() => ({
 
 export default function SwitchNetworkContent({
   provider,
-  config
+  config,
+  nextStep
 }: {
   provider: web3Provider | undefined
   config: Config
+  nextStep: Function
 }) {
   const classes = useStyles()
 
@@ -40,18 +46,26 @@ export default function SwitchNetworkContent({
       console.log('Please connect wallet first')
       return
     }
-    rpcSwitchNetwork(provider, config)
+    await rpcSwitchNetwork(provider, config)
+    nextStep()
   }, [provider, config])
 
   const networkDetail = (
-    <div>
-      <div>
+    <div className={classes.center}>
+      <div className={classes.child}>
         {config.targetNetwork.img && (
           <img className={classes.img} src={config.targetNetwork.img} />
         )}
       </div>
-      <div>Provider: {config.targetNetwork.rpcUrls[0]}</div>
-      <div>ChainId: {config.targetNetwork.chainId}</div>
+      <div className={classes.child}>
+        Provider: {config.targetNetwork.rpcUrls[0]}
+      </div>
+      <div className={classes.child}>
+        ChainId: {config.targetNetwork.chainId}
+      </div>
+      <Button onClick={onClick} variant='contained' color='primary'>
+        Switch
+      </Button>
     </div>
   )
 
@@ -61,12 +75,7 @@ export default function SwitchNetworkContent({
       content={
         <div>
           {description}
-          <div className={classes.logoWrapper}>{networkDetail}</div>
-          <div>
-            <Button onClick={onClick} variant='contained' color='primary'>
-              Switch
-            </Button>
-          </div>
+          {networkDetail}
         </div>
       }
     />
