@@ -1,4 +1,4 @@
-import { LetsgoModal, xDai, Config } from 'l2-letsgo-crl'
+import { LetsgoModal, OptimisticMainnet, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
@@ -36,7 +36,7 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: xDai,
+    targetNetwork: OptimisticMainnet,
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,

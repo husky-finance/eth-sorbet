@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
     paddingTop: 40
   },
   img: {
-    height: 60
+    height: 40
   }
 }))
 
@@ -29,8 +29,8 @@ export default function SwitchNetworkContent({
 
   const title = useMemo(() => 'Switch Network', [])
   const description = useMemo(
-    () => 'Ready to switch to ' + config.targetNetwork.name,
-    []
+    () => <div>Ready to switch to {config.targetNetwork.name}</div>,
+    [config]
   )
 
   console.log(`config.targetNetwork.img`, config.targetNetwork.img)
@@ -43,9 +43,17 @@ export default function SwitchNetworkContent({
     rpcSwitchNetwork(provider, config)
   }, [provider, config])
 
-  const networkLogo = config.targetNetwork.img ? (
-    <img className={classes.img} src={config.targetNetwork.img} />
-  ) : null
+  const networkDetail = (
+    <div>
+      <div>
+        {config.targetNetwork.img && (
+          <img className={classes.img} src={config.targetNetwork.img} />
+        )}
+      </div>
+      <div>Provider: {config.targetNetwork.rpcUrls[0]}</div>
+      <div>ChainId: {config.targetNetwork.chainId}</div>
+    </div>
+  )
 
   return (
     <BaseContent
@@ -53,7 +61,7 @@ export default function SwitchNetworkContent({
       content={
         <div>
           {description}
-          <div className={classes.logoWrapper}>{networkLogo}</div>
+          <div className={classes.logoWrapper}>{networkDetail}</div>
           <div>
             <Button onClick={onClick} variant='contained' color='primary'>
               Switch
