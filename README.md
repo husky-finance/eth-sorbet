@@ -43,6 +43,8 @@ import React, { Component } from 'react'
 import LetsGoModal, {xDai} from 'l2-letsgo-crl'
 import 'l2-letsgo-crl/dist/index.css'
 
+const provider = window.ethereum
+
 const config = {
     targetNetwork: xDai,
     dappName: 'Example App',
@@ -57,7 +59,7 @@ const config = {
 
 class Example extends Component {
   render() {
-    return <LetsgoModal config={config} />
+    return <LetsgoModal config={config} walletProvider={provider} />
   }
 }
 ```
