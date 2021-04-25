@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useCallback } from 'react'
 import { Config, web3Provider } from '../types'
 import { switchNetwork as rpcSwitchNetwork } from '../utils/rpc'
 import BaseModal from './baseModal'
@@ -18,16 +18,19 @@ export default function SwitchNetworkModal({
   handleClose: Function
   config: Config
 }) {
-  const title = 'Switch Network'
-  const description = 'Ready to switch to ' + config.targetNetwork.name
+  const title = useMemo(() => 'Switch Network', [])
+  const description = useMemo(
+    () => 'Ready to switch to ' + config.targetNetwork.name,
+    []
+  )
 
-  const onClick = async () => {
+  const onClick = useCallback(async () => {
     if (!provider) {
       console.log('Please connect wallet first')
       return
     }
-    await rpcSwitchNetwork(provider, config)
-  }
+    rpcSwitchNetwork(provider, config)
+  }, [provider, config])
 
   return (
     <BaseModal
