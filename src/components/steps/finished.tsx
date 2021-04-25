@@ -7,7 +7,7 @@ export default function WelcomeModal({ config }: { config: Config }) {
   return (
     <Base
       title={`You're all set`}
-      content={`Enjoy your ride with ${config.targetNetwork.name}`}
+      content={`Enjoy your ride with ${config.targetNetwork.name} 🚀`}
     />
   )
 }

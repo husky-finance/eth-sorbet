@@ -32,7 +32,7 @@ export const LetsgoModal = React.memo(
     const [rpcProvider, setRPCProvider] = useState<any | null>(null)
     const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))
 
-    const [step, setSteps] = useState<Steps>(Steps.DepositL1Balance)
+    const [step, setSteps] = useState<Steps>(Steps.Welcome)
 
     // verify config on update
     useEffect(() => {
