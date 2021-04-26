@@ -29,7 +29,7 @@ See [example](./example) for more detailed usage guide.
 import React, { Component } from 'react'
 
 // import modal and target network config
-import { Sorbet, xDai } from 'eth-sorbet'
+import { Sorbet, xDai } from '@huskyfinance/eth-sorbet'
 
 // load css
 import '@huskyfinance/eth-sorbet/dist/index.css'
@@ -40,7 +40,7 @@ const config = {
   targetNetwork: xDai,
   dappName: 'Example App',
 
-  open: open,
+  open: isOpen,
   handleClose: handleClose,
   // optional
   address: userAddress,
