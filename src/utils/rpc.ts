@@ -1,4 +1,5 @@
-import { Config, web3Provider } from '../types'
+import { ethers } from 'ethers'
+import { Config } from '../types'
 
 /**
  * use `wallet_addEthereumChain` call to request a network switch.
@@ -7,7 +8,7 @@ import { Config, web3Provider } from '../types'
  * @returns {boolean} success or not
  */
 export async function switchNetwork(
-  provider: web3Provider,
+  provider: ethers.providers.ExternalProvider,
   config: Config
 ): Promise<boolean> {
   // switch network

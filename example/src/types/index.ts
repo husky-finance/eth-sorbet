@@ -1,3 +1,5 @@
+import { ethers } from 'ethers'
+
 export type Config = {
   targetNetwork: Network
 
@@ -22,11 +24,6 @@ export type Network = {
   blockExplorerUrl?: string
 }
 
-export interface web3Provider {
-  isMetaMask?: true
-  request: (...args: any[]) => any
-}
-
 export interface WindowChain {
-  ethereum?: web3Provider
+  ethereum?: ethers.providers.ExternalProvider
 }

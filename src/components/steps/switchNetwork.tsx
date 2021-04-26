@@ -1,8 +1,8 @@
 import React, { useMemo, useCallback } from 'react'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
-
-import { Config, web3Provider } from '../../types'
+import { ethers } from 'ethers'
+import { Config } from '../../types'
 import { switchNetwork as rpcSwitchNetwork } from '../../utils/rpc'
 import BaseContent from '../baseContent'
 
@@ -27,7 +27,7 @@ export default function SwitchNetworkContent({
   config,
   nextStep
 }: {
-  provider: web3Provider | undefined
+  provider: ethers.providers.ExternalProvider | undefined
   config: Config
   nextStep: Function
 }) {
