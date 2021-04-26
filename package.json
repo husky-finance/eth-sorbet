@@ -1,6 +1,6 @@
 {
   "name": "@huskyfinance/eth-sorbet",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React comment to help transition between L1 and L2s",
   "author": "",
   "license": "MIT",
