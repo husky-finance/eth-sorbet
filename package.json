@@ -1,6 +1,6 @@
 {
   "name": "@huskyfinance/eth-sorbet",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React comment to help transition between L1 and L2s",
   "author": "",
   "license": "MIT",
@@ -26,7 +26,7 @@
   "peerDependencies": {
     "@material-ui/core": "^4.11.3",
     "ethers": "^5.1.2",
-    "react": "^16.0.0"
+    "react": "^17.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -55,7 +55,6 @@
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
-    "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "typescript": "^3.7.5"
