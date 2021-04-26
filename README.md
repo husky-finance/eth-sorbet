@@ -1,8 +1,11 @@
 # eth-sorbet
 
-> Made with create-react-library
-
 [![NPM](https://img.shields.io/npm/v/@huskyfinance/eth-sorbet.svg)](https://www.npmjs.com/package/@huskyfinance/eth-sorbet) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+<p align="center">
+<img src="https://www.flaticon.com/svg/vstatic/svg/938/938136.svg?token=exp=1619424543~hmac=c5d1f651215f66614d46d240bac491ae" height=100>
+
+<p align="center"><code>  Smooth transition to L2, just like sorbet before main course</code></p>
 
 ## Install
 
@@ -12,7 +15,7 @@ npm install --save eth-sorbet
 
 ## Usage
 
-Please refer to [example](./example) for more detailed usage guide. 
+See [example](./example) for more detailed usage guide.
 
 ```tsx
 import React, { Component } from 'react'
@@ -49,6 +52,18 @@ class Example extends Component {
 }
 ```
 
+## Supported Network
+
+| Network | Config | Native Deposit Supported |
+| -------- | -------- | -------- |
+| xDai     | ✅     | -     |
+| BSC     | ✅     | -     |
+| Avalanche     | ✅     | -     |
+| Sokol     | ✅     | -     |
+| Matic     | ✅     | -     |
+| Arbitrum testnet     | ✅     | -     |
+| Optimism testnet     | ✅     | -     |
+| Optimism     | ✅     | -     |
 
 ## Run in dev
 
