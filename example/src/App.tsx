@@ -1,8 +1,12 @@
-import { LetsgoModal, Binance, Config } from 'l2-letsgo-crl'
+import { LetsgoModal, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, Config } from 'l2-letsgo-crl'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
 import 'l2-letsgo-crl/dist/index.css'
+
+const networks = [Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche,]
+const ran = parseInt((Math.random()* networks.length).toFixed(0))
+const idx = ran === 0 ? ran : ran - 1
 
 const App = () => {
   const [open, setOpen] = useState(true)
@@ -38,7 +42,7 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: Binance,
+    targetNetwork: networks[idx] ,
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,

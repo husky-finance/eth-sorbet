@@ -10,7 +10,8 @@ export const Binance: Network = {
     decimals: 18
   },
   chainId: 56,
-  img: 'https://i.imgur.com/Jcs4TTC.png'
+  img: 'https://i.imgur.com/Jcs4TTC.png',
+  bridgeUrl: 'https://www.binance.org/en/bridge'
 }
 
 export const xDai: Network = {
