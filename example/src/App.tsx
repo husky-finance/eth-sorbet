@@ -1,9 +1,25 @@
-import { Sorbet, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, SKALE, Config } from '@huskyfinance/eth-sorbet'
+import {
+  Sorbet,
+  Binance,
+  ArbitrumTestnet,
+  OptimisticMainnet,
+  xDai,
+  Avalanche,
+  SKALE,
+  Config
+} from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
-const networks = [Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, SKALE]
-const ran = parseInt((Math.random()* networks.length).toFixed(0))
+const networks = [
+  Binance,
+  ArbitrumTestnet,
+  OptimisticMainnet,
+  xDai,
+  Avalanche,
+  SKALE
+]
+const ran = parseInt((Math.random() * networks.length).toFixed(0))
 const idx = ran === 0 ? ran : ran - 1
 
 const App = () => {
@@ -13,7 +29,6 @@ const App = () => {
   const provider = (window as WindowChain).ethereum
 
   useEffect(() => {
-
     const fetchData = async (provider: any) => {
       const accounts = await provider.request({
         method: 'eth_requestAccounts'
@@ -40,20 +55,20 @@ const App = () => {
   }
 
   const config: Config = {
-    targetNetwork: networks[idx] ,
+    targetNetwork: networks[idx],
     dappName: 'KKBox',
     open: open,
     handleClose: handleClose,
-    
+
     // optional
     address: userAddress,
     checkBalance: true,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
-    
+
     // darkmode
-    darkMode: false
+    darkMode: true
   }
 
   return (
