@@ -68,6 +68,20 @@ export const Avalanche: Network = {
   bridgeUrl: 'https://aeb.xyz/#/transfer'
 }
 
+export const SKALE: Network = {
+  name: 'SKALE Network Testnet',
+  chainId: 344435,
+  nativeCurrency: {
+    name: 'SKALE ETH',
+    symbol: 'skETH',
+    decimals: 18
+  },
+  rpcUrls: ['https://dev-testnet-v1-0.skalelabs.com'],
+  blockExplorerUrl:
+    'https://expedition.dev/?rpcUrl=https://dev-testnet-v1-0.skalelabs.com',
+  img: 'https://i.imgur.com/0lfRFet.png'
+}
+
 export const ArbitrumTestnet: Network = {
   name: 'Arbitrum (Kovan)',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],

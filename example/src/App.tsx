@@ -1,8 +1,8 @@
-import { Sorbet, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, Config } from '@huskyfinance/eth-sorbet'
+import { Sorbet, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, SKALE, Config } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
-const networks = [Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche,]
+const networks = [Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, SKALE]
 const ran = parseInt((Math.random()* networks.length).toFixed(0))
 const idx = ran === 0 ? ran : ran - 1
 

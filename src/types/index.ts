@@ -25,7 +25,7 @@ export type Network = {
   nativeCurrency?: {
     symbol: string
     name: string
-    decimals: 18
+    decimals: number
   }
   blockExplorerUrl?: string
   img?: string
