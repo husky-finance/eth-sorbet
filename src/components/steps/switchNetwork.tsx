@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   },
   child: {
     display: 'inline-block',
-    paddingBottom: 10
+    paddingBottom: 8
   },
   img: {
     height: 40
