@@ -4,8 +4,8 @@ import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import StepConnector from '@material-ui/core/StepConnector'
+import StepIcon from '@material-ui/core/StepIcon'
 import purple from '@material-ui/core/colors/purple'
-
 import { withStyles } from '@material-ui/core/styles'
 
 const steps = ['Welcome', 'Deposit', 'Switch Network', 'Done']
@@ -28,6 +28,15 @@ const ColorlibConnector = withStyles({
   }
 })(StepConnector)
 
+const CustomStepIcon = withStyles({
+  root: {
+    width: 18
+  },
+  active: {
+    width: 24
+  }
+})(StepIcon)
+
 const Progress = React.memo(({ step }: { step: number }) => {
   return (
     <div>
@@ -39,7 +48,7 @@ const Progress = React.memo(({ step }: { step: number }) => {
       >
         {steps.map((label) => (
           <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+            <StepLabel StepIconComponent={CustomStepIcon}>{label}</StepLabel>
           </Step>
         ))}
       </Stepper>
