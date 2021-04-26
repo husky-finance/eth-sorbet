@@ -62,7 +62,13 @@ export const Sorbet = React.memo(
         case Steps.Welcome:
           return <Welcome config={config} />
         case Steps.DepositL1Balance:
-          return <Deposit config={config} l2Balance={l2Balance} />
+          return (
+            <Deposit
+              config={config}
+              l2Balance={l2Balance}
+              provider={walletProvider}
+            />
+          )
         case Steps.SwitchNetwork:
           return (
             <SwitchNetwork
