@@ -82,12 +82,16 @@ export const LetsgoModal = React.memo(
           content={
             <div>
               {content}
-              <Progress step={step} />
-
               {/* Button Row */}
               <div style={{ width: '100%' }}>
                 {step !== Steps.Welcome && (
-                  <Button onClick={previous}> Previous </Button>
+                  <Button
+                    variant='outlined'
+                    style={{ float: 'left' }}
+                    onClick={previous}
+                  >
+                    Previous
+                  </Button>
                 )}
                 {step !== Steps.Finished && (
                   <Button
@@ -113,6 +117,7 @@ export const LetsgoModal = React.memo(
               </div>
             </div>
           }
+          footer={<Progress step={step} />}
           open={config.open && step in Steps}
           handleClose={config.handleClose}
         />

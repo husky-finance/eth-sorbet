@@ -11,23 +11,35 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
   paper: {
+    flexDirection: 'column',
     borderRadius: 10,
     backgroundColor: theme.palette.background.paper,
     // border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(4, 8, 6),
     minWidth: 600,
     minHeight: 300
+  },
+  main: {
+    padding: theme.spacing(3, 8, 3)
+  },
+  footer: {
+    padding: theme.spacing(1, 0, 1)
   }
 }))
 
 type ModalProps = {
   content: any
+  footer?: any
   open: boolean
   handleClose: Function
 }
 
-export default function BaseModal({ content, open, handleClose }: ModalProps) {
+export default function BaseModal({
+  content,
+  footer,
+  open,
+  handleClose
+}: ModalProps) {
   const classes = useStyles()
   return (
     <div>
@@ -37,7 +49,11 @@ export default function BaseModal({ content, open, handleClose }: ModalProps) {
         onClose={() => handleClose()}
         closeAfterTransition
       >
-        <div className={classes.paper}>{content}</div>
+        <div className={classes.paper}>
+          <div className={classes.main}> {content} </div>
+          <br />
+          {footer && <div className={classes.footer}> {footer} </div>}
+        </div>
       </Modal>
     </div>
   )
