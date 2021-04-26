@@ -18,7 +18,7 @@ We handle wallet RPC calls to add network for users, instead of asking your user
 ## Install
 
 ```bash
-npm install --save eth-sorbet
+npm install --save @huskyfinance/eth-sorbet
 ```
 
 ## Usage
@@ -29,10 +29,10 @@ See [example](./example) for more detailed usage guide.
 import React, { Component } from 'react'
 
 // import modal and target network config
-import Sorbet, { xDai } from 'eth-sorbet'
+import { Sorbet, xDai } from 'eth-sorbet'
 
 // load css
-import 'eth-sorbet/dist/index.css'
+import '@huskyfinance/eth-sorbet/dist/index.css'
 
 const provider = window.ethereum
 
