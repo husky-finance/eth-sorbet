@@ -24,7 +24,7 @@ enum Steps {
   Finished
 }
 
-export const LetsgoModal = React.memo(
+export const Sorbet = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
     const [rpcProvider, setRPCProvider] = useState<any | null>(null)
     const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))

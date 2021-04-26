@@ -1,3 +1,3 @@
 export * from './constant/networks'
-export * from './letsGoModal'
+export * from './sorbetModal'
 export { Config } from './types'

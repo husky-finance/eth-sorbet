@@ -1,8 +1,8 @@
-import { LetsgoModal, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, Config } from 'l2-letsgo-crl'
+import { Sorbet, Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche, Config } from 'eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
 
-import 'l2-letsgo-crl/dist/index.css'
+import 'eth-sorbet/dist/index.css'
 
 const networks = [Binance, ArbitrumTestnet, OptimisticMainnet, xDai, Avalanche,]
 const ran = parseInt((Math.random()* networks.length).toFixed(0))
@@ -64,7 +64,7 @@ const App = () => {
       <button type='button' onClick={handleOpen}>
         Open Modal
       </button>
-      <LetsgoModal config={config} walletProvider={provider} />
+      <Sorbet config={config} walletProvider={provider} />
       <h5>Address: {userAddress} </h5>
       <h6>Test Site Footer</h6>
     </div>

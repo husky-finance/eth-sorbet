@@ -1,18 +1,18 @@
-# l2-letsgo-crl
+# eth-sorbet
 
 ## Run in dev
 
 Run the library:
 
 ```shell
-cd \l2-letsgo-crl
+cd \eth-sorbet
 yarn start
 ```
 
 In another terminal, run the example App which will refresh if the library changes
 
 ```shell
-cd \l2-letsgo-crl\example
+cd \eth-sorbet\example
 yarn start
 ```
 
@@ -26,12 +26,12 @@ npm publish --access public
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/l2-letsgo-crl.svg)](https://www.npmjs.com/package/l2-letsgo-crl) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/eth-sorbet.svg)](https://www.npmjs.com/package/eth-sorbet) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save l2-letsgo-crl
+npm install --save eth-sorbet
 ```
 
 ## Usage
@@ -40,10 +40,10 @@ npm install --save l2-letsgo-crl
 import React, { Component } from 'react'
 
 // import modal and target network config
-import LetsGoModal, {xDai} from 'l2-letsgo-crl'
+import Sorbet, {xDai} from 'eth-sorbet'
 
 // load css
-import 'l2-letsgo-crl/dist/index.css'
+import 'eth-sorbet/dist/index.css'
 
 const provider = window.ethereum
 
@@ -67,7 +67,7 @@ const config = {
 
 class Example extends Component {
   render() {
-    return <LetsgoModal config={config} walletProvider={provider} />
+    return <Sorbet config={config} walletProvider={provider} />
   }
 }
 ```

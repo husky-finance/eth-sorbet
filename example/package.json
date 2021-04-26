@@ -1,5 +1,5 @@
 {
-  "name": "l2-letsgo-crl-example",
+  "name": "eth-sorbet-example",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -21,7 +21,7 @@
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
     "typescript": "link:../node_modules/typescript",
-    "l2-letsgo-crl": "link:.."
+    "eth-sorbet": "link:.."
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"

@@ -1,6 +1,6 @@
 {
-  "short_name": "l2-letsgo-crl",
-  "name": "l2-letsgo-crl",
+  "short_name": "eth-sorbet",
+  "name": "eth-sorbet-example",
   "icons": [
     {
       "src": "favicon.ico",
