@@ -43,7 +43,7 @@ const Progress = React.memo(({ step }: { step: number }) => {
       <Stepper
         activeStep={step}
         alternativeLabel
-        style={{ paddingLeft: 0 }}
+        style={{ paddingLeft: 0, paddingRight: 0 }}
         connector={<ColorlibConnector />}
       >
         {steps.map((label) => (
