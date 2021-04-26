@@ -105,4 +105,4 @@ npm publish --access public
 
 ## License
 
-MIT © [flyingnobita](https://github.com/flyingnobita)
+MIT © [husky-finance](https://github.com/husky-finance)
