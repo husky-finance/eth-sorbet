@@ -3,9 +3,17 @@
 [![NPM](https://img.shields.io/npm/v/@huskyfinance/eth-sorbet.svg)](https://www.npmjs.com/package/@huskyfinance/eth-sorbet) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 <p align="center">
-<img src="https://www.flaticon.com/svg/vstatic/svg/938/938136.svg?token=exp=1619424543~hmac=c5d1f651215f66614d46d240bac491ae" height=100>
+<img src="https://i.imgur.com/Q6k8YyH.png" height=100>
 
 <p align="center"><code>  Smooth transition to L2, just like sorbet before main course</code></p>
+
+<br>
+
+Sorbet saves you from managing user onboarding!
+![](https://i.imgur.com/qeq0yHy.png)
+
+We handle wallet RPC calls to add network for users, instead of asking your users to do that manually.
+![](https://i.imgur.com/kZ3wM1t.png)
 
 ## Install
 
@@ -54,16 +62,22 @@ class Example extends Component {
 
 ## Supported Network
 
-| Network | Config | Native Deposit Supported |
-| -------- | -------- | -------- |
-| xDai     | ✅     | -     |
-| BSC     | ✅     | -     |
-| Avalanche     | ✅     | -     |
-| Sokol     | ✅     | -     |
-| Matic     | ✅     | -     |
-| Arbitrum testnet     | ✅     | -     |
-| Optimism testnet     | ✅     | -     |
-| Optimism     | ✅     | -     |
+| Network          | Config | Native Deposit Supported |
+| ---------------- | ------ | ------------------------ |
+| xDai             | ✅     | -                        |
+| BSC              | ✅     | -                        |
+| Avalanche        | ✅     | -                        |
+| Sokol            | ✅     | -                        |
+| Matic            | ✅     | -                        |
+| Arbitrum testnet | ✅     | -                        |
+| Optimism testnet | ✅     | -                        |
+| Optimism         | ✅     | -                        |
+
+### Supported Wallet
+
+| Network  | Add Network | Switch Network |
+| -------- | ----------- | -------------- |
+| MetaMask | ✅          | ✅             |
 
 ## Run in dev
 
@@ -88,7 +102,6 @@ npm publish --access public
 ```
 
 ---
-
 
 ## License
 
