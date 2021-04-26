@@ -9,7 +9,7 @@ import {
   OptimismTestnet
 } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
-import type { WindowChain } from './types'
+import { WindowChain } from '../../src/types'
 
 const networks = [
   Binance,
@@ -19,8 +19,9 @@ const networks = [
   Avalanche,
   SKALE
 ]
-const ran = parseInt((Math.random() * networks.length).toFixed(0))
-const idx = ran === 0 ? ran : ran - 1
+// const ran = parseInt((Math.random() * networks.length).toFixed(0))
+// const idx = ran === 0 ? ran : ran - 1
+const idx = 1
 
 const App = () => {
   const [open, setOpen] = useState(true)
@@ -61,8 +62,10 @@ const App = () => {
     handleClose: handleClose,
 
     // optional
-    address: userAddress,
     checkBalance: true,
+    address: userAddress,
+    depositToken: 'ETH',
+    depositAmount: '0.01',
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',

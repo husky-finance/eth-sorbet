@@ -3,13 +3,16 @@ import { ethers, BigNumber } from 'ethers'
 import Base from '../baseContent'
 
 import { Config } from '../../types'
+import DepositArbitrum from '../arbitrum'
 
 export default function DepositContent({
   l2Balance,
-  config
+  config,
+  provider
 }: {
   l2Balance: BigNumber
   config: Config
+  provider: any
 }) {
   const currencySymbol = useMemo(
     () => config.targetNetwork.nativeCurrency?.symbol || 'ETH',
@@ -38,6 +41,11 @@ export default function DepositContent({
               bridge here
             </a>{' '}
             .
+          </div>
+        )}
+        {config.targetNetwork.name === 'Arbitrum (Kovan)' && (
+          <div>
+            <DepositArbitrum config={config} provider={provider} />
           </div>
         )}
       </div>
