@@ -7,7 +7,7 @@ import {
   xDai,
   Avalanche,
   SKALE,
-  Config,
+  Config
 } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import { WindowChain } from '../../src/types'
@@ -66,6 +66,7 @@ const App = () => {
     // optional
     checkBalance: true,
     address: userAddress,
+    l1chainId: 42,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
