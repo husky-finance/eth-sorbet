@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -10,8 +10,10 @@ import {
   depositOptimismTestnet
 } from '../utils/deposit'
 
-const useStyles = makeStyles(() => ({
-  container: {}
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(3, 0, 3)
+  }
 }))
 
 export default function DepositToken({
@@ -23,12 +25,10 @@ export default function DepositToken({
 }) {
   const classes = useStyles()
 
-  const [amount, setAmount] = useState('1')
+  const [amount, setAmount] = useState(1)
 
-  const tokenSymbolToDeposit = useMemo(
-    () => config.targetNetwork.nativeCurrency?.symbol,
-    [config]
-  )
+  // check if the input amount is valid
+  useEffect(() => {}, [])
 
   const handleDeposit = useCallback(async () => {
     if (!config.address) {
@@ -37,11 +37,19 @@ export default function DepositToken({
     }
     switch (config.targetNetwork.name) {
       case 'Optimism - Kovan': {
-        await depositOptimismTestnet(provider, amount, config.address)
+        await depositOptimismTestnet(
+          provider,
+          amount.toString(),
+          config.address
+        )
         break
       }
       case 'Arbitrum - Kovan': {
-        await depositArbitrumTestnet(provider, amount, config.address)
+        await depositArbitrumTestnet(
+          provider,
+          amount.toString(),
+          config.address
+        )
         break
       }
 
@@ -55,11 +63,19 @@ export default function DepositToken({
   return (
     <div className={classes.container}>
       <TextField
+        size='small'
+        value={amount}
+        type='number'
         variant='outlined'
-        onChange={(event) => setAmount(event.target.value)}
+        onChange={(event) => setAmount(Number(event.target.value))}
       />
-      <Button variant='outlined' color='primary' onClick={handleDeposit}>
-        Deposit {tokenSymbolToDeposit} to {config.targetNetwork.name}
+      <Button
+        style={{ height: 40 }}
+        variant={amount > 0 ? 'contained' : 'outlined'}
+        color='primary'
+        onClick={handleDeposit}
+      >
+        Deposit
       </Button>
     </div>
   )
