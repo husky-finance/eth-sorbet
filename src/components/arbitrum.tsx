@@ -13,25 +13,24 @@ export default function DepositArbitrum({
   config: Config
   provider: any
 }) {
-  const provider2 = new ethers.providers.Web3Provider((window as any).ethereum)
+  const metamaskProvider = new ethers.providers.Web3Provider(provider)
 
   const [signerAddress, setSignerAddress] = useState<string>()
   const [inboxContract, setInboxContract] = useState<ethers.Contract>()
 
   useEffect(() => {
-    if (provider2) {
-      console.log('provider2: ', provider2)
+    if (metamaskProvider) {
+      console.log('provider2: ', metamaskProvider)
       setInboxContract(
         new ethers.Contract(
           addressInboxKovan4,
           abiInboxKovan4,
-          provider2.getSigner()
-          // provider.metamask.getSigner()
+          metamaskProvider.getSigner()
         )
       )
 
       const getSignerAddress = async () => {
-        const address = await provider2.getSigner().getAddress()
+        const address = await metamaskProvider.getSigner().getAddress()
         setSignerAddress(address)
       }
       getSignerAddress()
