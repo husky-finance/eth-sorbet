@@ -6,10 +6,12 @@ import { Config } from '../../types'
 import Deposit from '../deposit'
 
 export default function DepositContent({
+  l1Balance,
   l2Balance,
   config,
   provider
 }: {
+  l1Balance: BigNumber
   l2Balance: BigNumber
   config: Config
   provider: any
@@ -29,6 +31,10 @@ export default function DepositContent({
   const content = useMemo(() => {
     return (
       <div>
+        <div>
+          Your current balance on Mainnet:{' '}
+          {ethers.utils.formatUnits(l1Balance, 18)} ETH
+        </div>
         <div>
           Your current balance on {config.targetNetwork.name}:{' '}
           {ethers.utils.formatUnits(l2Balance, decimals)} {currencySymbol}
