@@ -3,30 +3,28 @@ import { ethers } from 'ethers'
 import { abis, addresses } from '../contracts'
 
 export async function depositArbitrumTestnet(
-  externaPprovider: ethers.providers.ExternalProvider,
+  externalProvider: ethers.providers.ExternalProvider,
   amount: string,
   sender: string
-  // token: string,
 ) {
-  const provider = new ethers.providers.Web3Provider(externaPprovider)
+  const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.addressArbitrumKovan4,
     abis.abiArbitrumKovan4,
     provider.getSigner()
   )
   await contract.depositEth(sender, {
-    value: ethers.utils.parseEther(amount),
+    value: amount,
     from: sender
   })
 }
 
 export async function depositOptimismTestnet(
-  externaPprovider: ethers.providers.ExternalProvider,
+  externalProvider: ethers.providers.ExternalProvider,
   amount: string,
   sender: string
-  // token: string
 ) {
-  const provider = new ethers.providers.Web3Provider(externaPprovider)
+  const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.addressOptimismKovan2,
     abis.abiOptimismKovan2,
@@ -34,6 +32,6 @@ export async function depositOptimismTestnet(
   )
   await contract.deposit({
     from: sender,
-    value: ethers.utils.parseEther(amount)
+    value: amount
   })
 }

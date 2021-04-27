@@ -26,35 +26,39 @@ export default function DepositContent({
     [config]
   )
 
-  const link = useMemo(() => config.targetNetwork.bridgeUrl, [config])
+  const bridgeLink = useMemo(() => config.targetNetwork.bridgeUrl, [config])
 
   const content = useMemo(() => {
     return (
       <div>
         <div>
-          Your current balance on Mainnet:{' '}
-          {ethers.utils.formatUnits(l1Balance, 18)} ETH
+          Current balance on Mainnet: {ethers.utils.formatUnits(l1Balance, 18)}{' '}
+          ETH
         </div>
         <div>
-          Your current balance on {config.targetNetwork.name}:{' '}
+          Current balance on {config.targetNetwork.name}:{' '}
           {ethers.utils.formatUnits(l2Balance, decimals)} {currencySymbol}
         </div>
-        {link && (
+        <br />
+        {bridgeLink && (
           <div>
-            Your can deposit more via the{' '}
-            <a target='_blank' href={link} rel='noreferrer'>
+            Your can deposit more tokens via the{' '}
+            <a target='_blank' href={bridgeLink} rel='noreferrer'>
               {' '}
               bridge here
             </a>{' '}
             .
           </div>
         )}
-        <div>
-          <Deposit config={config} provider={provider} />
-        </div>
+        {/* only shows deposit input if the funciton is provided */}
+        {config.targetNetwork.depositNativeToken && (
+          <div>
+            <Deposit config={config} provider={provider} />
+          </div>
+        )}
       </div>
     )
-  }, [config, l2Balance])
+  }, [config, l2Balance, bridgeLink])
 
   return <Base title='Deposit' content={content} />
 }

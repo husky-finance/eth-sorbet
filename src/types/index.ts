@@ -34,6 +34,11 @@ export type Network = {
   blockExplorerUrl?: string
   img?: string
   bridgeUrl?: string
+  depositNativeToken?: (
+    provider: any,
+    amount: string,
+    sender: string
+  ) => Promise<void>
 }
 
 export interface WindowChain {

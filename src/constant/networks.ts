@@ -1,4 +1,6 @@
 import { Network } from '../types'
+import * as depositUtil from '../utils/deposit'
+
 // sorted by chainId
 export const Binance: Network = {
   name: 'Binance Smart Chain',
@@ -88,7 +90,8 @@ export const ArbitrumTestnet: Network = {
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
   chainId: 212984383488152,
   img: 'https://i.imgur.com/QJOromM.png',
-  bridgeUrl: 'https://bridge.arbitrum.io/'
+  bridgeUrl: 'https://bridge.arbitrum.io/',
+  depositNativeToken: depositUtil.depositArbitrumTestnet
 }
 
 export const OptimismTestnet: Network = {
@@ -96,7 +99,8 @@ export const OptimismTestnet: Network = {
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
-  img: 'https://i.imgur.com/qHBFlSq.png'
+  img: 'https://i.imgur.com/qHBFlSq.png',
+  depositNativeToken: depositUtil.depositOptimismTestnet
 }
 
 export const OptimismMainnet: Network = {

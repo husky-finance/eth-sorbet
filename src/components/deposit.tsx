@@ -1,14 +1,11 @@
 import React, { useCallback, useState, useEffect } from 'react'
+
+import { ethers } from 'ethers'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import { Config } from '../types'
-
-import {
-  depositArbitrumTestnet,
-  depositOptimismTestnet
-} from '../utils/deposit'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -31,33 +28,23 @@ export default function DepositToken({
   useEffect(() => {}, [])
 
   const handleDeposit = useCallback(async () => {
-    if (!config.address) {
-      throw new Error('User address no specified')
-      return
-    }
-    switch (config.targetNetwork.name) {
-      case 'Optimism - Kovan': {
-        await depositOptimismTestnet(
-          provider,
-          amount.toString(),
-          config.address
-        )
-        break
-      }
-      case 'Arbitrum - Kovan': {
-        await depositArbitrumTestnet(
-          provider,
-          amount.toString(),
-          config.address
-        )
-        break
-      }
+    const sender = config.address
+    if (!sender) throw new Error('User address no specified')
+    if (!config.targetNetwork.depositNativeToken)
+      throw new Error('Deposit not implemented')
 
-      default: {
-        throw new Error('Deposit of this token not supported yet')
-        break
-      }
-    }
+    const nativeTokenDecimals = config.targetNetwork.nativeCurrency
+      ? config.targetNetwork.nativeCurrency.decimals
+      : 18
+    const scaledAmount = ethers.utils.parseUnits(
+      amount.toString(),
+      nativeTokenDecimals
+    )
+    await config.targetNetwork.depositNativeToken(
+      provider,
+      scaledAmount.toString(),
+      sender
+    )
   }, [config, amount])
 
   return (
