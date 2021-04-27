@@ -10,6 +10,12 @@ export type Config = {
   checkBalance?: boolean
   // user's address to check
   address?: string
+  // // Type of L1 token to deposit to L2
+  // depositToken: string
+  // // Amount of L1 token to deposit to L2
+  // depositAmount: string
+  // L1 Network
+  l1chainId: number
 
   // Dapp name
   dappName: string
@@ -30,6 +36,11 @@ export type Network = {
   blockExplorerUrl?: string
   img?: string
   bridgeUrl?: string
+  depositNativeToken?: (
+    provider: any,
+    amount: string,
+    sender: string
+  ) => Promise<void>
 }
 
 export interface WindowChain {

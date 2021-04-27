@@ -1,4 +1,15 @@
 import { Network } from '../types'
+import * as depositUtil from '../utils/deposit'
+
+// TODO probably a good idea to combine this with rest of chains below
+export const ethChains = {
+  1: 'Mainnet',
+  3: 'Ropsten',
+  4: 'Rinkeby',
+  5: 'Goerli',
+  42: 'Kovan'
+}
+
 // sorted by chainId
 export const Binance: Network = {
   name: 'Binance Smart Chain',
@@ -69,7 +80,7 @@ export const Avalanche: Network = {
 }
 
 export const SKALE: Network = {
-  name: 'SKALE Network Testnet',
+  name: 'SKALE Network - Testnet',
   chainId: 344435,
   nativeCurrency: {
     name: 'SKALE ETH',
@@ -83,12 +94,13 @@ export const SKALE: Network = {
 }
 
 export const ArbitrumTestnet: Network = {
-  name: 'Arbitrum (Kovan)',
+  name: 'Arbitrum - Kovan',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
   chainId: 212984383488152,
   img: 'https://i.imgur.com/QJOromM.png',
-  bridgeUrl: 'https://bridge.arbitrum.io/'
+  bridgeUrl: 'https://bridge.arbitrum.io/',
+  depositNativeToken: depositUtil.depositArbitrumTestnet
 }
 
 export const OptimismTestnet: Network = {
@@ -96,11 +108,12 @@ export const OptimismTestnet: Network = {
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
-  img: 'https://i.imgur.com/qHBFlSq.png'
+  img: 'https://i.imgur.com/qHBFlSq.png',
+  depositNativeToken: depositUtil.depositOptimismTestnet
 }
 
 export const OptimismMainnet: Network = {
-  name: 'Optimism',
+  name: 'Optimism - Mainnet',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,
