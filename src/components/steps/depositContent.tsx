@@ -3,7 +3,7 @@ import { ethers, BigNumber } from 'ethers'
 import Base from '../baseContent'
 
 import { Config } from '../../types'
-import DepositArbitrum from '../arbitrum'
+import Deposit from '../deposit'
 
 export default function DepositContent({
   l2Balance,
@@ -43,11 +43,9 @@ export default function DepositContent({
             .
           </div>
         )}
-        {config.targetNetwork.name === 'Arbitrum (Kovan)' && (
-          <div>
-            <DepositArbitrum config={config} provider={provider} />
-          </div>
-        )}
+        <div>
+          <Deposit config={config} provider={provider} />
+        </div>
       </div>
     )
   }, [config, l2Balance])
