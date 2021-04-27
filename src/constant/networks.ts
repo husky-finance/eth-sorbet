@@ -91,16 +91,16 @@ export const ArbitrumTestnet: Network = {
   bridgeUrl: 'https://bridge.arbitrum.io/'
 }
 
-export const OptimisticTestnet: Network = {
-  name: 'Optimistic - Kovan',
+export const OptimismTestnet: Network = {
+  name: 'Optimism - Kovan',
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
   img: 'https://i.imgur.com/qHBFlSq.png'
 }
 
-export const OptimisticMainnet: Network = {
-  name: 'Optimistic',
+export const OptimismMainnet: Network = {
+  name: 'Optimism',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,

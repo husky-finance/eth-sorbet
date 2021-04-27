@@ -2,11 +2,11 @@ import {
   Sorbet,
   Binance,
   ArbitrumTestnet,
-  OptimisticMainnet,
   xDai,
   Avalanche,
   SKALE,
-  Config
+  Config,
+  OptimismTestnet
 } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import type { WindowChain } from './types'
@@ -14,7 +14,7 @@ import type { WindowChain } from './types'
 const networks = [
   Binance,
   ArbitrumTestnet,
-  OptimisticMainnet,
+  OptimismTestnet,
   xDai,
   Avalanche,
   SKALE
