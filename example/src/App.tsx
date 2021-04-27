@@ -7,7 +7,7 @@ import {
   xDai,
   Avalanche,
   SKALE,
-  Config
+  Config,
 } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
 import { WindowChain } from '../../src/types'
@@ -23,7 +23,7 @@ const networks = [
 ]
 // const ran = parseInt((Math.random() * networks.length).toFixed(0))
 // const idx = ran === 0 ? ran : ran - 1
-const idx = 1
+const idx = 2
 
 const App = () => {
   const [open, setOpen] = useState(true)
@@ -66,8 +66,6 @@ const App = () => {
     // optional
     checkBalance: true,
     address: userAddress,
-    depositToken: 'ETH',
-    depositAmount: '0.01',
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
