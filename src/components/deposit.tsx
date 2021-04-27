@@ -1,4 +1,6 @@
 import React, { useMemo, useCallback, useState } from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import { Config } from '../types'
@@ -8,13 +10,19 @@ import {
   depositOptimismTestnet
 } from '../utils/deposit'
 
-export default function DepositInput({
+const useStyles = makeStyles(() => ({
+  container: {}
+}))
+
+export default function DepositToken({
   config,
   provider
 }: {
   config: Config
   provider: any
 }) {
+  const classes = useStyles()
+
   const [amount, setAmount] = useState('1')
 
   const tokenSymbolToDeposit = useMemo(
@@ -42,10 +50,14 @@ export default function DepositInput({
         break
       }
     }
-  }, [config])
+  }, [config, amount])
 
   return (
-    <div>
+    <div className={classes.container}>
+      <TextField
+        variant='outlined'
+        onChange={(event) => setAmount(event.target.value)}
+      />
       <Button variant='outlined' color='primary' onClick={handleDeposit}>
         Deposit {tokenSymbolToDeposit} to {config.targetNetwork.name}
       </Button>
