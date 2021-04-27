@@ -69,7 +69,7 @@ export const Avalanche: Network = {
 }
 
 export const SKALE: Network = {
-  name: 'SKALE Network Testnet',
+  name: 'SKALE Network - Testnet',
   chainId: 344435,
   nativeCurrency: {
     name: 'SKALE ETH',
@@ -83,7 +83,7 @@ export const SKALE: Network = {
 }
 
 export const ArbitrumTestnet: Network = {
-  name: 'Arbitrum (Kovan)',
+  name: 'Arbitrum - Kovan',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
   chainId: 212984383488152,
@@ -100,7 +100,7 @@ export const OptimisticTestnet: Network = {
 }
 
 export const OptimisticMainnet: Network = {
-  name: 'Optimistic',
+  name: 'Optimistic - Mainnet',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,
