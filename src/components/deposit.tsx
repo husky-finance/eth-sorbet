@@ -1,86 +1,54 @@
-import { Config } from '@huskyfinance/eth-sorbet'
+import React, { useMemo, useCallback, useState } from 'react'
 import Button from '@material-ui/core/Button'
-import { ethers } from 'ethers'
-import React, { useEffect, useState } from 'react'
-import * as networks from '../constant/networks'
-import { abis, addresses } from './contracts'
 
-export default function Deposit({
+import { Config } from '../types'
+
+import {
+  depositArbitrumTestnet,
+  depositOptimismTestnet
+} from '../utils/deposit'
+
+export default function DepositInput({
   config,
   provider
 }: {
   config: Config
   provider: any
 }) {
-  const metamaskProvider = new ethers.providers.Web3Provider(provider)
+  const [amount, setAmount] = useState('1')
 
-  const [signerAddress, setSignerAddress] = useState<string>()
-  const [
-    contractArbitrumKovan4,
-    setContractArbitrumKovan4
-  ] = useState<ethers.Contract>()
-  const [
-    contractOptimismKovan2,
-    setContractOptimismKovan2
-  ] = useState<ethers.Contract>()
+  const tokenSymbolToDeposit = useMemo(
+    () => config.targetNetwork.nativeCurrency?.symbol,
+    [config]
+  )
 
-  useEffect(() => {
-    if (metamaskProvider) {
-      if (config.targetNetwork === networks.ArbitrumTestnet) {
-        setContractArbitrumKovan4(
-          new ethers.Contract(
-            addresses.addressArbitrumKovan4,
-            abis.abiArbitrumKovan4,
-            metamaskProvider.getSigner()
-          )
-        )
-      } else if (config.targetNetwork === networks.OptimisticTestnet) {
-        setContractOptimismKovan2(
-          new ethers.Contract(
-            addresses.addressOptimismKovan2,
-            abis.abiOptimismKovan2,
-            metamaskProvider.getSigner()
-          )
-        )
+  const handleDeposit = useCallback(async () => {
+    if (!config.address) {
+      throw new Error('User address no specified')
+      return
+    }
+    switch (config.targetNetwork.name) {
+      case 'Optimism - Kovan': {
+        await depositOptimismTestnet(provider, amount, config.address)
+        break
+      }
+      case 'Arbitrum - Kovan': {
+        await depositArbitrumTestnet(provider, amount, config.address)
+        break
       }
 
-      const getSignerAddress = async () => {
-        const address = await metamaskProvider.getSigner().getAddress()
-        setSignerAddress(address)
+      default: {
+        throw new Error('Deposit of this token not supported yet')
+        break
       }
-      getSignerAddress()
     }
-  }, [provider])
-
-  const handleDeposit = () => {
-    // TODO: Check if user is on ETH Kovan (or from a network stated in settings and switch to network
-    // TODO: refresh balance after successful deposit
-    if (
-      config.targetNetwork === networks.ArbitrumTestnet &&
-      contractArbitrumKovan4
-    ) {
-      contractArbitrumKovan4.depositEth(signerAddress, {
-        value: ethers.utils.parseEther(config.depositAmount)
-      })
-    } else if (
-      config.targetNetwork === networks.OptimisticTestnet &&
-      contractOptimismKovan2
-    ) {
-      contractOptimismKovan2.deposit({
-        value: ethers.utils.parseEther(config.depositAmount)
-      })
-    }
-  }
+  }, [config])
 
   return (
-    <Button variant='outlined' color='primary' onClick={handleDeposit}>
-      Deposit to
-      {' ' +
-        config.targetNetwork.name +
-        ' ' +
-        config.depositAmount +
-        ' ' +
-        config.depositToken}
-    </Button>
+    <div>
+      <Button variant='outlined' color='primary' onClick={handleDeposit}>
+        Deposit {tokenSymbolToDeposit} to {config.targetNetwork.name}
+      </Button>
+    </div>
   )
 }

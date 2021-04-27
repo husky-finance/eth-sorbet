@@ -2,8 +2,8 @@ import {
   Sorbet,
   Binance,
   ArbitrumTestnet,
-  OptimisticTestnet,
-  OptimisticMainnet,
+  OptimismTestnet,
+  OptimismMainnet,
   xDai,
   Avalanche,
   SKALE,
@@ -15,8 +15,8 @@ import { WindowChain } from '../../src/types'
 const networks = [
   Binance,
   ArbitrumTestnet,
-  OptimisticTestnet,
-  OptimisticMainnet,
+  OptimismTestnet,
+  OptimismMainnet,
   xDai,
   Avalanche,
   SKALE

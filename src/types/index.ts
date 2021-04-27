@@ -10,10 +10,10 @@ export type Config = {
   checkBalance?: boolean
   // user's address to check
   address?: string
-  // Type of L1 token to deposit to L2
-  depositToken: string
-  // Amount of L1 token to deposit to L2
-  depositAmount: string
+  // // Type of L1 token to deposit to L2
+  // depositToken: string
+  // // Amount of L1 token to deposit to L2
+  // depositAmount: string
 
   // Dapp name
   dappName: string
