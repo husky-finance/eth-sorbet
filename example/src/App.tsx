@@ -2,8 +2,8 @@ import {
   Sorbet,
   Binance,
   ArbitrumTestnet,
-  OptimisticTestnet,
-  OptimisticMainnet,
+  OptimismTestnet,
+  OptimismMainnet,
   xDai,
   Avalanche,
   SKALE,
@@ -15,8 +15,8 @@ import { WindowChain } from '../../src/types'
 const networks = [
   Binance,
   ArbitrumTestnet,
-  OptimisticTestnet,
-  OptimisticMainnet,
+  OptimismTestnet,
+  OptimismMainnet,
   xDai,
   Avalanche,
   SKALE
@@ -66,8 +66,7 @@ const App = () => {
     // optional
     checkBalance: true,
     address: userAddress,
-    depositToken: 'ETH',
-    depositAmount: '0.01',
+    l1chainId: 42,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',

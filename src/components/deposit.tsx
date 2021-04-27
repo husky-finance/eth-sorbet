@@ -1,86 +1,69 @@
-import { Config } from '@huskyfinance/eth-sorbet'
-import Button from '@material-ui/core/Button'
-import { ethers } from 'ethers'
-import React, { useEffect, useState } from 'react'
-import * as networks from '../constant/networks'
-import { abis, addresses } from './contracts'
+import React, { useCallback, useState, useEffect } from 'react'
 
-export default function Deposit({
+import { ethers } from 'ethers'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+import { Config } from '../types'
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: theme.spacing(3, 0, 3)
+  }
+}))
+
+export default function DepositToken({
   config,
   provider
 }: {
   config: Config
   provider: any
 }) {
-  const metamaskProvider = new ethers.providers.Web3Provider(provider)
+  const classes = useStyles()
 
-  const [signerAddress, setSignerAddress] = useState<string>()
-  const [
-    contractArbitrumKovan4,
-    setContractArbitrumKovan4
-  ] = useState<ethers.Contract>()
-  const [
-    contractOptimismKovan2,
-    setContractOptimismKovan2
-  ] = useState<ethers.Contract>()
+  const [amount, setAmount] = useState(1)
 
-  useEffect(() => {
-    if (metamaskProvider) {
-      if (config.targetNetwork === networks.ArbitrumTestnet) {
-        setContractArbitrumKovan4(
-          new ethers.Contract(
-            addresses.addressArbitrumKovan4,
-            abis.abiArbitrumKovan4,
-            metamaskProvider.getSigner()
-          )
-        )
-      } else if (config.targetNetwork === networks.OptimisticTestnet) {
-        setContractOptimismKovan2(
-          new ethers.Contract(
-            addresses.addressOptimismKovan2,
-            abis.abiOptimismKovan2,
-            metamaskProvider.getSigner()
-          )
-        )
-      }
+  // check if the input amount is valid
+  useEffect(() => {}, [])
 
-      const getSignerAddress = async () => {
-        const address = await metamaskProvider.getSigner().getAddress()
-        setSignerAddress(address)
-      }
-      getSignerAddress()
-    }
-  }, [provider])
+  const handleDeposit = useCallback(async () => {
+    const sender = config.address
+    if (!sender) throw new Error('User address no specified')
+    if (!config.targetNetwork.depositNativeToken)
+      throw new Error('Deposit not implemented')
 
-  const handleDeposit = () => {
-    // TODO: Check if user is on ETH Kovan (or from a network stated in settings and switch to network
-    // TODO: refresh balance after successful deposit
-    if (
-      config.targetNetwork === networks.ArbitrumTestnet &&
-      contractArbitrumKovan4
-    ) {
-      contractArbitrumKovan4.depositEth(signerAddress, {
-        value: ethers.utils.parseEther(config.depositAmount)
-      })
-    } else if (
-      config.targetNetwork === networks.OptimisticTestnet &&
-      contractOptimismKovan2
-    ) {
-      contractOptimismKovan2.deposit({
-        value: ethers.utils.parseEther(config.depositAmount)
-      })
-    }
-  }
+    const nativeTokenDecimals = config.targetNetwork.nativeCurrency
+      ? config.targetNetwork.nativeCurrency.decimals
+      : 18
+    const scaledAmount = ethers.utils.parseUnits(
+      amount.toString(),
+      nativeTokenDecimals
+    )
+    await config.targetNetwork.depositNativeToken(
+      provider,
+      scaledAmount.toString(),
+      sender
+    )
+  }, [config, amount])
 
   return (
-    <Button variant='outlined' color='primary' onClick={handleDeposit}>
-      Deposit to
-      {' ' +
-        config.targetNetwork.name +
-        ' ' +
-        config.depositAmount +
-        ' ' +
-        config.depositToken}
-    </Button>
+    <div className={classes.container}>
+      <TextField
+        size='small'
+        value={amount}
+        type='number'
+        variant='outlined'
+        onChange={(event) => setAmount(Number(event.target.value))}
+      />
+      <Button
+        style={{ height: 40 }}
+        variant={amount > 0 ? 'contained' : 'outlined'}
+        color='primary'
+        onClick={handleDeposit}
+      >
+        Deposit
+      </Button>
+    </div>
   )
 }

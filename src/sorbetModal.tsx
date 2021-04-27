@@ -1,4 +1,4 @@
-import { BigNumber, providers } from 'ethers'
+import { BigNumber, providers, ethers } from 'ethers'
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
 
 import { Config } from './types'
@@ -27,6 +27,8 @@ enum Steps {
 export const Sorbet = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
     const [rpcProvider, setRPCProvider] = useState<any | null>(null)
+
+    const [l1Balance, setL1Balance] = useState<BigNumber>(BigNumber.from(0))
     const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))
 
     const [step, setSteps] = useState<Steps>(Steps.Welcome)
@@ -57,6 +59,14 @@ export const Sorbet = React.memo(
       setSteps((step) => step - 1)
     }, [])
 
+    useEffect(() => {
+      if (!config.address || !walletProvider) return
+      const web3Provider = new ethers.providers.Web3Provider(walletProvider)
+      web3Provider
+        .getBalance(config.address)
+        .then((balance: BigNumber) => setL1Balance(balance))
+    }, [walletProvider, config])
+
     const content = useMemo(() => {
       switch (step) {
         case Steps.Welcome:
@@ -65,6 +75,7 @@ export const Sorbet = React.memo(
           return (
             <Deposit
               config={config}
+              l1Balance={l1Balance}
               l2Balance={l2Balance}
               provider={walletProvider}
             />
