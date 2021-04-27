@@ -70,8 +70,8 @@ class Example extends Component {
 | Sokol            | ✅     | -                        |
 | SKALE            | ✅     | -                        |
 | Matic            | ✅     | -                        |
-| Arbitrum testnet | ✅     | -                        |
-| Optimism testnet | ✅     | -                        |
+| Arbitrum testnet | ✅     | ✅                       |
+| Optimism testnet | ✅     | ✅                       |
 | Optimism         | ✅     | -                        |
 
 ### Supported Wallet

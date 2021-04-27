@@ -119,12 +119,18 @@ export const Sorbet = React.memo(
                   <Button
                     style={{ float: 'right' }}
                     variant={
-                      step === Steps.SwitchNetwork ? 'outlined' : 'contained'
+                      step === Steps.SwitchNetwork ||
+                      step === Steps.DepositL1Balance
+                        ? 'outlined'
+                        : 'contained'
                     }
                     color='primary'
                     onClick={nextStep}
                   >
-                    {step === Steps.SwitchNetwork ? 'Skip' : 'Next'}
+                    {step === Steps.SwitchNetwork ||
+                    step === Steps.DepositL1Balance
+                      ? 'Skip'
+                      : 'Next'}
                   </Button>
                 )}
                 {step === Steps.Finished && (
