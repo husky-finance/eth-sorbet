@@ -15,6 +15,8 @@ import Welcome from './components/steps/welcomeContent'
 import SwitchNetwork from './components/steps/switchNetwork'
 import Finished from './components/steps/finished'
 
+import { ethChains } from './constant/networks'
+
 import { light, dark } from './style/defaultTheme'
 
 enum Steps {
@@ -32,6 +34,9 @@ export const Sorbet = React.memo(
     const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))
 
     const [step, setSteps] = useState<Steps>(Steps.Welcome)
+
+    const [chainId, setChainId] = useState<number>(0)
+    const [network, setNetwork] = useState<string>()
 
     // verify config on update
     useEffect(() => {
@@ -67,6 +72,30 @@ export const Sorbet = React.memo(
         .then((balance: BigNumber) => setL1Balance(balance))
     }, [walletProvider, config])
 
+    useEffect(() => {
+      const getChainId = async () => {
+        if (walletProvider) {
+          const chainIdHex = await walletProvider.request({
+            method: 'eth_chainId'
+          })
+          const chainIdDec = parseInt(chainIdHex, 16)
+          setChainId(chainIdDec)
+
+          if (chainIdDec in ethChains) {
+            setNetwork(ethChains[chainIdDec])
+          } else {
+            setNetwork('Unknown Network')
+          }
+
+          if (chainIdDec !== config.l1chainId) {
+            // TODO: help user switch to desired network (refactor rpcSwitchNetwork()?)
+            console.log('Wrong L1 network, currently on: ', chainIdDec)
+          }
+        }
+      }
+      getChainId()
+    }, [walletProvider, chainId])
+
     const content = useMemo(() => {
       switch (step) {
         case Steps.Welcome:
@@ -78,6 +107,8 @@ export const Sorbet = React.memo(
               l1Balance={l1Balance}
               l2Balance={l2Balance}
               provider={walletProvider}
+              chainId={chainId}
+              network={network!}
             />
           )
         case Steps.SwitchNetwork:

@@ -1,6 +1,6 @@
 import { BigNumber, ethers } from 'ethers'
 import React, { useEffect, useMemo, useState } from 'react'
-import { ethChains } from '../../constant/networks'
+// import { ethChains } from '../../constant/networks'
 import { Config } from '../../types'
 import Base from '../baseContent'
 import Deposit from '../deposit'
@@ -9,15 +9,19 @@ export default function DepositContent({
   l1Balance,
   l2Balance,
   config,
-  provider
+  provider,
+  chainId,
+  network
 }: {
   l1Balance: BigNumber
   l2Balance: BigNumber
   config: Config
   provider: any
+  chainId: number
+  network: string
 }) {
-  const [network, setNetwork] = useState<string>()
-  const [chainId, setChainId] = useState<number>(0)
+  // const [network, setNetwork] = useState<string>()
+  // const [chainId, setChainId] = useState<number>(0)
 
   const currencySymbol = useMemo(
     () => config.targetNetwork.nativeCurrency?.symbol || 'ETH',
@@ -31,31 +35,36 @@ export default function DepositContent({
 
   const bridgeLink = useMemo(() => config.targetNetwork.bridgeUrl, [config])
 
-  useEffect(() => {
-    const getChainId = async () => {
-      if (provider) {
-        const chainIdHex = await provider.request({ method: 'eth_chainId' })
-        const chainIdDec = parseInt(chainIdHex, 16)
-        setChainId(chainIdDec)
-        if (chainIdDec in ethChains) {
-          setNetwork(ethChains[chainIdDec])
-        } else {
-          setNetwork('Unknown Network')
-        }
-
-        if (chainIdDec !== config.l1chainId) {
-          // TODO: help user switch to desired network (refactor rpcSwitchNetwork()?)
-          console.log('Wrong L1 network, currently on: ', chainIdDec)
-        }
-      }
-    }
-    getChainId()
-  }, [provider])
-
   // reload if Chain changed
   useEffect(() => {
     provider.on('chainChanged', () => window.location.reload())
   })
+
+  // useEffect(() => {
+  //   const getChainId = async () => {
+  //     if (provider) {
+  //       const chainIdHex = await provider.request({ method: 'eth_chainId' })
+  //       const chainIdDec = parseInt(chainIdHex, 16)
+  //       setChainId(chainIdDec)
+  //       if (chainIdDec in ethChains) {
+  //         setNetwork(ethChains[chainIdDec])
+  //         console.log('chainIdDec: ', chainIdDec)
+  //         console.log('ethChains[chainIdDec]: ', ethChains[chainIdDec])
+  //       } else {
+  //         setNetwork('Unknown Network')
+  //       }
+
+  //       if (chainIdDec !== config.l1chainId) {
+  //         // TODO: help user switch to desired network (refactor rpcSwitchNetwork()?)
+  //         console.log('Wrong L1 network, currently on: ', chainIdDec)
+  //       }
+  //     }
+  //   }
+  //   getChainId()
+  // }, [provider, network])
+
+  // temporary prevent chainId not used error
+  console.log(chainId)
 
   // TODO: refresh balance after successful deposit
   const content = useMemo(() => {
