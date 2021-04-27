@@ -1,6 +1,15 @@
 import { Network } from '../types'
 import * as depositUtil from '../utils/deposit'
 
+// TODO probably a good idea to combine this with rest of chains below
+export const ethChains = {
+  1: 'Mainnet',
+  3: 'Ropsten',
+  4: 'Rinkeby',
+  5: 'Goerli',
+  42: 'Kovan'
+}
+
 // sorted by chainId
 export const Binance: Network = {
   name: 'Binance Smart Chain',
