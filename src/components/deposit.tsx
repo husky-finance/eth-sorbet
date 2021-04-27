@@ -1,6 +1,6 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState, useMemo } from 'react'
 
-import { ethers } from 'ethers'
+import { ethers, BigNumber } from 'ethers'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -15,17 +15,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DepositToken({
   config,
-  provider
+  provider,
+  l1Balance,
+  onCorrectL1
 }: {
   config: Config
   provider: any
+  l1Balance: BigNumber
+  onCorrectL1: boolean
 }) {
   const classes = useStyles()
 
-  const [amount, setAmount] = useState(1)
+  const [amount, setAmount] = useState(0.1)
+
+  const scaledAmount = useMemo(() => {
+    const nativeTokenDecimals = config.targetNetwork.nativeCurrency
+      ? config.targetNetwork.nativeCurrency.decimals
+      : 18
+    return ethers.utils.parseUnits(amount.toString(), nativeTokenDecimals)
+  }, [config, amount])
 
   // check if the input amount is valid
-  useEffect(() => {}, [])
+  const hasSufficientAmount = useMemo(() => l1Balance.gte(scaledAmount), [
+    scaledAmount,
+    l1Balance
+  ])
 
   const handleDeposit = useCallback(async () => {
     const sender = config.address
@@ -33,23 +47,20 @@ export default function DepositToken({
     if (!config.targetNetwork.depositNativeToken)
       throw new Error('Deposit not implemented')
 
-    const nativeTokenDecimals = config.targetNetwork.nativeCurrency
-      ? config.targetNetwork.nativeCurrency.decimals
-      : 18
-    const scaledAmount = ethers.utils.parseUnits(
-      amount.toString(),
-      nativeTokenDecimals
-    )
     await config.targetNetwork.depositNativeToken(
       provider,
       scaledAmount.toString(),
       sender
     )
-  }, [config, amount])
+  }, [config, scaledAmount])
 
   return (
     <div className={classes.container}>
       <TextField
+        error={onCorrectL1 && !hasSufficientAmount}
+        helperText={
+          onCorrectL1 && !hasSufficientAmount ? 'insufficent balance' : null
+        }
         size='small'
         value={amount}
         type='number'
@@ -57,6 +68,7 @@ export default function DepositToken({
         onChange={(event) => setAmount(Number(event.target.value))}
       />
       <Button
+        disabled={!onCorrectL1 || !hasSufficientAmount}
         style={{ height: 40 }}
         variant={amount > 0 ? 'contained' : 'outlined'}
         color='primary'

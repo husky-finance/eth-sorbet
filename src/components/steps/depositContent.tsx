@@ -1,6 +1,8 @@
 import { BigNumber, ethers } from 'ethers'
+import Alert from '@material-ui/lab/Alert'
+
 import React, { useEffect, useMemo, useState } from 'react'
-// import { ethChains } from '../../constant/networks'
+import { ethChains } from '../../constant/networks'
 import { Config } from '../../types'
 import Base from '../baseContent'
 import Deposit from '../deposit'
@@ -9,19 +11,15 @@ export default function DepositContent({
   l1Balance,
   l2Balance,
   config,
-  provider,
-  chainId,
-  network
+  provider
 }: {
   l1Balance: BigNumber
   l2Balance: BigNumber
   config: Config
   provider: any
-  chainId: number
-  network: string
 }) {
-  // const [network, setNetwork] = useState<string>()
-  // const [chainId, setChainId] = useState<number>(0)
+  const [network, setNetwork] = useState<string>()
+  const [chainId, setChainId] = useState<number>(0)
 
   const currencySymbol = useMemo(
     () => config.targetNetwork.nativeCurrency?.symbol || 'ETH',
@@ -37,45 +35,58 @@ export default function DepositContent({
 
   // reload if Chain changed
   useEffect(() => {
-    provider.on('chainChanged', () => window.location.reload())
+    provider.on('chainChanged', (chainIdHex: string) => {
+      const chainIdDec = parseInt(chainIdHex, 16)
+      setChainId(chainIdDec)
+      if (chainIdDec in ethChains) {
+        setNetwork(ethChains[chainIdDec])
+      } else {
+        setNetwork('Unknown Network')
+      }
+    })
   })
 
-  // useEffect(() => {
-  //   const getChainId = async () => {
-  //     if (provider) {
-  //       const chainIdHex = await provider.request({ method: 'eth_chainId' })
-  //       const chainIdDec = parseInt(chainIdHex, 16)
-  //       setChainId(chainIdDec)
-  //       if (chainIdDec in ethChains) {
-  //         setNetwork(ethChains[chainIdDec])
-  //         console.log('chainIdDec: ', chainIdDec)
-  //         console.log('ethChains[chainIdDec]: ', ethChains[chainIdDec])
-  //       } else {
-  //         setNetwork('Unknown Network')
-  //       }
+  useEffect(() => {
+    const getChainId = async () => {
+      if (!provider) return
 
-  //       if (chainIdDec !== config.l1chainId) {
-  //         // TODO: help user switch to desired network (refactor rpcSwitchNetwork()?)
-  //         console.log('Wrong L1 network, currently on: ', chainIdDec)
-  //       }
-  //     }
-  //   }
-  //   getChainId()
-  // }, [provider, network])
+      const chainIdHex = await provider.request({ method: 'eth_chainId' })
+      const chainIdDec = parseInt(chainIdHex, 16)
+      setChainId(chainIdDec)
+      if (chainIdDec in ethChains) {
+        setNetwork(ethChains[chainIdDec])
+      } else {
+        setNetwork('Unknown Network')
+      }
+    }
+    getChainId()
+  }, [provider])
 
-  // temporary prevent chainId not used error
-  console.log(chainId)
+  const onCorrectL1 = useMemo(() => config.l1chainId === chainId, [
+    chainId,
+    config
+  ])
 
   // TODO: refresh balance after successful deposit
   const content = useMemo(() => {
     return (
       <div>
+        {onCorrectL1 ? (
+          <div>
+            Balance on {network}: {ethers.utils.formatUnits(l1Balance, 18)} ETH
+          </div>
+        ) : (
+          <Alert
+            style={{ backgroundColor: 'inherit', paddingLeft: 0 }}
+            severity='warning'
+          >
+            You are currently on {network}, please switch to{' '}
+            {ethChains[config.l1chainId]} to deposit
+          </Alert>
+        )}
+
         <div>
-          Your current balance on {network}:{' '}
-          {ethers.utils.formatUnits(l1Balance, 18)} ETH
-        </div>
-        <div>
-          Current balance on {config.targetNetwork.name}:{' '}
+          Balance on {config.targetNetwork.name}:{' '}
           {ethers.utils.formatUnits(l2Balance, decimals)} {currencySymbol}
         </div>
         <br />
@@ -92,12 +103,17 @@ export default function DepositContent({
         {/* only shows deposit input if the funciton is provided */}
         {config.targetNetwork.depositNativeToken && (
           <div>
-            <Deposit config={config} provider={provider} />
+            <Deposit
+              config={config}
+              provider={provider}
+              l1Balance={l1Balance}
+              onCorrectL1={onCorrectL1}
+            />
           </div>
         )}
       </div>
     )
-  }, [config, l2Balance, bridgeLink])
+  }, [config, l2Balance, bridgeLink, network, onCorrectL1])
 
   return <Base title='Deposit' content={content} />
 }

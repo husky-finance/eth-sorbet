@@ -72,7 +72,7 @@ const App = () => {
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
 
     // darkmode
-    darkMode: true
+    darkMode: Math.random() > 0.5
   }
 
   return (

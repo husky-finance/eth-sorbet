@@ -39,8 +39,6 @@ export default function SwitchNetworkContent({
     [config]
   )
 
-  console.log(`config.targetNetwork.img`, config.targetNetwork.img)
-
   const onClick = useCallback(async () => {
     if (!provider) {
       console.log('Please connect wallet first')
