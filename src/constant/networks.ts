@@ -87,10 +87,11 @@ export const SKALE: Network = {
     symbol: 'skETH',
     decimals: 18
   },
-  rpcUrls: ['https://dev-testnet-v1-0.skalelabs.com'],
+  rpcUrls: ['https://dev-testnet-v1-1.skalelabs.com'],
   blockExplorerUrl:
-    'https://expedition.dev/?rpcUrl=https://dev-testnet-v1-0.skalelabs.com',
-  img: 'https://i.imgur.com/0lfRFet.png'
+    'https://expedition.dev/?rpcUrl=https://dev-testnet-v1-1.skalelabs.com',
+  img: 'https://i.imgur.com/0lfRFet.png',
+  depositNativeToken: depositUtil.depositSkaleTestnet
 }
 
 export const ArbitrumTestnet: Network = {
