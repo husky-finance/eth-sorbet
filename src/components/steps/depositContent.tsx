@@ -62,7 +62,7 @@ export default function DepositContent({
     getChainId()
   }, [provider])
 
-  const onCorrectL1 = useMemo(() => config.l1chainId === chainId, [
+  const onCorrectL1 = useMemo(() => config.l1ChainId === chainId, [
     chainId,
     config
   ])
@@ -81,7 +81,7 @@ export default function DepositContent({
             severity='warning'
           >
             You are currently on {network}, please switch to{' '}
-            {ethChains[config.l1chainId]} to deposit
+            {ethChains[config.l1ChainId]} to deposit
           </Alert>
         )}
 
