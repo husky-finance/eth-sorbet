@@ -35,3 +35,20 @@ export async function depositOptimismTestnet(
     value: amount
   })
 }
+
+export async function depositMaticTestnet(
+  externalProvider: ethers.providers.ExternalProvider,
+  amount: string,
+  sender: string
+) {
+  const provider = new ethers.providers.Web3Provider(externalProvider)
+  const contract = new ethers.Contract(
+    addresses.addressMaticMumbai,
+    abis.abiMaticMumbai,
+    provider.getSigner()
+  )
+  await contract.depositEtherFor(sender, {
+    from: sender,
+    value: amount
+  })
+}

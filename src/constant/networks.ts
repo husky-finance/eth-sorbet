@@ -52,17 +52,18 @@ export const Sokol: Network = {
 }
 
 export const Matic: Network = {
-  name: 'Matic',
-  rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
-  blockExplorerUrl: 'https://explorer.matic.network/',
+  name: 'Matic - Mumbai Testnet',
+  rpcUrls: ['https://rpc-mumbai.matic.today'],
+  blockExplorerUrl: 'https://mumbai-explorer.matic.today',
   nativeCurrency: {
     name: 'Matic',
     symbol: 'MATIC',
     decimals: 18
   },
-  chainId: 137,
+  chainId: 80001,
   img: 'https://i.imgur.com/RNmUy9P.png',
-  bridgeUrl: 'https://wallet.matic.network/bridge/'
+  bridgeUrl: 'https://wallet.matic.network/bridge/',
+  depositNativeToken: depositUtil.depositMaticTestnet
 }
 
 export const Avalanche: Network = {
