@@ -15,7 +15,7 @@ export type Config = {
   // // Amount of L1 token to deposit to L2
   // depositAmount: string
   // L1 Network
-  l1chainId: number
+  l1ChainId: number
 
   // Dapp name
   dappName: string
