@@ -81,15 +81,15 @@ export const Avalanche: Network = {
 
 export const SKALE: Network = {
   name: 'SKALE Network - Testnet',
-  chainId: 344435,
+  chainId: 2176614826990362,
   nativeCurrency: {
     name: 'SKALE ETH',
     symbol: 'skETH',
     decimals: 18
   },
-  rpcUrls: ['https://dev-testnet-v1-1.skalelabs.com'],
+  rpcUrls: ['https://eth-global-11.skalenodes.com:10648'],
   blockExplorerUrl:
-    'https://expedition.dev/?rpcUrl=https://dev-testnet-v1-1.skalelabs.com',
+    'https://expedition.dev/?rpcUrl=https://eth-global-11.skalenodes.com:10648',
   img: 'https://i.imgur.com/0lfRFet.png',
   depositNativeToken: depositUtil.depositSkaleTestnet
 }

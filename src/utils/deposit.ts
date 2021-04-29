@@ -47,13 +47,8 @@ export async function depositSkaleTestnet(
     abis.abiSkaleRinkeby,
     provider.getSigner()
   )
-  await contract.deposit(
-    '344435',
-    sender,
-    ethers.utils.toUtf8Bytes('[Test Message]'),
-    {
-      from: sender,
-      value: amount
-    }
-  )
+  await contract.deposit('scruffy-turais', sender, {
+    from: sender,
+    value: amount
+  })
 }
