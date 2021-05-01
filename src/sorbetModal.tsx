@@ -25,7 +25,7 @@ enum Steps {
 
 export const Sorbet = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
-    const [step, setSteps] = useState<Steps>(Steps.Deposit)
+    const [step, setSteps] = useState<Steps>(Steps.Welcome)
 
     // verify config on update
     useEffect(() => {

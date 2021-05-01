@@ -104,7 +104,7 @@ export default function DepositToken({
     }
 
     try {
-      approve(
+      await approve(
         provider,
         token.address,
         sender,
