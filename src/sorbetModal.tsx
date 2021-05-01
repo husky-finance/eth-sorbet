@@ -18,14 +18,14 @@ import { light, dark } from './style/defaultTheme'
 
 enum Steps {
   Welcome,
-  DepositL1Balance,
+  Deposit,
   SwitchNetwork,
   Finished
 }
 
 export const Sorbet = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
-    const [step, setSteps] = useState<Steps>(Steps.Welcome)
+    const [step, setSteps] = useState<Steps>(Steps.Deposit)
 
     // verify config on update
     useEffect(() => {
@@ -44,7 +44,7 @@ export const Sorbet = React.memo(
       switch (step) {
         case Steps.Welcome:
           return <Welcome config={config} />
-        case Steps.DepositL1Balance:
+        case Steps.Deposit:
           return <Deposit config={config} provider={walletProvider} />
         case Steps.SwitchNetwork:
           return (
@@ -80,24 +80,24 @@ export const Sorbet = React.memo(
                   <Button
                     style={{ float: 'right' }}
                     variant={
-                      step === Steps.SwitchNetwork ||
-                      step === Steps.DepositL1Balance
+                      step === Steps.SwitchNetwork || step === Steps.Deposit
                         ? 'outlined'
                         : 'contained'
                     }
                     color='primary'
                     onClick={nextStep}
                   >
-                    {step === Steps.SwitchNetwork ||
-                    step === Steps.DepositL1Balance
+                    {step === Steps.SwitchNetwork || step === Steps.Deposit
                       ? 'Skip'
                       : 'Next'}
                   </Button>
                 )}
                 {step === Steps.Finished && (
                   <Button
+                    color='primary'
                     style={{ float: 'right' }}
                     onClick={() => config.handleClose(false)}
+                    variant='contained'
                   >
                     {' '}
                     Done{' '}

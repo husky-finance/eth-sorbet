@@ -28,14 +28,22 @@ export type Network = {
     decimals: number
   }
 
+  // which network should user depoist from
   l1chainId?: number
+
+  // native token on the L1. (use undefined for ETH)
+  l1Token?: {
+    address: string
+    symbol: string
+    decimals: number
+  }
 
   blockExplorerUrl?: string
   img?: string
   bridgeUrl?: string
 
   // deposit function
-  depositNativeToken?: (
+  depositETH?: (
     provider: any,
     amount: string,
     sender: string,

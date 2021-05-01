@@ -29,12 +29,12 @@ export default function DepositToken({
 }) {
   const classes = useStyles()
 
-  const [amount, setAmount] = useState(0.1)
+  const [amount, setAmount] = useState(0)
   const [isDeposting, setIsDepositing] = useState(false)
 
   const scaledAmount = useMemo(() => {
-    const nativeTokenDecimals = config.targetNetwork.nativeCurrency
-      ? config.targetNetwork.nativeCurrency.decimals
+    const nativeTokenDecimals = config.targetNetwork.l1Token
+      ? config.targetNetwork.l1Token.decimals
       : 18
     return ethers.utils.parseUnits(amount.toString(), nativeTokenDecimals)
   }, [config, amount])
@@ -48,20 +48,37 @@ export default function DepositToken({
   const handleDeposit = useCallback(async () => {
     const sender = config.address
     if (!sender) throw new Error('User address no specified')
-    if (!config.targetNetwork.depositNativeToken)
-      throw new Error('Deposit not implemented')
 
     setIsDepositing(true)
+
+    const callback = () => {
+      setIsDepositing(false)
+      depositCallback()
+    }
+
     try {
-      await config.targetNetwork.depositNativeToken(
-        provider,
-        scaledAmount.toString(),
-        sender,
-        () => {
-          setIsDepositing(false)
-          depositCallback()
-        }
-      )
+      const token = config.targetNetwork.l1Token?.address
+      if (token) {
+        console.log('use token')
+        if (!config.targetNetwork.depositToken)
+          throw new Error('Deposit not implemented')
+        await config.targetNetwork.depositToken(
+          provider,
+          token,
+          scaledAmount.toString(),
+          sender,
+          callback
+        )
+      } else {
+        if (!config.targetNetwork.depositETH)
+          throw new Error('Deposit not implemented')
+        await config.targetNetwork.depositETH(
+          provider,
+          scaledAmount.toString(),
+          sender,
+          callback
+        )
+      }
     } catch (error) {
       setIsDepositing(false)
     }
@@ -81,7 +98,9 @@ export default function DepositToken({
         onChange={(event) => setAmount(Number(event.target.value))}
       />
       <Button
-        disabled={!onCorrectL1 || !hasSufficientAmount || isDeposting}
+        disabled={
+          !onCorrectL1 || !hasSufficientAmount || isDeposting || amount <= 0
+        }
         style={{ height: 40 }}
         variant={amount > 0 ? 'contained' : 'outlined'}
         color='primary'

@@ -22,7 +22,14 @@ export const Binance: Network = {
   },
   chainId: 56,
   img: 'https://i.imgur.com/Jcs4TTC.png',
-  bridgeUrl: 'https://www.binance.org/en/bridge'
+  bridgeUrl: 'https://www.binance.org/en/bridge',
+
+  l1chainId: 1,
+  l1Token: {
+    address: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52',
+    symbol: 'BNB',
+    decimals: 18
+  }
 }
 
 export const xDai: Network = {
@@ -35,6 +42,13 @@ export const xDai: Network = {
     decimals: 18
   },
   chainId: 100,
+
+  l1chainId: 1,
+  l1Token: {
+    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    symbol: 'DAI',
+    decimals: 18
+  },
   img: 'https://i.imgur.com/qDNpwXw.png',
   bridgeUrl: 'https://bridge.xdaichain.com/'
 }
@@ -65,7 +79,12 @@ export const MaticTestnet: Network = {
   bridgeUrl: 'https://wallet.matic.network/bridge/',
 
   l1chainId: 5, // Goerli
-  depositNativeToken: depositUtil.depositETHMaticTestnet,
+  l1Token: {
+    symbol: 'MATIC',
+    decimals: 18,
+    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae'
+  },
+  depositETH: depositUtil.depositETHMaticTestnet,
   depositToken: depositUtil.depositTokenMaticTestnet
 }
 
@@ -83,7 +102,12 @@ export const Matic: Network = {
   bridgeUrl: 'https://wallet.matic.network/bridge/',
 
   l1chainId: 1,
-  depositNativeToken: depositUtil.depositETHMatic,
+  l1Token: {
+    symbol: 'MATIC',
+    decimals: 18,
+    address: '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'
+  },
+  depositETH: depositUtil.depositETHMatic,
   depositToken: depositUtil.depositTokenMatic
 }
 
@@ -124,7 +148,7 @@ export const ArbitrumTestnet: Network = {
   bridgeUrl: 'https://bridge.arbitrum.io/',
 
   l1chainId: 42,
-  depositNativeToken: depositUtil.depositArbitrumTestnet
+  depositETH: depositUtil.depositArbitrumTestnet
 }
 
 export const OptimismTestnet: Network = {
@@ -135,7 +159,7 @@ export const OptimismTestnet: Network = {
   img: 'https://i.imgur.com/qHBFlSq.png',
 
   l1chainId: 42,
-  depositNativeToken: depositUtil.depositOptimismTestnet
+  depositETH: depositUtil.depositOptimismTestnet
 }
 
 export const OptimismMainnet: Network = {

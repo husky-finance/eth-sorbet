@@ -98,7 +98,7 @@ export async function depositTokenMatic(
   )
   const coder = new ethers.utils.AbiCoder()
   const depositData = coder.encode(['uint256'], [amount])
-  const { hash } = await contract.depositFor(sender, token, depositData, {
+  const { hash } = await contract.depositFor(token, sender, depositData, {
     from: sender
   })
 
@@ -118,9 +118,7 @@ export async function depositTokenMaticTestnet(
     abis.abiMaticMumbai,
     provider.getSigner()
   )
-  const coder = new ethers.utils.AbiCoder()
-  const depositData = coder.encode(['uint256'], [amount])
-  const { hash } = await contract.depositFor(sender, token, depositData, {
+  const { hash } = await contract.depositERC20ForUser(token, sender, amount, {
     from: sender
   })
 
