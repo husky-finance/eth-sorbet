@@ -4,6 +4,7 @@ import { ethers, BigNumber } from 'ethers'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import { Config } from '../types'
 
@@ -51,15 +52,19 @@ export default function DepositToken({
       throw new Error('Deposit not implemented')
 
     setIsDepositing(true)
-    await config.targetNetwork.depositNativeToken(
-      provider,
-      scaledAmount.toString(),
-      sender,
-      () => {
-        setIsDepositing(false)
-        depositCallback()
-      }
-    )
+    try {
+      await config.targetNetwork.depositNativeToken(
+        provider,
+        scaledAmount.toString(),
+        sender,
+        () => {
+          setIsDepositing(false)
+          depositCallback()
+        }
+      )
+    } catch (error) {
+      setIsDepositing(false)
+    }
   }, [config, scaledAmount])
 
   return (
@@ -82,7 +87,7 @@ export default function DepositToken({
         color='primary'
         onClick={handleDeposit}
       >
-        Deposit
+        {isDeposting ? <CircularProgress size={20} /> : 'Deposit'}
       </Button>
     </div>
   )

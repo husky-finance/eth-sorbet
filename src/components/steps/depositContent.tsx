@@ -103,7 +103,6 @@ export default function DepositContent({
     [chainId, config]
   )
 
-  // TODO: refresh balance after successful deposit
   const content = useMemo(() => {
     return (
       <div>
@@ -131,7 +130,12 @@ export default function DepositContent({
         {bridgeLink && (
           <div>
             Your can deposit more tokens via the{' '}
-            <a target='_blank' href={bridgeLink} rel='noreferrer'>
+            <a
+              style={{ color: 'inherit' }}
+              target='_blank'
+              href={bridgeLink}
+              rel='noreferrer'
+            >
               {' '}
               bridge here
             </a>{' '}
