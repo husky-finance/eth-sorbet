@@ -5,7 +5,7 @@ const addresses = {
   // approve target for matic bridge
 
   // bridge contract
-  maticDepositProxy: '0xA0c68C638235ee32657e8f720a23ceC1bFc77C77',
+  maticDepositProxy: '0x401f6c983ea34274ec46f84d70b31c151321188b',
   maticDepositProxyGoerli: '0x7850ec290A2e2F40B82Ed962eaf30591bb5f5C96'
 }
 

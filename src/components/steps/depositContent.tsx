@@ -40,7 +40,12 @@ export default function DepositContent({
   }, [updateL2Balance])
 
   const updateL1Balance = useCallback(() => {
-    if (!config.address || !provider) return
+    if (
+      !config.address ||
+      !provider ||
+      chainId !== config.targetNetwork.l1chainId
+    )
+      return
 
     const web3Provider = new ethers.providers.Web3Provider(provider)
     // const isToken = config.targetNet work.l1Token !== undefined
@@ -167,6 +172,7 @@ export default function DepositContent({
             <Deposit
               config={config}
               provider={provider}
+              chainId={chainId}
               l1Balance={l1Balance}
               onCorrectL1={onCorrectL1}
               depositCallback={depositCallback}

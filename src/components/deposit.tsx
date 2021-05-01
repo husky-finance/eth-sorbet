@@ -19,14 +19,16 @@ export default function DepositToken({
   config,
   provider,
   l1Balance,
+  chainId,
   onCorrectL1,
   depositCallback
 }: {
   config: Config
-  provider: any
+  provider: ethers.providers.ExternalProvider
   l1Balance: BigNumber
+  chainId: number
   onCorrectL1: boolean
-  depositCallback: Function
+  depositCallback: Function // funciton executed after deposit is confirmed
 }) {
   const classes = useStyles()
 
@@ -59,7 +61,8 @@ export default function DepositToken({
       !isTokenDeposit ||
       !config.address ||
       !config.targetNetwork.l1Token ||
-      !provider
+      !provider ||
+      chainId !== config.targetNetwork.l1chainId
     )
       return
     const token = config.targetNetwork.l1Token as {
@@ -76,7 +79,7 @@ export default function DepositToken({
     ).then((allowance: ethers.BigNumber) => {
       setAllowance(allowance)
     })
-  }, [isTokenDeposit, config, provider])
+  }, [isTokenDeposit, config, provider, chainId])
 
   // update token allowance
   useEffect(() => {
@@ -159,7 +162,11 @@ export default function DepositToken({
       <TextField
         error={onCorrectL1 && !hasSufficientAmount}
         helperText={
-          onCorrectL1 && !hasSufficientAmount ? 'insufficent balance' : null
+          onCorrectL1 && !hasSufficientAmount
+            ? 'Insufficent balance'
+            : needApproval
+            ? `Please unlock ${config.targetNetwork.l1Token?.symbol as string}`
+            : null
         }
         size='small'
         value={amount}
@@ -169,9 +176,8 @@ export default function DepositToken({
       />
       {needApproval ? (
         <Button
-          disabled={isApproving}
+          disabled={isApproving || !onCorrectL1}
           style={{ height: 40 }}
-          variant={amount > 0 ? 'contained' : 'outlined'}
           onClick={handleApprove}
         >
           {' '}
