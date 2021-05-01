@@ -83,7 +83,8 @@ export const Matic: Network = {
   bridgeUrl: 'https://wallet.matic.network/bridge/',
 
   l1chainId: 1,
-  depositNativeToken: depositUtil.depositETHMatic
+  depositNativeToken: depositUtil.depositETHMatic,
+  depositToken: depositUtil.depositTokenMatic
 }
 
 export const Avalanche: Network = {

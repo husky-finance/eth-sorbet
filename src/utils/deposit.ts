@@ -71,6 +71,25 @@ export async function depositETHMaticTestnet(
   })
 }
 
+export async function depositTokenMatic(
+  externalProvider: ethers.providers.ExternalProvider,
+  token: string,
+  amount: string,
+  sender: string
+) {
+  const provider = new ethers.providers.Web3Provider(externalProvider)
+  const contract = new ethers.Contract(
+    addresses.maticBridge,
+    abis.abiMaticMumbai,
+    provider.getSigner()
+  )
+  const coder = new ethers.utils.AbiCoder()
+  const depositData = coder.encode(['uint256'], [amount])
+  await contract.depositFor(sender, token, depositData, {
+    from: sender
+  })
+}
+
 export async function depositTokenMaticTestnet(
   externalProvider: ethers.providers.ExternalProvider,
   token: string,
@@ -83,8 +102,8 @@ export async function depositTokenMaticTestnet(
     abis.abiMaticMumbai,
     provider.getSigner()
   )
-  // this is wrong
-  const depositData = amount
+  const coder = new ethers.utils.AbiCoder()
+  const depositData = coder.encode(['uint256'], [amount])
   await contract.depositFor(sender, token, depositData, {
     from: sender
   })
