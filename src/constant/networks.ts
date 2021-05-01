@@ -51,7 +51,7 @@ export const Sokol: Network = {
   chainId: 77
 }
 
-export const Matic: Network = {
+export const MaticTestnet: Network = {
   name: 'Matic - Mumbai Testnet',
   rpcUrls: ['https://rpc-mumbai.matic.today'],
   blockExplorerUrl: 'https://mumbai-explorer.matic.today',
@@ -67,6 +67,23 @@ export const Matic: Network = {
   l1chainId: 5, // Goerli
   depositNativeToken: depositUtil.depositETHMaticTestnet,
   depositToken: depositUtil.depositTokenMaticTestnet
+}
+
+export const Matic: Network = {
+  name: 'Matic',
+  rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
+  blockExplorerUrl: 'https://explorer.matic.network/',
+  nativeCurrency: {
+    name: 'Matic',
+    symbol: 'MATIC',
+    decimals: 18
+  },
+  chainId: 137,
+  img: 'https://i.imgur.com/RNmUy9P.png',
+  bridgeUrl: 'https://wallet.matic.network/bridge/',
+
+  l1chainId: 1,
+  depositNativeToken: depositUtil.depositETHMatic
 }
 
 export const Avalanche: Network = {

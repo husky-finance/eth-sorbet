@@ -7,6 +7,7 @@ import {
   xDai,
   Avalanche,
   SKALE,
+  MaticTestnet,
   Matic,
   Config
 } from '@huskyfinance/eth-sorbet'
@@ -21,11 +22,12 @@ const networks = [
   xDai,
   Avalanche,
   SKALE,
+  MaticTestnet,
   Matic
 ]
 // const ran = parseInt((Math.random() * networks.length).toFixed(0))
 // const idx = ran === 0 ? ran : ran - 1
-const idx = 7
+const idx = 8
 
 const App = () => {
   const [open, setOpen] = useState(true)

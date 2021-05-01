@@ -9,7 +9,7 @@ export async function depositArbitrumTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.addressArbitrumKovan4,
+    addresses.arbitrumBridgeKovan4,
     abis.abiArbitrumKovan4,
     provider.getSigner()
   )
@@ -26,11 +26,29 @@ export async function depositOptimismTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.addressOptimismKovan2,
+    addresses.optimismBridgeKovan2,
     abis.abiOptimismKovan2,
     provider.getSigner()
   )
   await contract.deposit({
+    from: sender,
+    value: amount
+  })
+}
+
+// todo: merge depositETHMatic & depositETHMaticTestnet
+export async function depositETHMatic(
+  externalProvider: ethers.providers.ExternalProvider,
+  amount: string,
+  sender: string
+) {
+  const provider = new ethers.providers.Web3Provider(externalProvider)
+  const contract = new ethers.Contract(
+    addresses.maticBridge,
+    abis.abiMaticMumbai,
+    provider.getSigner()
+  )
+  await contract.depositEtherFor(sender, {
     from: sender,
     value: amount
   })
@@ -43,7 +61,7 @@ export async function depositETHMaticTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.addressMaticMumbai,
+    addresses.maticBridge,
     abis.abiMaticMumbai,
     provider.getSigner()
   )
@@ -61,10 +79,11 @@ export async function depositTokenMaticTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.addressMaticMumbai,
+    addresses.maticBridgeMumbai,
     abis.abiMaticMumbai,
     provider.getSigner()
   )
+  // this is wrong
   const depositData = amount
   await contract.depositFor(sender, token, depositData, {
     from: sender
