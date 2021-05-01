@@ -36,6 +36,7 @@ export type Network = {
     address: string
     symbol: string
     decimals: number
+    spender: string
   }
 
   blockExplorerUrl?: string

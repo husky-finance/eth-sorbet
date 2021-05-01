@@ -51,7 +51,7 @@ export async function depositETHMatic(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.maticBridge,
+    addresses.maticDepositProxy,
     abis.abiMaticMumbai,
     provider.getSigner()
   )
@@ -71,7 +71,7 @@ export async function depositETHMaticTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.maticBridge,
+    addresses.maticDepositProxy,
     abis.abiMaticMumbai,
     provider.getSigner()
   )
@@ -92,7 +92,7 @@ export async function depositTokenMatic(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.maticBridge,
+    addresses.maticDepositProxy,
     abis.abiMaticMumbai,
     provider.getSigner()
   )
@@ -114,7 +114,7 @@ export async function depositTokenMaticTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.maticBridgeMumbai,
+    addresses.maticDepositProxyGoerli,
     abis.abiMaticMumbai,
     provider.getSigner()
   )

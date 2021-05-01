@@ -1,12 +1,13 @@
-import React, { useCallback, useState, useMemo } from 'react'
+import React, { useCallback, useState, useMemo, useEffect } from 'react'
 
 import { ethers, BigNumber } from 'ethers'
 import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
-
+import LockIcon from '@material-ui/icons/Lock'
 import { Config } from '../types'
+import { getApproval, approve } from '../utils/basic'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -30,7 +31,11 @@ export default function DepositToken({
   const classes = useStyles()
 
   const [amount, setAmount] = useState(0)
-  const [isDeposting, setIsDepositing] = useState(false)
+
+  const [allowance, setAllowance] = useState(BigNumber.from(0))
+
+  const [isApproving, setIsApproving] = useState(false)
+  const [isDepositing, setIsDepositing] = useState(false)
 
   const scaledAmount = useMemo(() => {
     const nativeTokenDecimals = config.targetNetwork.l1Token
@@ -45,6 +50,74 @@ export default function DepositToken({
     l1Balance
   ])
 
+  const isTokenDeposit = useMemo(() => {
+    return config.targetNetwork.l1Token?.address !== undefined
+  }, [config])
+
+  const updateApproval = useCallback(() => {
+    if (
+      !isTokenDeposit ||
+      !config.address ||
+      !config.targetNetwork.l1Token ||
+      !provider
+    )
+      return
+    const token = config.targetNetwork.l1Token as {
+      spender: string
+      address: string
+      decimals: number
+    }
+
+    getApproval(
+      provider,
+      token.address,
+      config.address,
+      config.targetNetwork.l1Token?.spender
+    ).then((allowance: ethers.BigNumber) => {
+      setAllowance(allowance)
+    })
+  }, [isTokenDeposit, config, provider])
+
+  // update token allowance
+  useEffect(() => {
+    updateApproval()
+  }, [updateApproval])
+
+  // whether user need to approve first
+  const needApproval = useMemo(() => {
+    return isTokenDeposit && allowance.lt(scaledAmount)
+  }, [allowance, scaledAmount])
+
+  const handleApprove = useCallback(async () => {
+    const sender = config.address
+
+    const token = config.targetNetwork.l1Token
+
+    if (!sender) throw new Error('User address no specified')
+    if (!token) throw new Error('No token defined')
+
+    setIsApproving(true)
+
+    const callback = () => {
+      setIsApproving(false)
+      updateApproval()
+    }
+
+    try {
+      approve(
+        provider,
+        token.address,
+        sender,
+        token.spender,
+        scaledAmount.toString(),
+        callback
+      )
+    } catch (error) {
+      setIsApproving(false)
+    }
+  }, [config, scaledAmount, provider, updateApproval])
+
+  // deposit function
   const handleDeposit = useCallback(async () => {
     const sender = config.address
     if (!sender) throw new Error('User address no specified')
@@ -55,16 +128,13 @@ export default function DepositToken({
       setIsDepositing(false)
       depositCallback()
     }
-
     try {
-      const token = config.targetNetwork.l1Token?.address
-      if (token) {
-        console.log('use token')
+      if (isTokenDeposit) {
         if (!config.targetNetwork.depositToken)
           throw new Error('Deposit not implemented')
         await config.targetNetwork.depositToken(
           provider,
-          token,
+          config.targetNetwork.l1Token?.address as string,
           scaledAmount.toString(),
           sender,
           callback
@@ -82,7 +152,7 @@ export default function DepositToken({
     } catch (error) {
       setIsDepositing(false)
     }
-  }, [config, scaledAmount])
+  }, [config, scaledAmount, isTokenDeposit])
 
   return (
     <div className={classes.container}>
@@ -97,17 +167,33 @@ export default function DepositToken({
         variant='outlined'
         onChange={(event) => setAmount(Number(event.target.value))}
       />
-      <Button
-        disabled={
-          !onCorrectL1 || !hasSufficientAmount || isDeposting || amount <= 0
-        }
-        style={{ height: 40 }}
-        variant={amount > 0 ? 'contained' : 'outlined'}
-        color='primary'
-        onClick={handleDeposit}
-      >
-        {isDeposting ? <CircularProgress size={20} /> : 'Deposit'}
-      </Button>
+      {needApproval ? (
+        <Button
+          disabled={isApproving}
+          style={{ height: 40 }}
+          variant={amount > 0 ? 'contained' : 'outlined'}
+          onClick={handleApprove}
+        >
+          {' '}
+          {isApproving ? (
+            <CircularProgress size={20} />
+          ) : (
+            <LockIcon color='primary' />
+          )}{' '}
+        </Button>
+      ) : (
+        <Button
+          disabled={
+            !onCorrectL1 || !hasSufficientAmount || isDepositing || amount <= 0
+          }
+          style={{ height: 40 }}
+          variant={amount > 0 ? 'contained' : 'outlined'}
+          color='primary'
+          onClick={handleDeposit}
+        >
+          {isDepositing ? <CircularProgress size={20} /> : 'Deposit'}
+        </Button>
+      )}
     </div>
   )
 }

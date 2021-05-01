@@ -1,5 +1,6 @@
 import { Network } from '../types'
 import * as depositUtil from '../utils/deposit'
+import { addresses } from '../contracts'
 
 // TODO probably a good idea to combine this with rest of chains below
 export const ethChains = {
@@ -28,7 +29,9 @@ export const Binance: Network = {
   l1Token: {
     address: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52',
     symbol: 'BNB',
-    decimals: 18
+    decimals: 18,
+    // todo: add spender address
+    spender: ''
   }
 }
 
@@ -47,7 +50,9 @@ export const xDai: Network = {
   l1Token: {
     address: '0x6b175474e89094c44da98b954eedeac495271d0f',
     symbol: 'DAI',
-    decimals: 18
+    decimals: 18,
+    // todo: add spender address
+    spender: ''
   },
   img: 'https://i.imgur.com/qDNpwXw.png',
   bridgeUrl: 'https://bridge.xdaichain.com/'
@@ -82,7 +87,8 @@ export const MaticTestnet: Network = {
   l1Token: {
     symbol: 'MATIC',
     decimals: 18,
-    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae'
+    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae',
+    spender: addresses.maticDepositProxyGoerli
   },
   depositETH: depositUtil.depositETHMaticTestnet,
   depositToken: depositUtil.depositTokenMaticTestnet
@@ -105,7 +111,8 @@ export const Matic: Network = {
   l1Token: {
     symbol: 'MATIC',
     decimals: 18,
-    address: '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0'
+    address: '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0',
+    spender: addresses.maticDepositProxy
   },
   depositETH: depositUtil.depositETHMatic,
   depositToken: depositUtil.depositTokenMatic

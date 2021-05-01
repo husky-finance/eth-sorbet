@@ -3,10 +3,10 @@ const addresses = {
   optimismBridgeKovan2: '0xf3902e50dA095bD2e954AB320E8eafDA6152dFDa',
 
   // approve target for matic bridge
-  maticERC20Approval: '0x40ec5b33f54e0e8a33a975908c5ba1c14e5bbbdf',
-  maticBridge: '0xA0c68C638235ee32657e8f720a23ceC1bFc77C77',
 
-  maticBridgeMumbai: '0xBbD7cBFA79faee899Eaf900F13C9065bF03B1A74'
+  // bridge contract
+  maticDepositProxy: '0xA0c68C638235ee32657e8f720a23ceC1bFc77C77',
+  maticDepositProxyGoerli: '0x7850ec290A2e2F40B82Ed962eaf30591bb5f5C96'
 }
 
 export default addresses
