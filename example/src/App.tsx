@@ -68,7 +68,6 @@ const App = () => {
     // optional
     checkBalance: true,
     address: userAddress,
-    l1ChainId: 5,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',

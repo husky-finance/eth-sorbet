@@ -62,10 +62,10 @@ export default function DepositContent({
     getChainId()
   }, [provider])
 
-  const onCorrectL1 = useMemo(() => config.l1ChainId === chainId, [
-    chainId,
-    config
-  ])
+  const onCorrectL1 = useMemo(
+    () => config.targetNetwork.l1chainId === chainId,
+    [chainId, config]
+  )
 
   // TODO: refresh balance after successful deposit
   const content = useMemo(() => {
@@ -76,13 +76,15 @@ export default function DepositContent({
             Balance on {network}: {ethers.utils.formatUnits(l1Balance, 18)} ETH
           </div>
         ) : (
-          <Alert
-            style={{ backgroundColor: 'inherit', paddingLeft: 0 }}
-            severity='warning'
-          >
-            You are currently on {network}, please switch to{' '}
-            {ethChains[config.l1ChainId]} to deposit
-          </Alert>
+          config.targetNetwork.l1chainId && (
+            <Alert
+              style={{ backgroundColor: 'inherit', paddingLeft: 0 }}
+              severity='warning'
+            >
+              You are currently on {network}, please switch to{' '}
+              {ethChains[config.targetNetwork.l1chainId]} to deposit
+            </Alert>
+          )
         )}
 
         <div>

@@ -63,7 +63,10 @@ export const Matic: Network = {
   chainId: 80001,
   img: 'https://i.imgur.com/RNmUy9P.png',
   bridgeUrl: 'https://wallet.matic.network/bridge/',
-  depositNativeToken: depositUtil.depositMaticTestnet
+
+  l1chainId: 5, // Goerli
+  depositNativeToken: depositUtil.depositETHMaticTestnet,
+  depositToken: depositUtil.depositTokenMaticTestnet
 }
 
 export const Avalanche: Network = {
@@ -101,6 +104,8 @@ export const ArbitrumTestnet: Network = {
   chainId: 212984383488152,
   img: 'https://i.imgur.com/QJOromM.png',
   bridgeUrl: 'https://bridge.arbitrum.io/',
+
+  l1chainId: 42,
   depositNativeToken: depositUtil.depositArbitrumTestnet
 }
 
@@ -110,6 +115,8 @@ export const OptimismTestnet: Network = {
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
   img: 'https://i.imgur.com/qHBFlSq.png',
+
+  l1chainId: 42,
   depositNativeToken: depositUtil.depositOptimismTestnet
 }
 
