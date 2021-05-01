@@ -38,14 +38,16 @@ export type Network = {
   depositNativeToken?: (
     provider: any,
     amount: string,
-    sender: string
+    sender: string,
+    callback?: Function
   ) => Promise<void>
 
   depositToken?: (
     provider: any,
     token: string,
     amount: string,
-    sender: string
+    sender: string,
+    callback?: Function
   ) => Promise<void>
 }
 

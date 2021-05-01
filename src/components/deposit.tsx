@@ -17,16 +17,19 @@ export default function DepositToken({
   config,
   provider,
   l1Balance,
-  onCorrectL1
+  onCorrectL1,
+  depositCallback
 }: {
   config: Config
   provider: any
   l1Balance: BigNumber
   onCorrectL1: boolean
+  depositCallback: Function
 }) {
   const classes = useStyles()
 
   const [amount, setAmount] = useState(0.1)
+  const [isDeposting, setIsDepositing] = useState(false)
 
   const scaledAmount = useMemo(() => {
     const nativeTokenDecimals = config.targetNetwork.nativeCurrency
@@ -47,10 +50,15 @@ export default function DepositToken({
     if (!config.targetNetwork.depositNativeToken)
       throw new Error('Deposit not implemented')
 
+    setIsDepositing(true)
     await config.targetNetwork.depositNativeToken(
       provider,
       scaledAmount.toString(),
-      sender
+      sender,
+      () => {
+        setIsDepositing(false)
+        depositCallback()
+      }
     )
   }, [config, scaledAmount])
 
@@ -68,7 +76,7 @@ export default function DepositToken({
         onChange={(event) => setAmount(Number(event.target.value))}
       />
       <Button
-        disabled={!onCorrectL1 || !hasSufficientAmount}
+        disabled={!onCorrectL1 || !hasSufficientAmount || isDeposting}
         style={{ height: 40 }}
         variant={amount > 0 ? 'contained' : 'outlined'}
         color='primary'
