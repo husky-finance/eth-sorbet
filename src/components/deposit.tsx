@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import LockIcon from '@material-ui/icons/Lock'
 import { Config } from '../types'
-import { getApproval, approve } from '../utils/basic'
+import { getAllowance, approve } from '../utils/basic'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -71,7 +71,7 @@ export default function DepositToken({
       decimals: number
     }
 
-    getApproval(
+    getAllowance(
       provider,
       token.address,
       config.address,

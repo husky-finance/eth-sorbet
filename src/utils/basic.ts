@@ -2,7 +2,7 @@ import { ethers } from 'ethers'
 
 import { abis } from '../contracts'
 
-export async function getApproval(
+export async function getAllowance(
   provider: any,
   token: string,
   user: string,
