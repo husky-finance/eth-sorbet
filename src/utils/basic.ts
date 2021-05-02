@@ -27,6 +27,9 @@ export async function approve(
     abis.erc20,
     web3Provider.getSigner()
   )
-  const { hash } = await tokenContract.approve(spender, amount, { from: user })
-  if (typeof callback === 'function') provider.once(hash, () => callback())
+  await tokenContract.approve(spender, amount, { from: user })
+  if (typeof callback === 'function')
+    tokenContract.once('Approval', () => {
+      callback()
+    })
 }
