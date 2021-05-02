@@ -71,7 +71,7 @@ export const Sokol: Network = {
 }
 
 export const MaticTestnet: Network = {
-  name: 'Matic - Mumbai Testnet',
+  name: 'Matic (Mumbai)',
   rpcUrls: ['https://rpc-mumbai.matic.today'],
   blockExplorerUrl: 'https://mumbai-explorer.matic.today',
   nativeCurrency: {
@@ -119,7 +119,7 @@ export const Matic: Network = {
 }
 
 export const Avalanche: Network = {
-  name: 'Avalanche Mainnet C-Chain',
+  name: 'Avalanche (Mainnet C-Chain)',
   chainId: 43114,
   nativeCurrency: {
     name: 'Avalanche',
@@ -133,7 +133,7 @@ export const Avalanche: Network = {
 }
 
 export const SKALE: Network = {
-  name: 'SKALE Network - Testnet',
+  name: 'SKALE (Testnet)',
   chainId: 344435,
   nativeCurrency: {
     name: 'SKALE ETH',
@@ -147,7 +147,7 @@ export const SKALE: Network = {
 }
 
 export const ArbitrumTestnet: Network = {
-  name: 'Arbitrum - Kovan',
+  name: 'Arbitrum (Kovan)',
   rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
   blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
   chainId: 212984383488152,
@@ -159,7 +159,7 @@ export const ArbitrumTestnet: Network = {
 }
 
 export const OptimismTestnet: Network = {
-  name: 'Optimism - Kovan',
+  name: 'Optimism (Kovan)',
   rpcUrls: ['https://kovan.optimism.io'],
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
