@@ -86,6 +86,7 @@ export default function DepositContent({
     [config]
   )
 
+  // revisit bridge urls to match deposit function (e.g. bridge currently points to mainnet but all networks are testnets)
   const bridgeLink = useMemo(() => config.targetNetwork.bridgeUrl, [config])
 
   // reload if Chain changed
