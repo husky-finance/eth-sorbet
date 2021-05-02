@@ -2,6 +2,11 @@
   "name": "@huskyfinance/eth-sorbet",
   "version": "0.1.10",
   "description": "React comment to help transition between L1 and L2s",
+  "keywords": [
+    "Ethereum",
+    "ethers",
+    "react"
+  ],
   "author": "",
   "license": "MIT",
   "repository": "https://github.com/husky-finance/eth-sorbet",
