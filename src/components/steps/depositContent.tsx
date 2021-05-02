@@ -152,21 +152,6 @@ export default function DepositContent({
           {ethers.utils.formatUnits(l2Balance, decimals)} {currencySymbol}
         </div>
         <br />
-        {bridgeLink && (
-          <div>
-            Your can deposit more tokens via the{' '}
-            <a
-              style={{ color: 'inherit' }}
-              target='_blank'
-              href={bridgeLink}
-              rel='noreferrer'
-            >
-              {' '}
-              bridge here
-            </a>{' '}
-            .
-          </div>
-        )}
         {/* only shows deposit input if the funciton is provided */}
         {config.targetNetwork.depositETH && (
           <div>
