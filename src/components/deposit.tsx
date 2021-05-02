@@ -56,7 +56,7 @@ export default function DepositToken({
     return config.targetNetwork.l1Token?.address !== undefined
   }, [config])
 
-  const updateApproval = useCallback(() => {
+  const updateAllowance = useCallback(() => {
     if (
       !isTokenDeposit ||
       !config.address ||
@@ -81,10 +81,9 @@ export default function DepositToken({
     })
   }, [isTokenDeposit, config, provider, chainId])
 
-  // update token allowance
   useEffect(() => {
-    updateApproval()
-  }, [updateApproval])
+    updateAllowance()
+  }, [updateAllowance])
 
   // whether user need to approve first
   const needApproval = useMemo(() => {
@@ -103,7 +102,7 @@ export default function DepositToken({
 
     const callback = () => {
       setIsApproving(false)
-      updateApproval()
+      updateAllowance()
     }
 
     try {
@@ -118,7 +117,7 @@ export default function DepositToken({
     } catch (error) {
       setIsApproving(false)
     }
-  }, [config, scaledAmount, provider, updateApproval])
+  }, [config, scaledAmount, provider, updateAllowance])
 
   // deposit function
   const handleDeposit = useCallback(async () => {
