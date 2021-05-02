@@ -69,7 +69,7 @@ class Example extends Component {
 | Avalanche        | ✅     | -                        |
 | Sokol            | ✅     | -                        |
 | SKALE            | ✅     | -                        |
-| Matic            | ✅     | -                        |
+| Matic            | ✅     | ✅                       |
 | Arbitrum testnet | ✅     | ✅                       |
 | Optimism testnet | ✅     | ✅                       |
 | Optimism         | ✅     | -                        |
