@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold'
   },
   content: {
-    minHeight: 330,
+    minHeight: 310,
     fontFamily: "'Titillium Web', sans-serif;",
     color: theme.palette.text.primary
   }
