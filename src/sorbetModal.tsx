@@ -1,4 +1,3 @@
-import { BigNumber, providers, ethers } from 'ethers'
 import React, { useCallback, useEffect, useState, useMemo } from 'react'
 
 import { Config } from './types'
@@ -19,40 +18,19 @@ import { light, dark } from './style/defaultTheme'
 
 enum Steps {
   Welcome,
-  DepositL1Balance,
+  Deposit,
   SwitchNetwork,
   Finished
 }
 
 export const Sorbet = React.memo(
   ({ config, walletProvider }: { config: Config; walletProvider: any }) => {
-    const [rpcProvider, setRPCProvider] = useState<any | null>(null)
-
-    const [l1Balance, setL1Balance] = useState<BigNumber>(BigNumber.from(0))
-    const [l2Balance, setL2Balance] = useState<BigNumber>(BigNumber.from(0))
-
     const [step, setSteps] = useState<Steps>(Steps.Welcome)
-
-    // const [chainId, setChainId] = useState<number>(0)
-    // const [network, setNetwork] = useState<string>()
 
     // verify config on update
     useEffect(() => {
       verifyConfig(config)
-      const _rpcProvider = new providers.JsonRpcProvider(
-        config.targetNetwork.rpcUrls[0]
-      )
-      setRPCProvider(_rpcProvider)
     }, [config])
-
-    // update L2 balance
-    useEffect(() => {
-      if (!config.checkBalance || !config.address || !rpcProvider) return
-
-      rpcProvider
-        .getBalance(config.address)
-        .then((balance: BigNumber) => setL2Balance(balance))
-    }, [config, rpcProvider])
 
     const nextStep = useCallback(() => {
       setSteps((step) => step + 1)
@@ -62,29 +40,12 @@ export const Sorbet = React.memo(
       setSteps((step) => step - 1)
     }, [])
 
-    useEffect(() => {
-      if (!config.address || !walletProvider) return
-      const web3Provider = new ethers.providers.Web3Provider(walletProvider)
-      web3Provider
-        .getBalance(config.address)
-        .then((balance: BigNumber) => setL1Balance(balance))
-    }, [walletProvider, config])
-
     const content = useMemo(() => {
       switch (step) {
         case Steps.Welcome:
           return <Welcome config={config} />
-        case Steps.DepositL1Balance:
-          return (
-            <Deposit
-              config={config}
-              l1Balance={l1Balance}
-              l2Balance={l2Balance}
-              provider={walletProvider}
-              // chainId={chainId}
-              // network={network!}
-            />
-          )
+        case Steps.Deposit:
+          return <Deposit config={config} provider={walletProvider} />
         case Steps.SwitchNetwork:
           return (
             <SwitchNetwork
@@ -96,7 +57,7 @@ export const Sorbet = React.memo(
         default:
           return <Finished config={config} />
       }
-    }, [step, config, l2Balance])
+    }, [step, config])
 
     return (
       <ThemeProvider theme={config.darkMode ? dark : light}>
@@ -119,24 +80,24 @@ export const Sorbet = React.memo(
                   <Button
                     style={{ float: 'right' }}
                     variant={
-                      step === Steps.SwitchNetwork ||
-                      step === Steps.DepositL1Balance
+                      step === Steps.SwitchNetwork || step === Steps.Deposit
                         ? 'outlined'
                         : 'contained'
                     }
                     color='primary'
                     onClick={nextStep}
                   >
-                    {step === Steps.SwitchNetwork ||
-                    step === Steps.DepositL1Balance
+                    {step === Steps.SwitchNetwork || step === Steps.Deposit
                       ? 'Skip'
                       : 'Next'}
                   </Button>
                 )}
                 {step === Steps.Finished && (
                   <Button
+                    color='primary'
                     style={{ float: 'right' }}
                     onClick={() => config.handleClose(false)}
+                    variant='contained'
                   >
                     {' '}
                     Done{' '}

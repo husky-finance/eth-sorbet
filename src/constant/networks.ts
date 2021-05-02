@@ -1,5 +1,6 @@
 import { Network } from '../types'
 import * as depositUtil from '../utils/deposit'
+import { addresses } from '../contracts'
 
 // TODO probably a good idea to combine this with rest of chains below
 export const ethChains = {
@@ -22,7 +23,16 @@ export const Binance: Network = {
   },
   chainId: 56,
   img: 'https://i.imgur.com/Jcs4TTC.png',
-  bridgeUrl: 'https://www.binance.org/en/bridge'
+  bridgeUrl: 'https://www.binance.org/en/bridge',
+
+  l1chainId: 1,
+  l1Token: {
+    address: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52',
+    symbol: 'BNB',
+    decimals: 18,
+    // todo: add spender address
+    spender: ''
+  }
 }
 
 export const xDai: Network = {
@@ -35,6 +45,15 @@ export const xDai: Network = {
     decimals: 18
   },
   chainId: 100,
+
+  l1chainId: 1,
+  l1Token: {
+    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    symbol: 'DAI',
+    decimals: 18,
+    // todo: add spender address
+    spender: ''
+  },
   img: 'https://i.imgur.com/qDNpwXw.png',
   bridgeUrl: 'https://bridge.xdaichain.com/'
 }
@@ -51,6 +70,30 @@ export const Sokol: Network = {
   chainId: 77
 }
 
+export const MaticTestnet: Network = {
+  name: 'Matic - Mumbai Testnet',
+  rpcUrls: ['https://rpc-mumbai.matic.today'],
+  blockExplorerUrl: 'https://mumbai-explorer.matic.today',
+  nativeCurrency: {
+    name: 'Matic',
+    symbol: 'MATIC',
+    decimals: 18
+  },
+  chainId: 80001,
+  img: 'https://i.imgur.com/RNmUy9P.png',
+  bridgeUrl: 'https://wallet.matic.network/bridge/',
+
+  l1chainId: 5, // Goerli
+  l1Token: {
+    symbol: 'MATIC',
+    decimals: 18,
+    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae',
+    spender: addresses.maticDepositProxyGoerli
+  },
+  depositETH: depositUtil.depositETHMaticTestnet,
+  depositToken: depositUtil.depositTokenMaticTestnet
+}
+
 export const Matic: Network = {
   name: 'Matic',
   rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
@@ -62,7 +105,17 @@ export const Matic: Network = {
   },
   chainId: 137,
   img: 'https://i.imgur.com/RNmUy9P.png',
-  bridgeUrl: 'https://wallet.matic.network/bridge/'
+  bridgeUrl: 'https://wallet.matic.network/bridge/',
+
+  l1chainId: 1,
+  l1Token: {
+    symbol: 'MATIC',
+    decimals: 18,
+    address: '0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0',
+    spender: addresses.maticDepositProxy
+  },
+  depositETH: depositUtil.depositETHMatic,
+  depositToken: depositUtil.depositTokenMatic
 }
 
 export const Avalanche: Network = {
@@ -100,7 +153,9 @@ export const ArbitrumTestnet: Network = {
   chainId: 212984383488152,
   img: 'https://i.imgur.com/QJOromM.png',
   bridgeUrl: 'https://bridge.arbitrum.io/',
-  depositNativeToken: depositUtil.depositArbitrumTestnet
+
+  l1chainId: 42,
+  depositETH: depositUtil.depositArbitrumTestnet
 }
 
 export const OptimismTestnet: Network = {
@@ -109,7 +164,9 @@ export const OptimismTestnet: Network = {
   blockExplorerUrl: 'https://kovan-l2-explorer.surge.sh',
   chainId: 69,
   img: 'https://i.imgur.com/qHBFlSq.png',
-  depositNativeToken: depositUtil.depositOptimismTestnet
+
+  l1chainId: 42,
+  depositETH: depositUtil.depositOptimismTestnet
 }
 
 export const OptimismMainnet: Network = {

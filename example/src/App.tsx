@@ -7,6 +7,8 @@ import {
   xDai,
   Avalanche,
   SKALE,
+  MaticTestnet,
+  Matic,
   Config
 } from '@huskyfinance/eth-sorbet'
 import React, { useEffect, useState } from 'react'
@@ -19,11 +21,13 @@ const networks = [
   OptimismMainnet,
   xDai,
   Avalanche,
-  SKALE
+  SKALE,
+  MaticTestnet,
+  Matic
 ]
 // const ran = parseInt((Math.random() * networks.length).toFixed(0))
 // const idx = ran === 0 ? ran : ran - 1
-const idx = 2
+const idx = 7
 
 const App = () => {
   const [open, setOpen] = useState(true)
@@ -66,7 +70,6 @@ const App = () => {
     // optional
     checkBalance: true,
     address: userAddress,
-    l1ChainId: 42,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',

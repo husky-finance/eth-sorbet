@@ -10,12 +10,6 @@ export type Config = {
   checkBalance?: boolean
   // user's address to check
   address?: string
-  // // Type of L1 token to deposit to L2
-  // depositToken: string
-  // // Amount of L1 token to deposit to L2
-  // depositAmount: string
-  // L1 Network
-  l1ChainId: number
 
   // Dapp name
   dappName: string
@@ -33,13 +27,36 @@ export type Network = {
     name: string
     decimals: number
   }
+
+  // which network should user depoist from
+  l1chainId?: number
+
+  // native token on the L1. (use undefined for ETH)
+  l1Token?: {
+    address: string
+    symbol: string
+    decimals: number
+    spender: string
+  }
+
   blockExplorerUrl?: string
   img?: string
   bridgeUrl?: string
-  depositNativeToken?: (
+
+  // deposit function
+  depositETH?: (
     provider: any,
     amount: string,
-    sender: string
+    sender: string,
+    callback?: Function
+  ) => Promise<void>
+
+  depositToken?: (
+    provider: any,
+    token: string,
+    amount: string,
+    sender: string,
+    callback?: Function
   ) => Promise<void>
 }
 
