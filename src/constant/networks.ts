@@ -87,10 +87,8 @@ export const SKALE: Network = {
     symbol: 'skETH',
     decimals: 18
   },
-  rpcUrls: ['http://eth-global-12.skalenodes.com:10003'],
-  blockExplorerUrl:
-    'https://expedition.dev/?rpcUrl=http://eth-global-12.skalenodes.com:10003',
-  img: 'https://i.imgur.com/0lfRFet.png',
+  rpcUrls: ['http://eth-global-13.skalenodes.com:10009'], // http links can't be added by api to Metamask network, only manually through UI
+  blockExplorerUrl: 'https://explorer.skale.network', // need to enter https endpoints manually
   depositNativeToken: depositUtil.depositSkaleTestnet
 }
 
