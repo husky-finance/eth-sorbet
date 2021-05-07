@@ -58,8 +58,6 @@ export default function DepositToken({
     return config.targetNetwork.l1Token?.address !== undefined
   }, [config])
 
-  console.log(`isTokenDeposit`, isTokenDeposit)
-
   const updateAllowance = useCallback(() => {
     if (
       !isTokenDeposit ||
