@@ -1,11 +1,16 @@
 {
   "name": "@huskyfinance/eth-sorbet",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "React comment to help transition between L1 and L2s",
   "keywords": [
     "Ethereum",
     "ethers",
-    "react"
+    "react",
+    "layer2",
+    "xdai",
+    "bsc",
+    "optimism",
+    "arbitrum"
   ],
   "author": "",
   "license": "MIT",
