@@ -65,7 +65,7 @@ class Example extends Component {
 
 | Network          | Config | Native Deposit Supported |
 | ---------------- | ------ | ------------------------ |
-| xDai             | ✅     | -                        |
+| xDai             | ✅     | ✅                        |
 | BSC              | ✅     | -                        |
 | Avalanche        | ✅     | -                        |
 | Sokol            | ✅     | -                        |
