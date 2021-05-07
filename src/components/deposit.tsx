@@ -6,8 +6,10 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import LockIcon from '@material-ui/icons/Lock'
+
 import { Config } from '../types'
 import { getAllowance, approve } from '../utils/basic'
+import { MAX_UINT } from '../constant/number'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -56,6 +58,8 @@ export default function DepositToken({
     return config.targetNetwork.l1Token?.address !== undefined
   }, [config])
 
+  console.log(`isTokenDeposit`, isTokenDeposit)
+
   const updateAllowance = useCallback(() => {
     if (
       !isTokenDeposit ||
@@ -65,20 +69,25 @@ export default function DepositToken({
       chainId !== config.targetNetwork.l1chainId
     )
       return
+
     const token = config.targetNetwork.l1Token as {
-      spender: string
+      spender: string | undefined
       address: string
       decimals: number
     }
 
-    getAllowance(
-      provider,
-      token.address,
-      config.address,
-      config.targetNetwork.l1Token?.spender
-    ).then((allowance: ethers.BigNumber) => {
-      setAllowance(allowance)
-    })
+    // if no spender specified, assume no approval is requried.
+    if (token.spender === undefined) {
+      setAllowance(BigNumber.from(MAX_UINT))
+      console.log(`no spender`)
+      return
+    }
+
+    getAllowance(provider, token.address, config.address, token.spender).then(
+      (allowance: ethers.BigNumber) => {
+        setAllowance(allowance)
+      }
+    )
   }, [isTokenDeposit, config, provider, chainId])
 
   useEffect(() => {
@@ -97,6 +106,7 @@ export default function DepositToken({
 
     if (!sender) throw new Error('User address no specified')
     if (!token) throw new Error('No token defined')
+    if (!token.spender) throw new Error('No spender to approve!')
 
     setIsApproving(true)
 
@@ -109,7 +119,7 @@ export default function DepositToken({
       await approve(
         provider,
         token.address,
-        sender,
+        token.spender,
         token.spender,
         scaledAmount.toString(),
         callback
