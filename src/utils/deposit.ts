@@ -11,7 +11,7 @@ export async function depositArbitrumTestnet(
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.arbitrumBridgeKovan4,
-    abis.abiArbitrumKovan4,
+    abis.arbitrumInbox,
     provider.getSigner()
   )
   const { hash } = await contract.depositEth(sender, {
@@ -22,7 +22,7 @@ export async function depositArbitrumTestnet(
   if (typeof callback === 'function') provider.once(hash, () => callback())
 }
 
-export async function depositOptimismTestnet(
+export async function depositETHOptimismTestnet(
   externalProvider: ethers.providers.ExternalProvider,
   amount: string,
   sender: string,
@@ -30,8 +30,28 @@ export async function depositOptimismTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.optimismBridgeKovan2,
-    abis.abiOptimismKovan2,
+    addresses.optimismETHGatewayKovan2,
+    abis.optimismGateway,
+    provider.getSigner()
+  )
+  const { hash } = await contract.deposit({
+    from: sender,
+    value: amount
+  })
+
+  if (typeof callback === 'function') provider.once(hash, () => callback())
+}
+
+export async function depositETHOptimism(
+  externalProvider: ethers.providers.ExternalProvider,
+  amount: string,
+  sender: string,
+  callback?: Function
+) {
+  const provider = new ethers.providers.Web3Provider(externalProvider)
+  const contract = new ethers.Contract(
+    addresses.optimismETHGatewayMainnet,
+    abis.optimismGateway,
     provider.getSigner()
   )
   const { hash } = await contract.deposit({
@@ -52,7 +72,7 @@ export async function depositETHMatic(
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.maticDepositProxy,
-    abis.abiMaticMumbai,
+    abis.maticBridge,
     provider.getSigner()
   )
   const { hash } = await contract.depositEtherFor(sender, {
@@ -72,7 +92,7 @@ export async function depositETHMaticTestnet(
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.maticDepositProxy,
-    abis.abiMaticMumbai,
+    abis.maticBridge,
     provider.getSigner()
   )
   const { hash } = await contract.depositEtherFor(sender, {
@@ -93,7 +113,7 @@ export async function depositTokenMatic(
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.maticDepositProxy,
-    abis.abiMaticMumbai,
+    abis.maticBridge,
     provider.getSigner()
   )
   const { hash } = await contract.depositERC20ForUser(token, sender, amount, {
@@ -113,7 +133,7 @@ export async function depositTokenMaticTestnet(
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
     addresses.maticDepositProxyGoerli,
-    abis.abiMaticMumbai,
+    abis.maticBridge,
     provider.getSigner()
   )
   const { hash } = await contract.depositERC20ForUser(token, sender, amount, {
