@@ -72,7 +72,7 @@ class Example extends Component {
 | Matic            | ✅     | ✅                       |
 | Arbitrum testnet | ✅     | ✅                       |
 | Optimism testnet | ✅     | ✅                       |
-| Optimism         | ✅     | -                        |
+| Optimism         | ✅     | ✅                       |
 
 ### Supported Wallet
 

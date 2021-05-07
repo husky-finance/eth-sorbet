@@ -1,0 +1,49 @@
+version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
+  node: circleci/node@1.1.6
+
+workflows:
+  build-test:
+    jobs:
+      - checkout_and_install
+      - build_package:
+          requires:
+            - checkout_and_install
+
+jobs:
+  checkout_and_install:
+    working_directory: ~/eth-sorbet
+    docker:
+      - image: circleci/node:10.18.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install packages
+          command: yarn
+      - save_cache: 
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - save_cache:
+          key: sorbet-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/eth-sorbet
+
+  build_package:
+    working_directory: ~/eth-sorbet
+    docker:
+      - image: circleci/node:10.18.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: sorbet-{{ .Environment.CIRCLE_SHA1 }}
+      - run: 
+          name: Build
+          command: yarn build
+      - save_cache:
+          key: eth-sorbet-build-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/eth-sorbet
