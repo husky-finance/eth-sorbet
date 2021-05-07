@@ -152,7 +152,7 @@ export const OptimismTestnet: Network = {
   img: 'https://i.imgur.com/qHBFlSq.png',
 
   l1chainId: 42,
-  depositETH: depositUtil.depositOptimismTestnet
+  depositETH: depositUtil.depositETHOptimismTestnet
 }
 
 export const OptimismMainnet: Network = {
@@ -160,5 +160,8 @@ export const OptimismMainnet: Network = {
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,
-  img: 'https://i.imgur.com/qHBFlSq.png'
+  img: 'https://i.imgur.com/qHBFlSq.png',
+
+  l1chainId: 1,
+  depositETH: depositUtil.depositETHOptimism
 }
