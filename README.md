@@ -1,5 +1,6 @@
 # eth-sorbet
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c1284f47efa14c5a947628bcc1c17c17)](https://app.codacy.com/gh/husky-finance/eth-sorbet?utm_source=github.com&utm_medium=referral&utm_content=husky-finance/eth-sorbet&utm_campaign=Badge_Grade_Settings)
 [![NPM](https://img.shields.io/npm/v/@huskyfinance/eth-sorbet.svg)](https://www.npmjs.com/package/@huskyfinance/eth-sorbet)
 
 <p align="center">
