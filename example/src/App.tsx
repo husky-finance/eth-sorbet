@@ -6,7 +6,6 @@ import {
   OptimismMainnet,
   xDai,
   Avalanche,
-  SKALE,
   MaticTestnet,
   Matic,
   Config
@@ -21,13 +20,12 @@ const networks = [
   OptimismMainnet,
   xDai,
   Avalanche,
-  SKALE,
   MaticTestnet,
   Matic
 ]
 // const ran = parseInt((Math.random() * networks.length).toFixed(0))
 // const idx = ran === 0 ? ran : ran - 1
-const idx = 7
+const idx = 6
 
 const App = () => {
   const [open, setOpen] = useState(true)
