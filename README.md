@@ -68,7 +68,6 @@ class Example extends Component {
 | BSC              | ✅     | -                        |
 | Avalanche        | ✅     | -                        |
 | Sokol            | ✅     | -                        |
-| SKALE            | ✅     | -                        |
 | Matic            | ✅     | ✅                       |
 | Arbitrum testnet | ✅     | ✅                       |
 | Optimism testnet | ✅     | ✅                       |
