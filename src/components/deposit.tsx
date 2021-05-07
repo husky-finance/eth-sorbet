@@ -58,8 +58,6 @@ export default function DepositToken({
     return config.targetNetwork.l1Token?.address !== undefined
   }, [config])
 
-  console.log(`isTokenDeposit`, isTokenDeposit)
-
   const updateAllowance = useCallback(() => {
     if (
       !isTokenDeposit ||
@@ -79,7 +77,6 @@ export default function DepositToken({
     // if no spender specified, assume no approval is requried.
     if (token.spender === undefined) {
       setAllowance(BigNumber.from(MAX_UINT))
-      console.log(`no spender`)
       return
     }
 
