@@ -1,6 +1,6 @@
 {
   "name": "@huskyfinance/eth-sorbet",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "React comment to help transition between L1 and L2s",
   "keywords": [
     "Ethereum",
