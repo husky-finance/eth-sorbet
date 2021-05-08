@@ -142,3 +142,35 @@ export async function depositTokenMaticTestnet(
 
   if (typeof callback === 'function') provider.once(hash, () => callback())
 }
+
+/**
+ * deposit Dai to xDai
+ * @param externalProvider
+ * @param token
+ * @param amount
+ * @param sender
+ * @param callback
+ */
+export async function depositDai(
+  externalProvider: ethers.providers.ExternalProvider,
+  token: string,
+  amount: string,
+  sender: string,
+  callback?: Function
+) {
+  // todo: add other token deposit
+  if (token !== addresses.dai) throw new Error('Can only deposit Dai')
+  const provider = new ethers.providers.Web3Provider(externalProvider)
+  const contract = new ethers.Contract(token, abis.erc20, provider.getSigner())
+
+  // deposit by trasnfering dai to foreignBridge
+  const { hash } = await contract.transfer(
+    addresses.xdaiForeignBridge,
+    amount,
+    {
+      from: sender
+    }
+  )
+
+  if (typeof callback === 'function') provider.once(hash, () => callback())
+}

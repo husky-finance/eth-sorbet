@@ -50,12 +50,13 @@ export const xDai: Network = {
   l1Token: {
     address: '0x6b175474e89094c44da98b954eedeac495271d0f',
     symbol: 'DAI',
-    decimals: 18,
-    // todo: add spender address
-    spender: ''
+    decimals: 18
+    // don't need a spender
   },
   img: 'https://i.imgur.com/qDNpwXw.png',
-  bridgeUrl: 'https://bridge.xdaichain.com/'
+  bridgeUrl: 'https://bridge.xdaichain.com/',
+
+  depositToken: depositUtil.depositDai
 }
 
 export const Sokol: Network = {

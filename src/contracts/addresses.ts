@@ -9,3 +9,7 @@ export const optimismETHGatewayMainnet =
 export const maticDepositProxy = '0x401f6c983ea34274ec46f84d70b31c151321188b'
 export const maticDepositProxyGoerli =
   '0x7850ec290A2e2F40B82Ed962eaf30591bb5f5C96'
+
+// xdai bridge
+export const dai = '0x6b175474e89094c44da98b954eedeac495271d0f'
+export const xdaiForeignBridge = '0x4aa42145Aa6Ebf72e164C9bBC74fbD3788045016'

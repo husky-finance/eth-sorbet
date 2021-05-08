@@ -153,7 +153,8 @@ export default function DepositContent({
         </div>
         <br />
         {/* only shows deposit input if the funciton is provided */}
-        {config.targetNetwork.depositETH && (
+        {(config.targetNetwork.depositETH ||
+          config.targetNetwork.depositToken) && (
           <div>
             <Deposit
               config={config}
