@@ -12,11 +12,15 @@
 
 [**Live Demo**](https://eth-sorbet-demo.netlify.app/)
 
-Sorbet saves you from managing user onboarding!
-![](https://i.imgur.com/qeq0yHy.png)
+eth-sorbet is a react component that improves DApp users' onboarding experience to L2 networks or sidechains.
 
-We handle wallet RPC calls to add network for users, instead of asking your users to do that manually.
-![](https://i.imgur.com/kZ3wM1t.png)
+When a user lands on the DApp, it will bring up a series of screens that guides the users to switch to the L2 network that the developer selected. Users will no longer need to manually enter the L2 network configs in their wallets and can make deposits and interact with the L2 networks right away.
+
+![Alt Welcome screen in eth-sorbet](https://i.imgur.com/qeq0yHy.png)
+_eth-sorbet saves you from managing user onboarding!_
+
+![Alt Switching networks in eth-sorbet](https://i.imgur.com/kZ3wM1t.png)
+_We handle wallet RPC calls to add network for users, instead of asking your users to do that manually._
 
 ## Install
 
