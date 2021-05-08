@@ -10,13 +10,13 @@
 
 <br>
 
+[**Live Demo**](https://eth-sorbet-demo.netlify.app/)
+
 Sorbet saves you from managing user onboarding!
 ![](https://i.imgur.com/qeq0yHy.png)
 
 We handle wallet RPC calls to add network for users, instead of asking your users to do that manually.
 ![](https://i.imgur.com/kZ3wM1t.png)
-
-[**Live Demo**](https://eth-sorbet-demo.netlify.app/)
 
 ## Install
 
@@ -76,7 +76,7 @@ class Example extends Component {
 | Optimism testnet | ✅     | ✅                       |
 | Optimism         | ✅     | ✅                       |
 
-### Supported Wallet
+## Supported Wallet
 
 | Network  | Add Network | Switch Network |
 | -------- | ----------- | -------------- |
@@ -96,12 +96,6 @@ In another terminal, run the example App which will refresh if the library chang
 ```shell
 cd \eth-sorbet\example
 yarn start
-```
-
-## Publish
-
-```shell
-npm publish --access public
 ```
 
 ---
