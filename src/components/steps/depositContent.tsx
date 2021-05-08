@@ -28,7 +28,7 @@ export default function DepositContent({
     const rpcProvider = new providers.JsonRpcProvider(
       config.targetNetwork.rpcUrls[0]
     )
-    if (!config.checkBalance || !config.address || !rpcProvider) return
+    if (!config.address || !rpcProvider) return
 
     rpcProvider
       .getBalance(config.address)

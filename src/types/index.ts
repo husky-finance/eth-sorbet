@@ -1,18 +1,20 @@
 import { ethers } from 'ethers'
 
 export type Config = {
+  dappName: string
+
   targetNetwork: Network
   open: boolean
   handleClose: Function
 
   // [Optional]
-  // wheather to check user's balance on the target network
-  checkBalance?: boolean
-  // user's address to check
+  // user's address to check L2 balance
   address?: string
 
+  // theme color
+  color?: string
+
   // Dapp name
-  dappName: string
   dappLogo?: string
 
   darkMode?: boolean

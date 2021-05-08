@@ -66,11 +66,12 @@ const App = () => {
     handleClose: handleClose,
 
     // optional
-    checkBalance: true,
     address: userAddress,
 
     // dapp
     dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
+    // theme color
+    // color: '#26EFE6',
 
     // darkmode
     darkMode: Math.random() > 0.5
