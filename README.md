@@ -45,9 +45,11 @@ const config = {
 
   open: isOpen,
   handleClose: handleClose,
+  
   // optional
+
+  // the user address to check their balance.
   address: userAddress,
-  checkBalance: true,
 
   // logo of your app
   dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',

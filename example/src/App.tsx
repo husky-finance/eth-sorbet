@@ -66,7 +66,6 @@ const App = () => {
     handleClose: handleClose,
 
     // optional
-    checkBalance: true,
     address: userAddress,
 
     // dapp

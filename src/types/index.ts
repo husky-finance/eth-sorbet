@@ -6,9 +6,7 @@ export type Config = {
   handleClose: Function
 
   // [Optional]
-  // wheather to check user's balance on the target network
-  checkBalance?: boolean
-  // user's address to check
+  // user's address to check L2 balance
   address?: string
 
   // Dapp name
