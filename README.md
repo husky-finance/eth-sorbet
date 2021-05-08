@@ -65,7 +65,7 @@ class Example extends Component {
 
 | Network          | Config | Native Deposit Supported |
 | ---------------- | ------ | ------------------------ |
-| xDai             | ✅     | ✅                        |
+| xDai             | ✅     | ✅                       |
 | BSC              | ✅     | -                        |
 | Avalanche        | ✅     | -                        |
 | Sokol            | ✅     | -                        |
@@ -106,4 +106,4 @@ npm publish --access public
 
 ## License
 
-MIT © [husky-finance](https://github.com/husky-finance)
+MIT © 2021 [husky-finance](https://github.com/husky-finance)
