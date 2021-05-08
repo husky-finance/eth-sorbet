@@ -14,7 +14,12 @@ import Welcome from './components/steps/welcomeContent'
 import SwitchNetwork from './components/steps/switchNetwork'
 import Finished from './components/steps/finished'
 
-import { light, dark } from './style/defaultTheme'
+import {
+  light,
+  dark,
+  darkWithCustomPrimary,
+  lightWithCustomPrimary
+} from './style/defaultTheme'
 
 enum Steps {
   Welcome,
@@ -59,8 +64,18 @@ export const Sorbet = React.memo(
       }
     }, [step, config])
 
+    const theme = useMemo(() => {
+      if (!config.color) {
+        return config.darkMode ? dark : light
+      } else {
+        return config.darkMode
+          ? darkWithCustomPrimary(config.color)
+          : lightWithCustomPrimary(config.color)
+      }
+    }, [config])
+
     return (
-      <ThemeProvider theme={config.darkMode ? dark : light}>
+      <ThemeProvider theme={theme}>
         <BaseModal
           content={
             <div>

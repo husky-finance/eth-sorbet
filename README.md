@@ -54,6 +54,9 @@ const config = {
   // logo of your app
   dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
 
+  // theme color
+  color: '#26EFE6'
+
   // darkmode
   darkMode: true
 }

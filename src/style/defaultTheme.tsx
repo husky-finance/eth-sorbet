@@ -42,3 +42,26 @@ export const dark = createMuiTheme({
     }
   }
 })
+
+export const darkWithCustomPrimary = (color: string) => {
+  return createMuiTheme({
+    ...dark,
+    palette: {
+      type: 'dark',
+      primary: {
+        main: color
+      }
+    }
+  })
+}
+
+export const lightWithCustomPrimary = (color: string) => {
+  return createMuiTheme({
+    ...light,
+    palette: {
+      primary: {
+        main: color
+      }
+    }
+  })
+}

@@ -5,28 +5,30 @@ import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
 import StepConnector from '@material-ui/core/StepConnector'
 import StepIcon from '@material-ui/core/StepIcon'
-import purple from '@material-ui/core/colors/purple'
 import { withStyles } from '@material-ui/core/styles'
 
 const steps = ['Welcome', 'Deposit', 'Switch Network', 'Done']
 
-const ColorlibConnector = withStyles({
-  active: {
-    '& $line': {
-      backgroundColor: purple[200]
+const ColorlibConnector = withStyles(
+  (theme) => ({
+    active: {
+      '& $line': {
+        backgroundColor: theme.palette.primary.main
+      }
+    },
+    completed: {
+      '& $line': {
+        backgroundColor: theme.palette.primary.main
+      }
+    },
+    line: {
+      height: 3,
+      border: 0,
+      backgroundColor: '#eaeaf0' // un-finished
     }
-  },
-  completed: {
-    '& $line': {
-      backgroundColor: purple[200]
-    }
-  },
-  line: {
-    height: 3,
-    border: 0,
-    backgroundColor: '#eaeaf0' // un-finished
-  }
-})(StepConnector)
+  }),
+  { withTheme: true }
+)(StepConnector)
 
 const CustomStepIcon = withStyles({
   root: {
