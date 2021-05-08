@@ -16,6 +16,8 @@ Sorbet saves you from managing user onboarding!
 We handle wallet RPC calls to add network for users, instead of asking your users to do that manually.
 ![](https://i.imgur.com/kZ3wM1t.png)
 
+[**Live Demo**](https://eth-sorbet-demo.netlify.app/)
+
 ## Install
 
 ```bash
