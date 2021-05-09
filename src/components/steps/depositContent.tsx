@@ -168,7 +168,7 @@ export default function DepositContent({
         )}
       </div>
     )
-  }, [config, l2Balance, bridgeLink, network, onCorrectL1])
+  }, [config, l2Balance, l1Balance, bridgeLink, network, onCorrectL1])
 
   return <Base title='Deposit' content={content} />
 }
