@@ -96,7 +96,7 @@ export const MaticTestnet: Network = {
 }
 
 export const Matic: Network = {
-  name: 'Matic',
+  name: 'Matic (Mainnet)',
   rpcUrls: ['https://rpc-mainnet.maticvigil.com/'],
   blockExplorerUrl: 'https://explorer.matic.network/',
   nativeCurrency: {
@@ -157,7 +157,7 @@ export const OptimismTestnet: Network = {
 }
 
 export const OptimismMainnet: Network = {
-  name: 'Optimism - Mainnet',
+  name: 'Optimism (Mainnet)',
   rpcUrls: ['https://mainnet.optimism.io'],
   blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
   chainId: 10,
