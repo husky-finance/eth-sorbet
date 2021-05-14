@@ -74,17 +74,17 @@ class Example extends Component {
 
 ## Supported Networks
 
-| Network             | Config | Native Deposit Supported |
-| ------------------- | ------ | ------------------------ |
-| Arbitrum (Kovan)    | ✅     | ✅                       |
-| Avalanche           | ✅     | -                        |
-| Binance Smart Chain | ✅     | -                        |
-| Matic (Mainnet)     | ✅     | ✅                       |
-| Matic (Mumbai)      | ✅     | ✅                       |
-| Optimism (Kovan)    | ✅     | ✅                       |
-| Optimism (Mainnet)  | ✅     | ✅                       |
-| POA (Sokol)         | ✅     | -                        |
-| xDai                | ✅     | ✅                       |
+| Network                   | Config | Native Deposit Supported |
+| ------------------------- | ------ | ------------------------ |
+| Arbitrum (Kovan)          | ✅     | ✅                       |
+| Avalanche                 | ✅     | -                        |
+| Binance Smart Chain       | ✅     | -                        |
+| Polygon / Matic (Mainnet) | ✅     | ✅                       |
+| Polygon / Matic (Mumbai)  | ✅     | ✅                       |
+| Optimism (Kovan)          | ✅     | ✅                       |
+| Optimism (Mainnet)        | ✅     | ✅                       |
+| POA (Sokol)               | ✅     | -                        |
+| xDai                      | ✅     | ✅                       |
 
 ## Supported Wallets
 
