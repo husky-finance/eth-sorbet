@@ -11,7 +11,34 @@ export const ethChains = {
   42: 'Kovan'
 }
 
-// sorted by chainId
+// sorted in alphabetical order
+
+export const ArbitrumTestnet: Network = {
+  name: 'Arbitrum (Kovan)',
+  rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
+  blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
+  chainId: 212984383488152,
+  img: 'https://i.imgur.com/QJOromM.png',
+  bridgeUrl: 'https://bridge.arbitrum.io/',
+
+  l1chainId: 42,
+  depositETH: depositUtil.depositArbitrumTestnet
+}
+
+export const Avalanche: Network = {
+  name: 'Avalanche (Mainnet C-Chain)',
+  chainId: 43114,
+  nativeCurrency: {
+    name: 'Avalanche',
+    symbol: 'AVAX',
+    decimals: 18
+  },
+  rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
+  blockExplorerUrl: 'https://cchain.explorer.avax.network/',
+  img: 'https://i.imgur.com/5mLLDbu.png',
+  bridgeUrl: 'https://aeb.xyz/#/transfer'
+}
+
 export const Binance: Network = {
   name: 'Binance Smart Chain',
   rpcUrls: ['https://bsc-dataseed.binance.org/'],
@@ -33,66 +60,6 @@ export const Binance: Network = {
     // todo: add spender address
     spender: ''
   }
-}
-
-export const xDai: Network = {
-  name: 'xDai',
-  rpcUrls: ['https://rpc.xdaichain.com/'],
-  blockExplorerUrl: 'https://blockscout.com/xdai/mainnet',
-  nativeCurrency: {
-    name: 'xDai',
-    symbol: 'xDai',
-    decimals: 18
-  },
-  chainId: 100,
-
-  l1chainId: 1,
-  l1Token: {
-    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
-    symbol: 'DAI',
-    decimals: 18
-    // don't need a spender
-  },
-  img: 'https://i.imgur.com/qDNpwXw.png',
-  bridgeUrl: 'https://bridge.xdaichain.com/',
-
-  depositToken: depositUtil.depositDai
-}
-
-export const Sokol: Network = {
-  name: 'Sokol',
-  rpcUrls: ['https://sokol.poa.network/'],
-  blockExplorerUrl: 'https://blockscout.com/poa/sokol',
-  nativeCurrency: {
-    name: 'SPOA',
-    symbol: 'SPOA',
-    decimals: 18
-  },
-  chainId: 77
-}
-
-export const MaticTestnet: Network = {
-  name: 'Matic (Mumbai)',
-  rpcUrls: ['https://rpc-mumbai.matic.today'],
-  blockExplorerUrl: 'https://mumbai-explorer.matic.today',
-  nativeCurrency: {
-    name: 'Matic',
-    symbol: 'MATIC',
-    decimals: 18
-  },
-  chainId: 80001,
-  img: 'https://i.imgur.com/RNmUy9P.png',
-  bridgeUrl: 'https://wallet.matic.network/bridge/',
-
-  l1chainId: 5, // Goerli
-  l1Token: {
-    symbol: 'MATIC',
-    decimals: 18,
-    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae',
-    spender: addresses.maticDepositProxyGoerli
-  },
-  depositETH: depositUtil.depositETHMaticTestnet,
-  depositToken: depositUtil.depositTokenMaticTestnet
 }
 
 export const Matic: Network = {
@@ -119,30 +86,39 @@ export const Matic: Network = {
   depositToken: depositUtil.depositTokenMatic
 }
 
-export const Avalanche: Network = {
-  name: 'Avalanche (Mainnet C-Chain)',
-  chainId: 43114,
+export const MaticTestnet: Network = {
+  name: 'Matic (Mumbai)',
+  rpcUrls: ['https://rpc-mumbai.matic.today'],
+  blockExplorerUrl: 'https://mumbai-explorer.matic.today',
   nativeCurrency: {
-    name: 'Avalanche',
-    symbol: 'AVAX',
+    name: 'Matic',
+    symbol: 'MATIC',
     decimals: 18
   },
-  rpcUrls: ['https://api.avax.network/ext/bc/C/rpc'],
-  blockExplorerUrl: 'https://cchain.explorer.avax.network/',
-  img: 'https://i.imgur.com/5mLLDbu.png',
-  bridgeUrl: 'https://aeb.xyz/#/transfer'
+  chainId: 80001,
+  img: 'https://i.imgur.com/RNmUy9P.png',
+  bridgeUrl: 'https://wallet.matic.network/bridge/',
+
+  l1chainId: 5, // Goerli
+  l1Token: {
+    symbol: 'MATIC',
+    decimals: 18,
+    address: '0x499d11E0b6eAC7c0593d8Fb292DCBbF815Fb29Ae',
+    spender: addresses.maticDepositProxyGoerli
+  },
+  depositETH: depositUtil.depositETHMaticTestnet,
+  depositToken: depositUtil.depositTokenMaticTestnet
 }
 
-export const ArbitrumTestnet: Network = {
-  name: 'Arbitrum (Kovan)',
-  rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
-  blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
-  chainId: 212984383488152,
-  img: 'https://i.imgur.com/QJOromM.png',
-  bridgeUrl: 'https://bridge.arbitrum.io/',
+export const OptimismMainnet: Network = {
+  name: 'Optimism (Mainnet)',
+  rpcUrls: ['https://mainnet.optimism.io'],
+  blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
+  chainId: 10,
+  img: 'https://i.imgur.com/qHBFlSq.png',
 
-  l1chainId: 42,
-  depositETH: depositUtil.depositArbitrumTestnet
+  l1chainId: 1,
+  depositETH: depositUtil.depositETHOptimism
 }
 
 export const OptimismTestnet: Network = {
@@ -156,13 +132,38 @@ export const OptimismTestnet: Network = {
   depositETH: depositUtil.depositETHOptimismTestnet
 }
 
-export const OptimismMainnet: Network = {
-  name: 'Optimism (Mainnet)',
-  rpcUrls: ['https://mainnet.optimism.io'],
-  blockExplorerUrl: 'https://mainnet-l2-explorer.surge.sh',
-  chainId: 10,
-  img: 'https://i.imgur.com/qHBFlSq.png',
+export const Sokol: Network = {
+  name: 'Sokol',
+  rpcUrls: ['https://sokol.poa.network/'],
+  blockExplorerUrl: 'https://blockscout.com/poa/sokol',
+  nativeCurrency: {
+    name: 'SPOA',
+    symbol: 'SPOA',
+    decimals: 18
+  },
+  chainId: 77
+}
+
+export const xDai: Network = {
+  name: 'xDai',
+  rpcUrls: ['https://rpc.xdaichain.com/'],
+  blockExplorerUrl: 'https://blockscout.com/xdai/mainnet',
+  nativeCurrency: {
+    name: 'xDai',
+    symbol: 'xDai',
+    decimals: 18
+  },
+  chainId: 100,
 
   l1chainId: 1,
-  depositETH: depositUtil.depositETHOptimism
+  l1Token: {
+    address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+    symbol: 'DAI',
+    decimals: 18
+    // don't need a spender
+  },
+  img: 'https://i.imgur.com/qDNpwXw.png',
+  bridgeUrl: 'https://bridge.xdaichain.com/',
+
+  depositToken: depositUtil.depositDai
 }

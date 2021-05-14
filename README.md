@@ -49,7 +49,7 @@ const config = {
 
   open: isOpen,
   handleClose: handleClose,
-  
+
   // optional
 
   // the user address to check their balance.
@@ -72,20 +72,21 @@ class Example extends Component {
 }
 ```
 
-## Supported Network
+## Supported Networks
 
-| Network          | Config | Native Deposit Supported |
-| ---------------- | ------ | ------------------------ |
-| xDai             | ✅     | ✅                       |
-| BSC              | ✅     | -                        |
-| Avalanche        | ✅     | -                        |
-| Sokol            | ✅     | -                        |
-| Matic            | ✅     | ✅                       |
-| Arbitrum testnet | ✅     | ✅                       |
-| Optimism testnet | ✅     | ✅                       |
-| Optimism         | ✅     | ✅                       |
+| Network             | Config | Native Deposit Supported |
+| ------------------- | ------ | ------------------------ |
+| Arbitrum (Kovan)    | ✅     | ✅                       |
+| Avalanche           | ✅     | -                        |
+| Binance Smart Chain | ✅     | -                        |
+| Matic (Mainnet)     | ✅     | ✅                       |
+| Matic (Mumbai)      | ✅     | ✅                       |
+| Optimism (Kovan)    | ✅     | ✅                       |
+| Optimism (Mainnet)  | ✅     | ✅                       |
+| POA (Sokol)         | ✅     | -                        |
+| xDai                | ✅     | ✅                       |
 
-## Supported Wallet
+## Supported Wallets
 
 | Network  | Add Network | Switch Network |
 | -------- | ----------- | -------------- |
