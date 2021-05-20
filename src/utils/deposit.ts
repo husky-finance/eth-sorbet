@@ -10,7 +10,7 @@ export async function depositArbitrumTestnet(
 ) {
   const provider = new ethers.providers.Web3Provider(externalProvider)
   const contract = new ethers.Contract(
-    addresses.arbitrumBridgeKovan4,
+    addresses.arbitrumKovan5Inbox,
     abis.arbitrumInbox,
     provider.getSigner()
   )

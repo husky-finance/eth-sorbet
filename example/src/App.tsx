@@ -25,7 +25,7 @@ const networks = [
 ]
 // const ran = parseInt((Math.random() * networks.length).toFixed(0))
 // const idx = ran === 0 ? ran : ran - 1
-const idx = 4
+const idx = 1
 
 const App = () => {
   const [open, setOpen] = useState(true)

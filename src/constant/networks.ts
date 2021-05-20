@@ -15,11 +15,11 @@ export const ethChains = {
 
 export const ArbitrumTestnet: Network = {
   name: 'Arbitrum (Kovan)',
-  rpcUrls: ['https://kovan4.arbitrum.io/rpc'],
-  blockExplorerUrl: 'https://explorer.arbitrum.io/#/',
-  chainId: 212984383488152,
+  rpcUrls: ['https://kovan5.arbitrum.io/rpc'],
+  blockExplorerUrl: 'https://explorer5.arbitrum.io/#/',
+  chainId: 144545313136048,
   img: 'https://i.imgur.com/QJOromM.png',
-  bridgeUrl: 'https://bridge.arbitrum.io/',
+  bridgeUrl: 'https://bridge5.arbitrum.io.',
 
   l1chainId: 42,
   depositETH: depositUtil.depositArbitrumTestnet
