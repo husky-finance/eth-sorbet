@@ -10,6 +10,9 @@
 
 <br>
 
+**Winners of Arbitrum 🏆 and Optimism 🏆 for ETHGlobal Scaling Ethereum 2021 Hackathon**
+
+
 [**Live Demo**](https://eth-sorbet-demo.netlify.app/)
 
 eth-sorbet is a react component that improves DApp users' onboarding experience to L2 networks or sidechains.
