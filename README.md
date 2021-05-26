@@ -12,7 +12,6 @@
 
 **Winners of Arbitrum 🏆 and Optimism 🏆 for ETHGlobal Scaling Ethereum 2021 Hackathon**
 
-
 [**Live Demo**](https://eth-sorbet-demo.netlify.app/)
 
 eth-sorbet is a react component that improves DApp users' onboarding experience to L2 networks or sidechains.
@@ -77,19 +76,43 @@ class Example extends Component {
 
 ## Supported Networks
 
+<!-- Arbitrum -->
+<img src="https://i.imgur.com/Xo8nfAx.png" height=100>
+
+<!-- Avalanche -->
+<img src="https://i.imgur.com/g148n1Y.png" height=100>
+
+<!-- Binance Smart Chain -->
+<img src="https://i.imgur.com/Cp06TKR.png" height=100>
+
+<!-- Optimism -->
+<img src="https://i.imgur.com/ZXvd5N0.png" height=100>
+
+<!-- Polygon / Matic -->
+<img src="https://i.imgur.com/pWenOF0.png" height=100>
+
+<!-- POA (Sokol) -->
+<img src="https://i.imgur.com/bjTlv4Q.png" height=100>
+
+<!-- xDai -->
+<img src="https://i.imgur.com/NgKW5Il.png" height=100>
+
 | Network                   | Config | Native Deposit Supported |
 | ------------------------- | ------ | ------------------------ |
 | Arbitrum (Kovan)          | ✅     | ✅                       |
 | Avalanche                 | ✅     | -                        |
 | Binance Smart Chain       | ✅     | -                        |
-| Polygon / Matic (Mainnet) | ✅     | ✅                       |
-| Polygon / Matic (Mumbai)  | ✅     | ✅                       |
 | Optimism (Kovan)          | ✅     | ✅                       |
 | Optimism (Mainnet)        | ✅     | ✅                       |
+| Polygon / Matic (Mainnet) | ✅     | ✅                       |
+| Polygon / Matic (Mumbai)  | ✅     | ✅                       |
 | POA (Sokol)               | ✅     | -                        |
 | xDai                      | ✅     | ✅                       |
 
 ## Supported Wallets
+
+<!-- Metamask -->
+<img src="https://i.imgur.com/DH2m2KD.png" height=100>
 
 | Network  | Add Network | Switch Network |
 | -------- | ----------- | -------------- |
