@@ -78,26 +78,26 @@ class Example extends Component {
 
 <p float="left">
 
-<!-- Arbitrum -->
-<img src="https://i.imgur.com/Xo8nfAx.png" alt="Arbitrum logo" height=100 width=100>
+  <!-- Arbitrum -->
+  <img src="https://i.imgur.com/Xo8nfAx.png" alt="Arbitrum logo" height=100 width=100>
 
-<!-- Avalanche -->
-<img src="https://i.imgur.com/g148n1Y.png" alt="Avalanche logo" height=100 width=100>
+  <!-- Avalanche -->
+  <img src="https://i.imgur.com/g148n1Y.png" alt="Avalanche logo" height=100 width=100>
 
-<!-- Binance Smart Chain -->
-<img src="https://i.imgur.com/Cp06TKR.png" height=100>
+  <!-- Binance Smart Chain -->
+  <img src="https://i.imgur.com/Cp06TKR.png" alt="Binance Smart Chain logo" height=100 width=100>
 
-<!-- Optimism -->
-<img src="https://i.imgur.com/ZXvd5N0.png" height=100>
+  <!-- Optimism -->
+  <img src="https://i.imgur.com/ZXvd5N0.png" alt="Optimism logo" height=100 width=100>
 
-<!-- Polygon / Matic -->
-<img src="https://i.imgur.com/pWenOF0.png" height=100>
+  <!-- Polygon / Matic -->
+  <img src="https://i.imgur.com/pWenOF0.png" alt="Polygon / Matic logo" height=100 width=100>
 
-<!-- POA (Sokol) -->
-<img src="https://i.imgur.com/bjTlv4Q.png" height=100>
+  <!-- POA (Sokol) -->
+  <img src="https://i.imgur.com/bjTlv4Q.png" alt="POA (Sokol) logo" height=100 width=100>
 
-<!-- xDai -->
-<img src="https://i.imgur.com/NgKW5Il.png" height=100>
+  <!-- xDai -->
+  <img src="https://i.imgur.com/NgKW5Il.png" alt="xDai logo" height=100 width=100>
 
 </p>
 
@@ -116,7 +116,7 @@ class Example extends Component {
 ## Supported Wallets
 
 <!-- Metamask -->
-<img src="https://i.imgur.com/DH2m2KD.png" height=100>
+<img src="https://i.imgur.com/DH2m2KD.png" alt="Metamask logo" width=200>
 
 | Network  | Add Network | Switch Network |
 | -------- | ----------- | -------------- |
