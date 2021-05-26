@@ -77,10 +77,10 @@ class Example extends Component {
 ## Supported Networks
 
 <!-- Arbitrum -->
-<img src="https://i.imgur.com/Xo8nfAx.png" height=100>
+<img src="https://i.imgur.com/Xo8nfAx.png" alt="Arbitrum logo" height=100 width=100>
 
 <!-- Avalanche -->
-<img src="https://i.imgur.com/g148n1Y.png" height=100>
+<img src="https://i.imgur.com/g148n1Y.png" alt="Avalanche logo" height=100 width=100>
 
 <!-- Binance Smart Chain -->
 <img src="https://i.imgur.com/Cp06TKR.png" height=100>
