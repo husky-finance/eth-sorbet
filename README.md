@@ -76,6 +76,8 @@ class Example extends Component {
 
 ## Supported Networks
 
+<p float="left">
+
 <!-- Arbitrum -->
 <img src="https://i.imgur.com/Xo8nfAx.png" alt="Arbitrum logo" height=100 width=100>
 
@@ -96,6 +98,8 @@ class Example extends Component {
 
 <!-- xDai -->
 <img src="https://i.imgur.com/NgKW5Il.png" height=100>
+
+</p>
 
 | Network                   | Config | Native Deposit Supported |
 | ------------------------- | ------ | ------------------------ |
