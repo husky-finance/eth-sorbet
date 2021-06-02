@@ -1,25 +1,20 @@
-import React, { useCallback, useEffect, useState, useMemo } from 'react'
-
-import { Config } from './types'
-import { verifyConfig } from './utils/verify'
-import { ThemeProvider } from '@material-ui/core/styles'
-
 import Button from '@material-ui/core/Button'
-
-import Progress from './components/progressbar'
+import { ThemeProvider } from '@material-ui/core/styles'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import BaseModal from './components/baseModal'
-
+import Progress from './components/progressbar'
 import Deposit from './components/steps/depositContent'
-import Welcome from './components/steps/welcomeContent'
-import SwitchNetwork from './components/steps/switchNetwork'
 import Finished from './components/steps/finished'
-
+import SwitchNetwork from './components/steps/switchNetwork'
+import Welcome from './components/steps/welcomeContent'
 import {
-  light,
   dark,
   darkWithCustomPrimary,
+  light,
   lightWithCustomPrimary
 } from './style/defaultTheme'
+import { Config } from './types'
+import { verifyConfig } from './utils/verify'
 
 enum Steps {
   Welcome,
