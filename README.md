@@ -43,7 +43,15 @@ import { Sorbet, xDai } from '@huskyfinance/eth-sorbet'
 // load css
 import '@huskyfinance/eth-sorbet/dist/index.css'
 
+// using web3
+// const provider = web3.currentProvider
+
+// using ethers
+// provider should be type of ethers.ExternalProvider . 
+
+// using metamask directly
 const provider = window.ethereum
+
 
 const config = {
   targetNetwork: xDai,
@@ -61,7 +69,7 @@ const config = {
   dappLogo: 'https://www.kkbox.com/about/img/app_icons/kkbox_app_icon.png',
 
   // theme color
-  color: '#26EFE6'
+  color: '#26EFE6',
 
   // darkmode
   darkMode: true

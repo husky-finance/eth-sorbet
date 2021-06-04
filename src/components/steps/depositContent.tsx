@@ -15,7 +15,7 @@ export default function DepositContent({
 }: {
   // l2Balance: BigNumber
   config: Config
-  provider: any
+  provider: ethers.providers.ExternalProvider
 }) {
   const [network, setNetwork] = useState<string>()
   const [chainId, setChainId] = useState<number>(0)
@@ -91,7 +91,7 @@ export default function DepositContent({
 
   // reload if Chain changed
   useEffect(() => {
-    provider.on('chainChanged', (chainIdHex: string) => {
+    ;(provider as any).on('chainChanged', (chainIdHex: string) => {
       const chainIdDec = parseInt(chainIdHex, 16)
       setChainId(chainIdDec)
       if (chainIdDec in ethChains) {
@@ -104,7 +104,7 @@ export default function DepositContent({
 
   useEffect(() => {
     const getChainId = async () => {
-      if (!provider) return
+      if (!provider || !provider.request) return
 
       const chainIdHex = await provider.request({ method: 'eth_chainId' })
       const chainIdDec = parseInt(chainIdHex, 16)
