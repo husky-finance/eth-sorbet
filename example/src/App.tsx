@@ -51,7 +51,7 @@ const App = () => {
     }
   }, [provider])
 
-  const useMetamask = useCallback(() => {
+  const connectMetamask = useCallback(() => {
     setProvider((window as WindowChain).ethereum)
   }, [])
 
@@ -66,7 +66,7 @@ const App = () => {
   const config: Config = {
     targetNetwork: networks[idx],
     dappName: 'KKBox',
-    open: open && provider,
+    open: open && provider !== null,
     handleClose: handleClose,
 
     // optional
@@ -84,7 +84,7 @@ const App = () => {
   return (
     <div>
       <h1>Test Site Title</h1>
-      <button type='button' onClick={useMetamask}>
+      <button type='button' onClick={connectMetamask}>
         Connect metamask
       </button>
       <br />
