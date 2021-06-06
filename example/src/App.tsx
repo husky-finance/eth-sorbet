@@ -1,3 +1,4 @@
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   Sorbet,
   Binance,
@@ -8,9 +9,8 @@ import {
   Avalanche,
   MaticTestnet,
   Matic,
-  Config
+  Config,
 } from '@huskyfinance/eth-sorbet'
-import React, { useEffect, useState } from 'react'
 import { WindowChain } from '../../src/types'
 
 const networks = [
@@ -28,10 +28,10 @@ const networks = [
 const idx = 1
 
 const App = () => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const [userAddress, setUserAddress] = useState('')
 
-  const provider = (window as WindowChain).ethereum
+  const [provider, setProvider] = useState<any>(null)
 
   useEffect(() => {
     const fetchData = async (provider: any) => {
@@ -44,12 +44,16 @@ const App = () => {
 
     if (!provider || !provider.request) {
       const errorMessage =
-        "Can't setup get Provider. window.ethereum is undefined"
+        "Please connect wallet first"
       setUserAddress(errorMessage)
     } else {
       fetchData(provider)
     }
   }, [provider])
+
+  const connectMetamask = useCallback(() => {
+    setProvider((window as WindowChain).ethereum)
+  }, [])
 
   const handleOpen = () => {
     setOpen(true)
@@ -62,7 +66,7 @@ const App = () => {
   const config: Config = {
     targetNetwork: networks[idx],
     dappName: 'KKBox',
-    open: open,
+    open: open && provider !== null,
     handleClose: handleClose,
 
     // optional
@@ -80,9 +84,14 @@ const App = () => {
   return (
     <div>
       <h1>Test Site Title</h1>
+      <button type='button' onClick={connectMetamask}>
+        Connect metamask
+      </button>
+      <br />
       <button type='button' onClick={handleOpen}>
         Open Modal
       </button>
+
       <Sorbet config={config} walletProvider={provider} />
       <h5>Address: {userAddress} </h5>
       <h6>Test Site Footer</h6>
