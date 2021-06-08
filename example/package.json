@@ -19,11 +19,15 @@
     "@types/node": "link:../node_modules/@types/node",
     "@types/react": "link:../node_modules/@types/react",
     "@types/react-dom": "link:../node_modules/@types/react-dom",
+    "@walletconnect/client": "^1.4.1",
+    "@walletconnect/qrcode-modal": "^1.4.1",
+    "@walletconnect/web3-provider": "^1.4.1",
     "ethers": "^5.3.0",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts",
-    "typescript": "link:../node_modules/typescript"
+    "typescript": "link:../node_modules/typescript",
+    "web3": "^1.3.6"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
